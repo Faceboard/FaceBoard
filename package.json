@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "pack": "build --dir",
+    "dist": "build"
   },
   "repository": {
     "type": "git",
@@ -16,7 +18,14 @@
   "bugs": {
     "url": "https://github.com/HRR17-Cauliflower/FaceBoard/issues"
   },
-  "homepage": "https://github.com/hrr17-rattata/FaceBoard#readme",
+  "homepage": "https://github.com/HRR17-Cauliflower/FaceBoard#readme",
+  "build": {
+    "appId": "com.hrr17-cauliflower.faceboard",
+    "app-category-type": "public.app-category.video",
+    "win": {
+      "iconUrl": "https://gentle-dawn-99214.herokuapp.com/imgs/generic.png"
+    }
+  },
   "dependencies": {
     "axios": "^0.13.1",
     "babel-cli": "^6.11.4",
@@ -28,6 +37,7 @@
     "electron": "^1.3.2",
     "electron-prebuilt": "^1.3.2",
     "electron-reload": "^1.0.1",
+    "electron-squirrel-startup": "^1.0.0",
     "mocha": "^3.0.0",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
