@@ -1,4 +1,4 @@
 node_modules
 .floo*
-compiled
+client/compiled
 dist
