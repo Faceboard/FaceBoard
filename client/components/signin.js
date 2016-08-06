@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 
 const Signin = () => (
@@ -7,7 +8,10 @@ const Signin = () => (
       <h2> Sign in! </h2>
       <input name="username" value="username" />
       <input type="password" name="password" value="password" />
-      <button>Sign
+      <button>Sign in</button><br />
+      <Link to="/"><button> Back to homepage </button></Link>
     </form>
   </div>
 )
+
+export default Signin;
