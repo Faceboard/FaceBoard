@@ -6,13 +6,16 @@ import { createStore } from 'redux';
 import App from './components/app';
 import Signup from './components/signup';
 import Signin from './components/signin';
+import configureStore from './store/configureStore';
 
 //starter page - necessary for webpack. Put whatever desired here.
 
 ReactDOM.render(
-  <Router history={hashHistory} >
-    <Route path="/" component={App}/>
-    <Route path="/signup" component={Signup}/>
-    <Route path="/signin" component={Signin}/>
-  </Router>
+  <Provider store={configureStore()}>
+    <Router history={hashHistory} >
+      <Route path="/" component={App}/>
+      <Route path="/signup" component={Signup}/>
+      <Route path="/signin" component={Signin}/>
+    </Router>
+  </Provider>
 ,document.getElementById('root'));
