@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webwatch": "webpack --watch",
-    "start": "webpack && electron main.js"
+    "start": "webpack && electron main.js",
+    "build": "webpack && build -mw"
   },
   "repository": {
     "type": "git",

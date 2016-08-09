@@ -4,6 +4,13 @@ const electron = require('electron');
 const BrowserWindow = electron.BrowserWindow;
 const app = electron.app;
 
+
+  ///////////////////////////////////////////
+ //////// ***winSquirrel Events*** /////////
+///////////////////////////////////////////
+// the following functions control the windows Squirrel builder events
+// they are used by electron builder to create a windows .exe file
+// please do not change
 if (handleSquirrelEvent()) { return; }
 
 function handleSquirrelEvent() {
@@ -51,6 +58,10 @@ function handleSquirrelEvent() {
       return true;
   }
 };
+
+  ///////////////////////////////////////////
+ //////// ***endSquirrel Events*** /////////
+///////////////////////////////////////////
 
 
 
