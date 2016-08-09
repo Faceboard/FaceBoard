@@ -1,3 +1,4 @@
+import { FETCHING_USERS, USERS_FETCHED, FETCH_USERS_ERROR } from '../actions/action'
 
 const initialState = {
   users: [],
@@ -8,15 +9,15 @@ const initialState = {
 // do constants
 const userReducer = (state=initialState, action) => {
   switch (action.type) {
-    case 'FETCHING_USERS':
+    case FETCHING_USERS:
       return Object.assign({},state, { fetching: true } );
-    case 'USERS_FETCHED':
+    case USERS_FETCHED:
       return Object.assign({}, state, {
         fetching: false,
         fetched: true,
         users: action.payload
       });
-    case 'FETCH_USERS_ERROR':
+    case FETCH_USERS_ERROR:
       return Object.assign({}, state, {
         fetching: false,
         fetched: true,

@@ -7,4 +7,14 @@ html, body, #lobby, #friendsList, #root {
   border: 1px solid black;
   width: 15%;
 }
+ul {
+  list-style-type: none;
+  margin-left: -20px;
+}
 
+ul li:before {
+    /* Unicode bullet symbol */
+    content: '\2022 ';
+    /* Bullet color */
+    color: green;
+}
