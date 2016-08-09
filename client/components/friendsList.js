@@ -17,6 +17,7 @@ class FriendsList extends React.Component {
   render() {
     const { users } = this.props;
     const mapUsers = users.map(user => <li key={user.id}>{user.userid}</li>)
+
     if (!users.length){
       return (
         <div id="friendsList">
