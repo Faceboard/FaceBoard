@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { logout, authenticated } from '../auth';
+import FriendsList from './friendsList';
 
 class Lobby extends React.Component{
   constructor(props) {
@@ -21,8 +22,9 @@ class Lobby extends React.Component{
 
   render() {
     return (
-      <div>
+      <div id="lobby">
         <h1>Hello World</h1>
+        <FriendsList />
         <button onClick={this.onLogout.bind(this)}>Logout</button>
       </div>
     )

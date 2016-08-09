@@ -1,0 +1,8 @@
+html, body, #lobby, #friendsList, #root {
+  height: 100%;
+}
+
+#friendsList {
+  border: 1px solid black;
+  width: 15%;
+}
