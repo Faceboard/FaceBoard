@@ -7,8 +7,8 @@ export function getAllUsers() {
       .then((response) => {
         dispatch({type: 'USERS_FETCHED', payload: response.data });
       })
-      .catch((err) => {
-        dispatch({type: 'FETCHING_USERS_ERROR', err: err });
+      .catch((error) => {
+        dispatch({type: 'FETCHING_USERS_ERROR', error: error });
       })
   }
 }

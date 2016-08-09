@@ -4,25 +4,25 @@ const initialState = {
   fetching: false,
   fetched: false
 }
+
 // do constants
-const userReducer = (state=initialState, action) {
+const userReducer = (state=initialState, action) => {
   switch (action.type) {
-    case FETCHING_USERS:
-      return {...state, fetching: true };
-    case USERS_FETCHED:
-      return {
-        ...state,
+    case 'FETCHING_USERS':
+      return Object.assign({},state, { fetching: true } );
+    case 'USERS_FETCHED':
+      return Object.assign({}, state, {
         fetching: false,
-        fetched: true
+        fetched: true,
         users: action.payload
-      };
-    case FETCH_USERS_ERROR:
-      return {
-        ...state,
+      });
+    case 'FETCH_USERS_ERROR':
+      return Object.assign({}, state, {
         fetching: false,
         fetched: true,
         error: action.payload
-      }
+      });
   }
-
 }
+
+export default userReducer;

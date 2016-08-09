@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import { logout, authenticated } from '../auth';
 import FriendsList from './friendsList';
 
-class Lobby extends React.Component{
+class Lobby extends React.Component {
   constructor(props) {
     super(props);
   }
