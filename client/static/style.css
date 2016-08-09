@@ -3,6 +3,8 @@ html, body, #lobby, #friendsList, #root {
 }
 
 #friendsList {
+  float: left;
   border: 1px solid black;
   width: 15%;
 }
+

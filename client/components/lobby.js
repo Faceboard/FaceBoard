@@ -25,7 +25,7 @@ class Lobby extends React.Component{
       <div id="lobby">
         <h1>Hello World</h1>
         <FriendsList />
-        <button onClick={this.onLogout.bind(this)}>Logout</button>
+        <button id="logout" onClick={this.onLogout.bind(this)}>Logout</button>
       </div>
     )
   }
