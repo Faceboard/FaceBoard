@@ -3,7 +3,6 @@ import React from 'react';
 
 const FriendsList = () => (
   <div id="friendsList">
-    FriendList
   </div>
 )
 

@@ -24,4 +24,5 @@ const userReducer = (state=initialState, action) {
         error: action.payload
       }
   }
+
 }
