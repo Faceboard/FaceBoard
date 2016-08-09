@@ -1,9 +1,10 @@
 import axios from 'axios';
 
+
 export function getAllUsers() {
   return function(dispatch) {
-    dispatch({type: FETCHING_USERS})
-    axis.get('https://face-board.herokuapp.com/users/findall')
+    dispatch({type: 'FETCHING_USERS' })
+    axios.get('https://face-board.herokuapp.com/users/findall')
       .then((response) => {
         dispatch({type: 'USERS_FETCHED', payload: response.data });
       })

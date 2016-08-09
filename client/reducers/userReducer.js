@@ -22,6 +22,8 @@ const userReducer = (state=initialState, action) => {
         fetched: true,
         error: action.payload
       });
+    default:
+      return state;
   }
 }
 
