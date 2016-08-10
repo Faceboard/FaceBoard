@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { logout, authenticated } from '../auth';
 import FriendsList from './friendsList';
+import Chat from './chat';
+import io from 'socket.io-client';
+// import remote from 'electron';
 
 class Lobby extends React.Component {
   constructor(props) {
@@ -10,6 +13,7 @@ class Lobby extends React.Component {
   }
 
   componentWillMount() {
+    io.connect('https://face-board.herokuapp.com');
     if (!authenticated()) {
       this.props.router.replace('/auth');
     }
@@ -26,6 +30,7 @@ class Lobby extends React.Component {
         <h1>Hello World</h1>
         <FriendsList />
         <button id="logout" onClick={this.onLogout.bind(this)}>Logout</button>
+        <Chat />
       </div>
     )
   }

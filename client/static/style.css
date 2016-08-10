@@ -1,4 +1,4 @@
-html, body, #lobby, #friendsList, #root {
+html, body, #lobby, #root {
   height: 100%;
 }
 
@@ -6,7 +6,9 @@ html, body, #lobby, #friendsList, #root {
   float: left;
   border: 1px solid black;
   width: 15%;
+  height: 80%;
 }
+
 ul {
   list-style-type: none;
   margin-left: -20px;
@@ -17,4 +19,13 @@ ul li:before {
     content: '\2022 ';
     /* Bullet color */
     color: green;
+}
+
+#chatBox {
+  border: 1px solid black;
+  height: 80%;
+}
+
+#logout {
+  float: right;
 }
