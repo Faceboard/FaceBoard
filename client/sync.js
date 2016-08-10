@@ -1,7 +1,14 @@
 import io from 'socket.io-client';
 
-let socket = io.connect('https://face-board.herokuapp.com');
+options = {
+  transports: ['websocket'],
+  'force new connection': true
+};
 
-socket.on('remote update', function(data) {
-  console.log(data);
+let socket = io('https://face-board-pr-18.herokuapp.com', {'force new connection': true});
+
+socket.on('chat message', function(msg){
+  console.log('ok');
 });
+
+export default socket;

@@ -18,7 +18,7 @@ class Lobby extends React.Component {
     if (!authenticated()) {
       this.props.router.replace('/auth');
     }
-  }
+  };
 
   onLogout() {
     logout();
