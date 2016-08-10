@@ -13,7 +13,7 @@ const chatReducer = (state = {}, action) => {
     case 'MESSAGES_FETCHED':
       return Object.assign({}, state, {
         fetched: false,
-        fetched: true,
+        fetching: true,
         messages: action.payload
       });
     case 'MESSAGES_ERROR':
