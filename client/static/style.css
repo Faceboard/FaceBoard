@@ -33,3 +33,7 @@ ul li:before {
 .user {
   color: green;
 }
+
+#inputMessage {
+  border: 1px solid black;
+}

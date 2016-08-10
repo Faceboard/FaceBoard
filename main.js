@@ -76,7 +76,7 @@ let win;
 app.on('ready', function() {
 
   win = new BrowserWindow({
-    width: 800,
+    width: 1176,
     height: 600
   });
 
