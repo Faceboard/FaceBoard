@@ -11,7 +11,7 @@ export function getAllUsers() {
         dispatch({type: USERS_FETCHED, payload: response.data });
       })
       .catch((error) => {
-        dispatch({type: FETCHING_USERS_ERROR, error: error });
+        dispatch({type: FETCH_USERS_ERROR, error: error });
       })
   }
 }

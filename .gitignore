@@ -2,3 +2,4 @@ node_modules
 .floo*
 client/compiled
 dist
+npm-debug
