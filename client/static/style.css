@@ -34,6 +34,12 @@ ul li:before {
   color: green;
 }
 
-#inputMessage {
+#inputMessageBox {
   border: 1px solid black;
+  height: 10%;
+}
+
+#inputMessage {
+  width: 800px;
+  margin-left: 290px;
 }

@@ -12,16 +12,23 @@ class Input extends React.Component {
     this.props.dispatch(changeMessageText(e.target.name, e.target.value));
   }
 
+  sendMessage(e) {
+    e.preventDefault();
+    console.log('submitted');
+  }
+
   render() {
     return (
-      <div id="inputMessage">
-        <form>
-          <input type="text" name="messageText" onChange={this.changeMessage.bind(this)}/>
+      <div id="inputMessageBox">
+        <form onSubmit={this.sendMessage.bind(this)}>
+          <textarea id="inputMessage" type="text" name="messageText" value={this.props.message} onChange={this.changeMessage.bind(this)}>
+          </textarea>
+          <button> Send Text </button>
         </form>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => state.messageReducer;
+const mapStateToProps = state => state.inputReducer;
 export default connect(mapStateToProps)(withRouter(Input));

@@ -1,4 +1,4 @@
-const messageReducer = (state={}, action) => {
+const inputReducer = (state={}, action) => {
   switch(action.type) {
     case 'CHANGE_MESSAGE_TEXT':
       return Object.assign({}, state, {[action.field]: action.text});
@@ -7,4 +7,4 @@ const messageReducer = (state={}, action) => {
   }
 }
 
-export default messageReducer;
+export default inputReducer;
