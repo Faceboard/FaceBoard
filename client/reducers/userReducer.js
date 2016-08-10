@@ -23,6 +23,14 @@ const userReducer = (state=initialState, action) => {
         fetched: true,
         error: action.payload
       });
+    case 'CHANGE_FIELD':
+      return Object.assign({}, state, {
+        [action.field]: action.value,
+      });
+    case "SESSION_MADE":
+      return Object.assign({}, state, {
+        session: action.payload
+      });
     default:
       return state;
   }
