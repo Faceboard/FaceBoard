@@ -35,7 +35,5 @@ export function makePrivateSession(firstUserName, secondUserName) {
     firstUserName: firstUserName,
     secondUserName: secondUserName
   }
-  socket.emit('make session', function (userObj) {
-    console.log('SOMETHING IS WORKING IN makePrivateSession');
-  });
+  socket.emit('privateSessionCreation', userObj);
 }

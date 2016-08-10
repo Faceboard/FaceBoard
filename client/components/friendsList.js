@@ -12,10 +12,6 @@ class FriendsList extends React.Component {
   }
 
   componentWillMount() {
-    socket.on('chat message', function (data) {
-      console.log('something');
-      console.log('THIS IS THE TEST SESSION', data);
-    });
     this.props.dispatch(getAllUsers())
   }
 
@@ -29,11 +25,9 @@ class FriendsList extends React.Component {
   //     })
   // }
 
-  createSession(e) {
-    e.preventDefault();
-    console.log('SOMETHING IS WORKING IN CREATESESSION');
+  createSession(username) {
     const { session, router } = this.props;
-    makePrivateSession(global.localStorage.username, e.target.key);
+    makePrivateSession(global.localStorage.username, username);
   }
 
   sessionChange(e) {
@@ -42,7 +36,7 @@ class FriendsList extends React.Component {
 
   render() {
     const { users } = this.props;
-    const mapUsers = users.map(user => <li onClick={this.createSession.bind(this)} key={user.userid}>{user.userid} | {user.id} </li>)
+    const mapUsers = users.map(user => <li onClick={this.createSession.bind(this, user.userid)} key={user.userid}>{user.userid} | {user.id} </li>)
 
     if (!users.length){
       return (
