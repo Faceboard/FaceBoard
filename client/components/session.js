@@ -9,7 +9,7 @@ class Session extends React.Component {
 
   render() {
       return (
-        <div>
+        <div id="sessionWrapper">
           <Link to="/">Lobby</Link>
           <h2>Session Place</h2>
         </div>
