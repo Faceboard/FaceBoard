@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { logout, authenticated } from '../auth';
 import FriendsList from './friendsList';
 import Chat from './chat';
+import Input from './input';
 import io from 'socket.io-client';
 // import remote from 'electron';
 
@@ -31,6 +32,7 @@ class Lobby extends React.Component {
         <FriendsList />
         <button id="logout" onClick={this.onLogout.bind(this)}>Logout</button>
         <Chat />
+        <Input />
       </div>
     )
   }
