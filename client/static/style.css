@@ -62,3 +62,9 @@ ul li:before {
   border: 1px solid black;
   height: 50%;
 }
+
+#firepad {
+  width: 700px;
+  height: 450px;
+  background-color: #f62; /* dark orange background */
+}
