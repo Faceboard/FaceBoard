@@ -1,4 +1,4 @@
-html, body, #lobby, #root {
+html, body, #lobby, #root, #sessionWrapper {
   height: 100%;
 }
 
@@ -42,4 +42,16 @@ ul li:before {
 #inputMessage {
   width: 800px;
   margin-left: 290px;
+}
+
+#videoList {
+  border: 1px solid black;
+  float: right;
+  height: 60%;
+  width: 15%;
+}
+
+.videos {
+  border: 1px solid black;
+  height: 50%;
 }
