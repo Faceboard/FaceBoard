@@ -44,11 +44,18 @@ ul li:before {
   margin-left: 290px;
 }
 
+#mainSession {
+  display: inline-block;
+  border: 1px solid black;
+  width: 64%;
+  height: 80%;
+}
+
 #videoList {
   border: 1px solid black;
   float: right;
   height: 60%;
-  width: 15%;
+  width: 20%;
 }
 
 .videos {
