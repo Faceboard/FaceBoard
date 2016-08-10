@@ -2,7 +2,9 @@ import React from 'react';
 import { getAllUsers } from '../actions/userActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { inviteToSession, makeSession, sessionChange } from '../actions/session';
+import { inviteToSession, makeSession, sessionChange, makePrivateSession } from '../actions/session';
+import socket from '../sync';
+import io from 'socket.io-client';
 
 class FriendsList extends React.Component {
   constructor(props) {
@@ -10,17 +12,28 @@ class FriendsList extends React.Component {
   }
 
   componentWillMount() {
+    socket.on('chat message', function (data) {
+      console.log('something');
+      console.log('THIS IS THE TEST SESSION', data);
+    });
     this.props.dispatch(getAllUsers())
   }
 
+  // createSession(e) {
+  //   e.preventDefault()
+  //   const { session, router } = this.props;
+  //   console.log('before make session', session);
+  //   makeSession(session)
+  //     .then((session) => {
+  //       router.replace('/session')
+  //     })
+  // }
+
   createSession(e) {
-    e.preventDefault()
+    e.preventDefault();
+    console.log('SOMETHING IS WORKING IN CREATESESSION');
     const { session, router } = this.props;
-    console.log('before make session', session);
-    makeSession(session)
-      .then((session) => {
-        router.replace('/session')
-      })
+    makePrivateSession(global.localStorage.username, e.target.key);
   }
 
   sessionChange(e) {
@@ -29,7 +42,7 @@ class FriendsList extends React.Component {
 
   render() {
     const { users } = this.props;
-    const mapUsers = users.map(user => <li key={user.id}>{user.userid} | {user.id} </li>)
+    const mapUsers = users.map(user => <li onClick={this.createSession.bind(this)} key={user.userid}>{user.userid} | {user.id} </li>)
 
     if (!users.length){
       return (
