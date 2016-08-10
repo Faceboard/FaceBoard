@@ -1,4 +1,5 @@
 import axios from 'axios';
+import socket from '../sync';
 
 export function sessionChange(field, value) {
   return {
@@ -27,4 +28,12 @@ export function inviteToSession(sessionId, invitedUserId) {
   .then(function (session) {
     console.log(session);
   })
+}
+
+export function makePrivateSession(firstUserName, secondUserName) {
+  var userObj = {
+    firstUserName: firstUserName,
+    secondUserName: secondUserName
+  }
+  socket.emit('privateSessionCreation', userObj);
 }
