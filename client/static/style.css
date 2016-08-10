@@ -1,4 +1,4 @@
-html, body, #lobby, #friendsList, #root {
+html, body, #lobby, #root, #sessionWrapper {
   height: 100%;
 }
 
@@ -6,7 +6,9 @@ html, body, #lobby, #friendsList, #root {
   float: left;
   border: 1px solid black;
   width: 15%;
+  height: 80%;
 }
+
 ul {
   list-style-type: none;
   margin-left: -20px;
@@ -17,4 +19,46 @@ ul li:before {
     content: '\2022 ';
     /* Bullet color */
     color: green;
+}
+
+#chatBox {
+  border: 1px solid black;
+  height: 80%;
+}
+
+#logout {
+  float: right;
+}
+
+.user {
+  color: green;
+}
+
+#inputMessageBox {
+  border: 1px solid black;
+  height: 10%;
+}
+
+#inputMessage {
+  width: 800px;
+  margin-left: 290px;
+}
+
+#mainSession {
+  display: inline-block;
+  border: 1px solid black;
+  width: 64%;
+  height: 80%;
+}
+
+#videoList {
+  border: 1px solid black;
+  float: right;
+  height: 60%;
+  width: 20%;
+}
+
+.videos {
+  border: 1px solid black;
+  height: 50%;
 }

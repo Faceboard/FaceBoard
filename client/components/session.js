@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router';
+import VideoList from './videoList';
+import MainSession from './mainSession';
+import FriendsList from './friendsList';
 
 class Session extends React.Component {
   constructor(props) {
@@ -9,13 +12,18 @@ class Session extends React.Component {
 
   render() {
       return (
-        <div>
+        <div id="sessionWrapper">
           <Link to="/">Lobby</Link>
           <h2>Session Place</h2>
+          <FriendsList />
+          <MainSession />
+          <VideoList />
         </div>
       );
   }
 }
 
-const mapStateToProps = state => state.sessionReducer;
+// change this in time
+const mapStateToProps = state => state.userReducer;
 export default connect(mapStateToProps)(withRouter(Session));
+//places to rename sessionName: session.js, component,

@@ -39,13 +39,13 @@ class FriendsList extends React.Component {
     }
     return (
       <div id="friendsList">
-        <ul>
-          {mapUsers}
-        </ul>
-        <form onSubmit={this.createSession.bind(this)}>
-          <input type="text" name="session" value={this.props.session} onChange={this.sessionChange.bind(this)}/>
-          <button> Submit </button>
-        </form>
+      <form onSubmit={this.createSession.bind(this)}>
+        <input type="text" name="session" value={this.props.session} onChange={this.sessionChange.bind(this)}/>
+        <button> Submit </button>
+      </form>
+      <ul>
+        {mapUsers}
+      </ul>
       </div>
     )
   }
