@@ -1,14 +1,8 @@
 import React from 'react';
-import Firebase from 'firebase';
-import Firepad from 'firepad';
-import { configFirebase } from '../actions/firebaseConfig';
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router';
+import { configFirebase, fetchFirepad } from '../actions/firebaseConfig';
 
-// const MainSession = () => (
-//   <div id="mainSession">
-//     <div id="firepad">
-//     </div>
-//   </div>
-// )
 
 class MainSession extends React.Component {
   constructor(props) {
@@ -16,12 +10,7 @@ class MainSession extends React.Component {
   }
 
   componentDidMount() {
-    configFirebase();
-    var firepadRef = Firebase.database().ref('/test');
-    var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
-    console.log('codemirror', codeMirror)
-    Firepad.fromCodeMirror(firepadRef, codeMirror,
-        { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
+    this.props.dispatch(fetchFirepad());
   }
 
   render() {
@@ -29,12 +18,11 @@ class MainSession extends React.Component {
     return (
       <div id="mainSession">
         <div id="firepad">
-          <div id="Codemirror">
-          </div>
         </div>
       </div>
     )
   }
 }
 
-export default MainSession;
+const mapStateToProps = state => state.firepadReducer;
+export default connect(mapStateToProps)(withRouter(MainSession));
