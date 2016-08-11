@@ -7,6 +7,7 @@ import FriendsList from './friendsList';
 import Firebase from 'firebase';
 import Firepad from 'firepad';
 import { configFirebase } from '../actions/firebaseConfig';
+import socket from '../sync';
 
 
 class Session extends React.Component {
@@ -22,10 +23,17 @@ class Session extends React.Component {
         { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
   }
 
+  leaveSession() {
+    delete global.localStorage.inSession;
+    socket.emit('leaveSession', global.localStorage.session);
+    const { router } = this.props;
+    router.replace('/');
+  }
+
   render() {
       return (
         <div id="sessionWrapper">
-          <Link to="/">Lobby</Link>
+          <button onClick={ this.leaveSession.bind(this) }>Lobby</button>
           <h2>Session Place</h2>
           <FriendsList />
           <MainSession />
