@@ -27,14 +27,11 @@ class FriendsList extends React.Component {
 
   createSession(username) {
     const { session, router } = this.props;
-<<<<<<< 3abdfff01ea21153f30a46b2043f200fb116bf82
     makePrivateSession(global.localStorage.username, username);
-=======
     makeSession(session)
       .then((session) => {
         router.replace('/session')
       })
->>>>>>> (feat) add firebase reducer and actions
   }
 
   sessionChange(e) {
