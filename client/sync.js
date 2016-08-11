@@ -4,8 +4,8 @@ let options = {
   'force new connection': true
 };
 
-let socket = io('http://localhost:3000', options);
-// let socket = io('https://face-board.herokuapp.com', {'force new connection': true});
+// let socket = io('http://localhost:3000', options);
+let socket = io('https://face-board.herokuapp.com/test', options);
 
 socket.on('userWantsToCreateSession', function (data) {
   console.log('THIS IS THE COFIRMING TEST SESSION EVENT', data);
