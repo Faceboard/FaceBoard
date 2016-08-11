@@ -28,10 +28,6 @@ class FriendsList extends React.Component {
   createSession(username) {
     const { session, router } = this.props;
     makePrivateSession(global.localStorage.username, username);
-    // makeSession(session)
-    //   .then((session) => {
-    //     router.replace('/session')
-    //   })
     router.replace('/session');
   }
 
