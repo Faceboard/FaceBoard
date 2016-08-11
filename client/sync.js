@@ -20,6 +20,10 @@ socket.on('userHasJoinedSession', function (mes) {
   console.log(mes);
 })
 
+socket.on('userHasLeftSession', function (mes) {
+  console.log(mes);
+})
+
 socket.on('user connected', function (data) {
   console.log(data);
   socket.emit('make sesssion', "User has connected");
