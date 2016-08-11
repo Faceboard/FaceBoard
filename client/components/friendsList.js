@@ -15,27 +15,27 @@ class FriendsList extends React.Component {
     this.props.dispatch(getAllUsers())
   }
 
-  createSession(e) {
-    e.preventDefault()
+  // createSession(e) {
+  //   e.preventDefault()
+  //   const { session, router } = this.props;
+  //   console.log('before make session', session);
+  //   makeSession(session)
+  //     .then((session) => {
+  //       router.replace('/session')
+  //     })
+  // }
+
+  createSession(username) {
     const { session, router } = this.props;
-    console.log('before make session', session);
+<<<<<<< 3abdfff01ea21153f30a46b2043f200fb116bf82
+    makePrivateSession(global.localStorage.username, username);
+=======
     makeSession(session)
       .then((session) => {
         router.replace('/session')
       })
+>>>>>>> (feat) add firebase reducer and actions
   }
-
-//   createSession(username) {
-//     const { session, router } = this.props;
-// <<<<<<< 3abdfff01ea21153f30a46b2043f200fb116bf82
-//     makePrivateSession(global.localStorage.username, username);
-// =======
-//     makeSession(session)
-//       .then((session) => {
-//         router.replace('/session')
-//       })
-// >>>>>>> (feat) add firebase reducer and actions
-//   }
 
   sessionChange(e) {
     this.props.dispatch(sessionChange(e.target.name, e.target.value))
