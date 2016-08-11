@@ -3,6 +3,7 @@ import { getAllMessages } from '../actions/chat';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Message from './message'
+import socket from '../sync';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -11,6 +12,12 @@ class Chat extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(getAllMessages())
+
+    const getAll = this.props.dispatch;
+
+    socket.on('confirm message', function (data) {
+      getAll(getAllMessages());
+    });
   }
 
   render() {
