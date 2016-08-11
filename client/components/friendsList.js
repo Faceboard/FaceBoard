@@ -15,19 +15,23 @@ class FriendsList extends React.Component {
     this.props.dispatch(getAllUsers())
   }
 
-  // createSession(e) {
-  //   e.preventDefault()
-  //   const { session, router } = this.props;
-  //   console.log('before make session', session);
-  //   makeSession(session)
-  //     .then((session) => {
-  //       router.replace('/session')
-  //     })
-  // }
+  createPrivateSession(e) {
+    e.preventDefault()
+    const { session, router } = this.props;
+    console.log('before make session', session);
+    makeSession(session)
+      .then((session) => {
+        router.replace('/session')
+      })
+  }
 
   createSession(username) {
     const { session, router } = this.props;
     makePrivateSession(global.localStorage.username, username);
+    makeSession(session)
+      .then((session) => {
+        router.replace('/session')
+      })
   }
 
   sessionChange(e) {
@@ -46,7 +50,7 @@ class FriendsList extends React.Component {
     }
     return (
       <div id="friendsList">
-      <form onSubmit={this.createSession.bind(this)}>
+      <form onSubmit={this.createPrivateSession.bind(this)}>
         <input type="text" name="session" value={this.props.session} onChange={this.sessionChange.bind(this)}/>
         <button> Submit </button>
       </form>

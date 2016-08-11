@@ -49,6 +49,7 @@ ul li:before {
   border: 1px solid black;
   width: 64%;
   height: 80%;
+  background-color: black;
 }
 
 #videoList {
@@ -61,4 +62,14 @@ ul li:before {
 .videos {
   border: 1px solid black;
   height: 50%;
+}
+
+#firepad {
+  width: 100%;
+  height: 100%;
+  background-color: #f62; /* dark orange background */
+}
+
+.CodeMirror {
+  background-color: black;
 }

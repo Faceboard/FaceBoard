@@ -4,10 +4,22 @@ import { withRouter, Link } from 'react-router';
 import VideoList from './videoList';
 import MainSession from './mainSession';
 import FriendsList from './friendsList';
+import Firebase from 'firebase';
+import Firepad from 'firepad';
+import { configFirebase } from '../actions/firebaseConfig';
+
 
 class Session extends React.Component {
   constructor(props) {
       super(props);
+  }
+
+  componentDidMount() {
+    configFirebase();
+    var firepadRef = Firebase.database().ref('/test');
+    var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
+    var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
+        { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
   }
 
   render() {
