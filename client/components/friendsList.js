@@ -12,7 +12,18 @@ class FriendsList extends React.Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(getAllUsers())
+    this.props.dispatch(getAllUsers());
+    const { router } = this.props;
+    socket.on('userWantsToCreateSession', function (data) {
+      if (global.localStorage.username === data.secondUserName && !global.localStorage.inSession) {
+        if (confirm(data.firstUserName + ' wants to create a private session with you. Would you like to join?')) {
+          socket.emit('userWantsToJoinSession', data);
+          global.localStorage.inSession = true;
+          global.localStorage.session = data.firstUserName + data.secondUserName;
+          router.replace('/session');
+        }
+      }
+    });
   }
 
   createPrivateSession(e) {
