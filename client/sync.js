@@ -26,4 +26,8 @@ socket.on('send message', function (data) {
   store.dispatch(getAllMessages());
 });
 
+socket.on('ipaddr', function (data) {
+  console.log('this is data', data);
+})
+
 export default socket;
