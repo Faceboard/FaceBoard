@@ -3,7 +3,7 @@ import axios from 'axios';
 export function signIn (username, password) {
   return axios.post('https://face-board.herokuapp.com/users/signin', {username, password}).then(res => {
     global.localStorage.token = res.data.token;
-    global.localStorage.username = res.data.user.userid
+    global.localStorage.username = res.data.user.userid;
     global.localStorage.userid = res.data.user.id;
   });
 }

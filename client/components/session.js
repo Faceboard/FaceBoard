@@ -11,11 +11,11 @@ import socket from '../sync';
 
 
 class Session extends React.Component {
-  constructor(props) {
-      super(props);
+  constructor (props) {
+    super(props);
   }
 
-  componentDidMount() {
+  componentDidMount () {
     configFirebase();
     var firepadRef = Firebase.database().ref('/test');
     var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
@@ -23,27 +23,27 @@ class Session extends React.Component {
         { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
   }
 
-  leaveSession() {
+  leaveSession () {
     delete global.localStorage.inSession;
     socket.emit('leaveSession', global.localStorage.session);
     const { router } = this.props;
     router.replace('/');
   }
 
-  render() {
-      return (
-        <div id="sessionWrapper">
-          <button onClick={ this.leaveSession.bind(this) }>Lobby</button>
-          <h2>Session Place</h2>
-          <FriendsList />
-          <MainSession />
-          <VideoList />
-        </div>
-      );
+  render () {
+    return (
+      <div id="sessionWrapper">
+        <button onClick={ this.leaveSession.bind(this) }>Lobby</button>
+        <h2>Session Place</h2>
+        <FriendsList />
+        <MainSession />
+        <VideoList />
+      </div>
+    );
   }
 }
 
 // change this in time
 const mapStateToProps = state => state.userReducer;
 export default connect(mapStateToProps)(withRouter(Session));
-//places to rename sessionName: session.js, component,
+// places to rename sessionName: session.js, component,

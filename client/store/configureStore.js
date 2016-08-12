@@ -3,6 +3,6 @@ import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
-export default function configureStore(preloadedState) {
+export default function configureStore (preloadedState) {
   return createStore(reducer, preloadedState, applyMiddleware(thunk));
 }

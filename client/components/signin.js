@@ -5,15 +5,15 @@ import { authChange } from '../actions/action';
 import { signIn, authenticated } from '../auth';
 
 class Signin extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
   }
 
-  onFieldChange(e) {
+  onFieldChange (e) {
     this.props.dispatch(authChange(e.target.name, e.target.value));
   }
 
-  onSignIn(e) {
+  onSignIn (e) {
     e.preventDefault();
     const { username, password, router } = this.props;
     signIn(username, password)
@@ -26,7 +26,7 @@ class Signin extends React.Component {
       });
   }
 
-  render() {
+  render () {
     return (
       <div>
         <form onSubmit={this.onSignIn.bind(this)}>
@@ -37,7 +37,7 @@ class Signin extends React.Component {
           <Link to="/auth"><button> Back to homepage </button></Link>
         </form>
       </div>
-    )
+    );
   }
 }
 

@@ -5,6 +5,6 @@ const Message = ({key, user, text}) => (
     <h1 className="user">{user}:</h1>
     <h3 className="text">{text}</h3>
   </div>
-)
+);
 
 export default Message;

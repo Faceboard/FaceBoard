@@ -1,19 +1,19 @@
-"use strict";
+'use strict';
 
 const electron = require('electron');
 const BrowserWindow = electron.BrowserWindow;
 const app = electron.app;
 
 
-  ///////////////////////////////////////////
- //////// ***winSquirrel Events*** /////////
-///////////////////////////////////////////
+//   ///////////////////////////////////////////
+//  //////// ***winSquirrel Events*** /////////
+// ///////////////////////////////////////////
 // the following functions control the windows Squirrel builder events
 // they are used by electron builder to create a windows .exe file
 // please do not change
 if (handleSquirrelEvent()) { return; }
 
-function handleSquirrelEvent() {
+function handleSquirrelEvent () {
   if (process.argv.length === 1) {
     return false;
   }
@@ -26,17 +26,19 @@ function handleSquirrelEvent() {
   const updateDotExe = path.resolve(path.join(rootAtomFolder, 'Update.exe'));
   const exeName = path.basename(process.execPath);
 
-  const spawn = function(command, args) {
-    let spawnedProcess, error;
+  const spawn = function (command, args) {
+    let spawnedProcess;
 
     try {
       spawnedProcess = ChildProcess.spawn(command, args, {detached: true});
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
 
     return spawnedProcess;
   };
 
-  const spawnUpdate = function(args) {
+  const spawnUpdate = function (args) {
     return spawn(updateDotExe, args);
   };
 
@@ -56,25 +58,20 @@ function handleSquirrelEvent() {
     case '--squirrel-obsolete':
       app.quit();
       return true;
+
+    default:
+      return;
   }
-};
+}
 
-  ///////////////////////////////////////////
- //////// ***endSquirrel Events*** /////////
-///////////////////////////////////////////
-
-
-
-
-
-
-
+//   ///////////////////////////////////////////
+//  //////// ***endSquirrel Events*** /////////
+// ///////////////////////////////////////////
 
 
 let win;
 
-app.on('ready', function() {
-
+app.on('ready', function () {
   win = new BrowserWindow({
     width: 1176,
     height: 600
@@ -83,10 +80,9 @@ app.on('ready', function() {
   win.loadURL(`file://${__dirname}/client/static/index.html`);
   win.webContents.openDevTools();
 
-  app.on('closed', function() {
+  app.on('closed', function () {
     win = null;
   });
-
 });
 
 // auto reload on any changes

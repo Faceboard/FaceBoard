@@ -1,26 +1,25 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { configFirebase, fetchFirepad } from '../actions/firebaseConfig';
 
 
 class MainSession extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.dispatch(fetchFirepad());
   }
 
-  render() {
-
+  render () {
     return (
       <div id="mainSession">
         <div id="firepad">
         </div>
       </div>
-    )
+    );
   }
 }
 

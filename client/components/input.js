@@ -4,20 +4,20 @@ import { withRouter } from 'react-router';
 import { changeMessageText } from '../actions/message';
 
 class Input extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
   }
 
-  changeMessage(e) {
+  changeMessage (e) {
     this.props.dispatch(changeMessageText(e.target.name, e.target.value));
   }
 
-  sendMessage(e) {
+  sendMessage (e) {
     e.preventDefault();
     console.log('submitted');
   }
 
-  render() {
+  render () {
     return (
       <div id="inputMessageBox">
         <form onSubmit={this.sendMessage.bind(this)}>
@@ -26,7 +26,7 @@ class Input extends React.Component {
           <button> Send Text </button>
         </form>
       </div>
-    )
+    );
   }
 }
 

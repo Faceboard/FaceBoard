@@ -2,10 +2,10 @@ const initialState = {
   messages: [],
   fetching: false,
   fetched: false
-}
+};
 
 const chatReducer = (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'FETCHING_MESSAGES':
       return Object.assign({}, state, {
         fetching: true
@@ -25,6 +25,6 @@ const chatReducer = (state = {}, action) => {
     default:
       return state;
   }
-}
+};
 
 export default chatReducer;

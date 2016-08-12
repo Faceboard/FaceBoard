@@ -12,4 +12,4 @@ export default combineReducers({
   chatReducer,
   inputReducer,
   firepadReducer
-})
+});
