@@ -5,6 +5,7 @@ const VideoList = () => (
   <div id="videoList">
     <Videos />
     <Videos />
+    <Whiteboard />
   </div>
 );
 
