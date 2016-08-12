@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { changeMessageText } from '../actions/message';
+import socket from '../sync';
 
 class Input extends React.Component {
   constructor (props) {
@@ -14,7 +15,8 @@ class Input extends React.Component {
 
   sendMessage (e) {
     e.preventDefault();
-    console.log('submitted');
+    const { message } = this.props;
+    socket.emit('send message', {text: message, username: global.localStorage.username});
   }
 
   render () {

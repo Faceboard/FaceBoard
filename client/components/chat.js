@@ -3,14 +3,23 @@ import { getAllMessages } from '../actions/chat';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Message from './message';
+import socket from '../sync';
 
 class Chat extends React.Component {
   constructor (props) {
     super(props);
   }
 
-  componentWillMount () {
-    this.props.dispatch(getAllMessages());
+  componentWillMount() {
+    this.props.dispatch(getAllMessages())
+
+    const getAll = this.props.dispatch;
+
+    socket.on('confirm message', function (data) {
+      console.log('confirmed message', data);
+      getAll(getAllMessages());
+    });
+
   }
 
   render () {
