@@ -7,7 +7,6 @@ import FriendsList from './friendsList';
 import Firebase from 'firebase';
 import Firepad from 'firepad';
 import { configFirebase } from '../actions/firebaseConfig';
-
 import socket from '../sync';
 
 class Session extends React.Component {
