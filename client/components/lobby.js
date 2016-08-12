@@ -9,23 +9,23 @@ import io from 'socket.io-client';
 // import remote from 'electron';
 
 class Lobby extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
   }
 
-  componentWillMount() {
+  componentWillMount () {
     io.connect('https://face-board.herokuapp.com');
     if (!authenticated()) {
       this.props.router.replace('/auth');
     }
-  };
+  }
 
-  onLogout() {
+  onLogout () {
     logout();
     this.props.router.replace('/auth');
   }
 
-  render() {
+  render () {
     return (
       <div id="lobby">
         <h1>Hello World</h1>
@@ -34,7 +34,7 @@ class Lobby extends React.Component {
         <Chat />
         <Input />
       </div>
-    )
+    );
   }
 }
 

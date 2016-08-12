@@ -12,5 +12,11 @@
   "plugins": [
     "react"
   ],
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "rules": {
+    "no-unused-vars": 0,
+    "new-cap": ["warn", { "capIsNew": false }],
+    "no-undef": ["warn"],
+    "indent": ["error", 2, { "SwitchCase": 1 }]
+  }
 }

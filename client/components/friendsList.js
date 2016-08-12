@@ -7,11 +7,11 @@ import socket from '../sync';
 import io from 'socket.io-client';
 
 class FriendsList extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.props.dispatch(getAllUsers());
     const { router } = this.props;
     socket.on('userWantsToCreateSession', function (data) {
@@ -26,35 +26,35 @@ class FriendsList extends React.Component {
     });
   }
 
-  createPrivateSession(e) {
-    e.preventDefault()
+  createPrivateSession (e) {
+    e.preventDefault();
     const { session, router } = this.props;
     console.log('before make session', session);
     makeSession(session)
-      .then((session) => {
-        router.replace('/session')
-      })
+      .then(() => {
+        router.replace('/session');
+      });
   }
 
-  createSession(username) {
+  createSession (username) {
     const { session, router } = this.props;
     makePrivateSession(global.localStorage.username, username);
     router.replace('/session');
   }
 
-  sessionChange(e) {
-    this.props.dispatch(sessionChange(e.target.name, e.target.value))
+  sessionChange (e) {
+    this.props.dispatch(sessionChange(e.target.name, e.target.value));
   }
 
-  render() {
+  render () {
     const { users } = this.props;
-    const mapUsers = users.map(user => <li onClick={this.createSession.bind(this, user.userid)} key={user.userid}>{user.userid} | {user.id} </li>)
+    const mapUsers = users.map(user => <li onClick={this.createSession.bind(this, user.userid)} key={user.userid}>{user.userid} | {user.id} </li>);
 
-    if (!users.length){
+    if (!users.length) {
       return (
         <div id="friendsList">
         </div>
-      )
+      );
     }
     return (
       <div id="friendsList">
@@ -66,7 +66,7 @@ class FriendsList extends React.Component {
         {mapUsers}
       </ul>
       </div>
-    )
+    );
   }
 }
 

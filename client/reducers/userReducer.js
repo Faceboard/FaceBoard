@@ -1,16 +1,16 @@
-import { FETCHING_USERS, USERS_FETCHED, FETCH_USERS_ERROR } from '../actions/action'
+import { FETCHING_USERS, USERS_FETCHED, FETCH_USERS_ERROR } from '../actions/action';
 
 const initialState = {
   users: [],
   fetching: false,
   fetched: false
-}
+};
 
 // do constants
-const userReducer = (state=initialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCHING_USERS:
-      return Object.assign({},state, { fetching: true } );
+      return Object.assign({}, state, { fetching: true } );
     case USERS_FETCHED:
       return Object.assign({}, state, {
         fetching: false,
@@ -25,15 +25,15 @@ const userReducer = (state=initialState, action) => {
       });
     case 'CHANGE_FIELD':
       return Object.assign({}, state, {
-        [action.field]: action.value,
+        [action.field]: action.value
       });
-    case "SESSION_MADE":
+    case 'SESSION_MADE':
       return Object.assign({}, state, {
         session: action.payload
       });
     default:
       return state;
   }
-}
+};
 
 export default userReducer;

@@ -4,22 +4,22 @@ import { connect } from 'react-redux';
 import { authChange } from '../actions/action';
 import { signUp } from '../auth';
 
-class Signup extends React.Component{
-  constructor(props) {
+class Signup extends React.Component {
+  constructor (props) {
     super(props);
   }
 
-  onFieldChange(e) {
+  onFieldChange (e) {
     this.props.dispatch(authChange(e.target.name, e.target.value));
   }
 
-  onSignUp(e) {
+  onSignUp (e) {
     e.preventDefault();
     const { username, password } = this.props;
     signUp(username, password);
   }
 
-  render() {
+  render () {
     return (
       <div>
         <form onSubmit={this.onSignUp.bind(this)}>
@@ -30,7 +30,7 @@ class Signup extends React.Component{
           <Link to="/auth"><button> Back to homepage </button></Link>
         </form>
       </div>
-    )
+    );
   }
 }
 

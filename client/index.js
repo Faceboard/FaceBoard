@@ -12,8 +12,6 @@ import Lobby from './components/lobby';
 import Session from './components/session';
 import configureStore from './store/configureStore';
 
-//starter page - necessary for webpack. Put whatever desired here.
-
 axios.interceptors.request.use(function (config) {
   config.headers['x-access-token'] = getToken();
   return config;
@@ -29,4 +27,4 @@ ReactDOM.render(
       <Route path="/session" component={Session}/>
     </Router>
   </Provider>
-,document.getElementById('root'));
+, document.getElementById('root'));
