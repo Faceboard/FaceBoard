@@ -1,8 +1,22 @@
 import React from 'react';
+import { constraints, successCallback, errorCallback } from '../actions/webrtc';
 
-const Videos = () => (
-  <div className="videos">
-  </div>
-);
+class Videos extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    const video = document.getElementById('localVideo');
+    navigator.webkitGetUserMedia(constraints, successCallback, errorCallback);
+  }
+
+  render() {
+    return (
+      <video id="localVideo">
+      </video>
+    )
+  }
+}
 
 export default Videos;

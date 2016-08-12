@@ -5,8 +5,6 @@ import Whiteboard from './whiteBoard';
 const VideoList = () => (
   <div id="videoList">
     <Videos />
-    <Videos />
-    <Whiteboard />
   </div>
 );
 
