@@ -16,24 +16,24 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
 
-## Nugget battles and betting ##
+## FaceBoard ##
 
-## For anyone who loves nuggets, battles, and betting ##
+## For anyone wants to collabrate with others without tons of other windows open ##
 
 ## Summary ##
-  > Watch nuggets battle it out and bet on who you think the victors will be.
+  > To help you collobrate with others with video chat, whiteboarding and codesharing all in one place.
 
 ## What does this solve? ##
-  You weren't having fun.
+  Ever have tons of taps open for video chat, whiteboard and code sharing it can be very annoying.
 
 ## How does it solve it? ##
-  Now you are having fun.
+  We combined those together into one desktop application.
 
 ## Testimonials ##
-  > "This is the most fun game I've ever played in my life!" - Patrick
+  > "Faceboard changed how I work with other people" - Patrick
   > "9/10" - IGN
 
 ## Getting Started ##
-  Make an account and bet on your favorite nugget armies.
+  Make an account, invite friends or just start working with other others right away.
 
-## GET YOUR NUG ON ##
+## FaceBoard ##
