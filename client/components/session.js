@@ -7,30 +7,27 @@ import FriendsList from './friendsList';
 import Firebase from 'firebase';
 import Firepad from 'firepad';
 import { configFirebase } from '../actions/firebaseConfig';
+
 import socket from '../sync';
 
-
 class Session extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     configFirebase();
-    var firepadRef = Firebase.database().ref('/test');
-    var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
-    var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-        { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
   }
 
-  leaveSession () {
+  leaveSession() {
+    console.log('test');
     delete global.localStorage.inSession;
     socket.emit('leaveSession', global.localStorage.session);
     const { router } = this.props;
     router.replace('/');
   }
 
-  render () {
+  render() {
     return (
       <div id="sessionWrapper">
         <button onClick={ this.leaveSession.bind(this) }>Lobby</button>
@@ -39,11 +36,11 @@ class Session extends React.Component {
         <MainSession />
         <VideoList />
       </div>
-    )
+    );
   }
 }
 
 // change this in time
 const mapStateToProps = state => state.userReducer;
 export default connect(mapStateToProps)(withRouter(Session));
-// places to rename sessionName: session.js, component,
+//places to rename sessionName: session.js, component,
