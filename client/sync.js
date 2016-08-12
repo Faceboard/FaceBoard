@@ -8,6 +8,7 @@ let options = {
 
 // let socket = io('http://localhost:3000/test', options);
 let socket = io('https://face-board.herokuapp.com/test', options);
+// let socket = io('https://face-board-pr-31.herokuapp.com/test', options);
 
 socket.on('userHasJoinedSession', (mes) => {
   global.phone = PHONE({
