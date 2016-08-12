@@ -39,7 +39,7 @@ class Session extends React.Component {
         <MainSession />
         <VideoList />
       </div>
-    );
+    )
   }
 }
 

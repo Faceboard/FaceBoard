@@ -15,8 +15,9 @@ class Input extends React.Component {
 
   sendMessage (e) {
     e.preventDefault();
-    const { message } = this.props;
-    socket.emit('send message', {text: message, username: global.localStorage.username});
+    let msg = document.getElementById('inputMessage');
+    socket.emit('send message', {text: msg.value, username: global.localStorage.username});
+    msg.value = "";
   }
 
   render () {
@@ -28,7 +29,7 @@ class Input extends React.Component {
           <button> Send Text </button>
         </form>
       </div>
-    );
+    )
   }
 }
 
