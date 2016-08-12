@@ -3,7 +3,7 @@ export const constraints = {
   video: true
 };
 
-export function successCallback(stream) {
+export function successCallback (stream) {
   window.stream = stream; // stream available to console
   if (window.URL) {
     video.src = window.URL.createObjectURL(stream);
@@ -12,7 +12,6 @@ export function successCallback(stream) {
   }
 }
 
-export function errorCallback(error) {
+export function errorCallback (error) {
   console.log('navigator.getUserMedia error: ', error);
 }
-
