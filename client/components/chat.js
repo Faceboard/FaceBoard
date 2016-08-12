@@ -11,15 +11,7 @@ class Chat extends React.Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(getAllMessages())
-
-    const getAll = this.props.dispatch;
-
-    socket.on('confirm message', function (data) {
-      console.log('confirmed message', data);
-      getAll(getAllMessages());
-    });
-
+    this.props.dispatch(getAllMessages());
   }
 
   render () {
@@ -35,7 +27,7 @@ class Chat extends React.Component {
       <div id="chatBox">
         {messages.map(message => <Message key={message.id} user={message.user} text={message.text} />)}
       </div>
-    );
+    )
   }
 }
 
