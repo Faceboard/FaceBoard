@@ -14,6 +14,11 @@
 
 - Node 6.2.x
 - PostgreSQL
+- Electron
+- Express
+- Sequelize
+- React
+- Redux
 
 ## Development
 

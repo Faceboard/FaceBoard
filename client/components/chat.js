@@ -3,13 +3,14 @@ import { getAllMessages } from '../actions/chat';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Message from './message';
+import socket from '../sync';
 
 class Chat extends React.Component {
   constructor (props) {
     super(props);
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.props.dispatch(getAllMessages());
   }
 
@@ -26,7 +27,7 @@ class Chat extends React.Component {
       <div id="chatBox">
         {messages.map(message => <Message key={message.id} user={message.user} text={message.text} />)}
       </div>
-    );
+    )
   }
 }
 

@@ -17,8 +17,10 @@ axios.interceptors.request.use(function (config) {
   return config;
 });
 
+export const store = configureStore();
+
 ReactDOM.render(
-  <Provider store={configureStore()}>
+  <Provider store={ store }>
     <Router history={hashHistory} >
       <Route path="/" component={Lobby}/>
       <Route path="/auth" component={App}/>
