@@ -4,7 +4,6 @@ class Whiteboard extends React.Component {
 
   componentDidMount() {
     designer.appendTo(document.getElementsByClassName("whiteboard")[0]);
-    console.log(designer)
   }
 
   render() {
