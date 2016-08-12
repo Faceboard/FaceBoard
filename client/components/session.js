@@ -6,7 +6,7 @@ import MainSession from './mainSession';
 import FriendsList from './friendsList';
 import Firebase from 'firebase';
 import Firepad from 'firepad';
-import { configFirebase } from '../actions/firebaseConfig';
+import { configFirebase, fetchFirepad } from '../actions/firebaseConfig';
 import socket from '../sync';
 import Whiteboard from './whiteBoard';
 
@@ -17,11 +17,7 @@ class Session extends React.Component {
   }
 
   componentDidMount () {
-    configFirebase();
-    var firepadRef = Firebase.database().ref('/test');
-    var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
-    var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-        { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
+    // fetchFirepad();
   }
 
   leaveSession () {
@@ -41,7 +37,7 @@ class Session extends React.Component {
         <VideoList />
         <Whiteboard />
       </div>
-    )
+    );
   }
 }
 

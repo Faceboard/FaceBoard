@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { configFirebase, fetchFirepad } from '../actions/firebaseConfig';
+import { configFirebase, fetchFirepad, deleteFirepad } from '../actions/firebaseConfig';
 
 
 class MainSession extends React.Component {
@@ -10,7 +10,12 @@ class MainSession extends React.Component {
   }
 
   componentDidMount () {
-    this.props.dispatch(fetchFirepad());
+    this.props.dispatch(fetchFirepad('/' + global.localStorage.session));
+  }
+
+  componentWillUnmount () {
+    document.getElementById('firepad').innerHTML = '';
+    deleteFirepad('/' + global.localStorage.session);
   }
 
   render () {

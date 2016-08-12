@@ -66,7 +66,7 @@ class FriendsList extends React.Component {
         {mapUsers}
       </ul>
       </div>
-    )
+    );
   }
 }
 

@@ -19,7 +19,7 @@ socket.on('userHasLeftSession', function (mes) {
 
 socket.on('user connected', function (data) {
   console.log(data);
-  socket.emit('make sesssion', "User has connected");
+  socket.emit('make sesssion', 'User has connected');
 });
 
 socket.on('send message', function (data) {
