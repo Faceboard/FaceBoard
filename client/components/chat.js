@@ -47,4 +47,4 @@ class Chat extends React.Component {
 }
 
 const mapStateToProps = state => state.chatReducer;
-export default connect(mapStateToProps)(withRouter(Chat));
+export default connect(mapStateToProps)(withRouter(Chat))
