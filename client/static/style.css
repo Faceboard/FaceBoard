@@ -59,7 +59,7 @@ ul li:before {
   width: 20%;
 }
 
-.videos {
+#localVideo {
   border: 1px solid black;
   height: 50%;
 }

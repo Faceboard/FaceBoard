@@ -22,6 +22,7 @@ class Lobby extends React.Component {
 
   onLogout () {
     logout();
+    console.log('this ahppedn');
     this.props.router.replace('/auth');
   }
 
