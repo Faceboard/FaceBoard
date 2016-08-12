@@ -27,7 +27,6 @@ socket.on('user connected', function (data) {
 
 socket.on('send message', function (data) {
   console.log(data);
-})
-
+});
 
 export default socket;
