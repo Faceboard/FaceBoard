@@ -7,7 +7,9 @@ class Videos extends React.Component {
   }
 
   componentDidMount() {
-    initOffer();
+    if (global.localStorage.isCaller) {
+      initOffer();
+    }
   }
 
   render() {
