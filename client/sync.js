@@ -10,9 +10,9 @@ let options = {
 // let socket = io('http://localhost:3000/test', options);
 let socket = io('https://face-board-pr-31.herokuapp.com/test', options);
 
-socket.on('userHasJoinedSession', function (mes) {
-  console.log(mes);
-});
+// socket.on('userHasJoinedSession', function (mes) {
+//   console.log(mes);
+// });
 
 socket.on('userHasLeftSession', function (mes) {
   console.log(mes);
@@ -29,6 +29,10 @@ socket.on('send message', function (data) {
 
 socket.on('call received', function (data) {
   setReceiverDescription(data.description);
+})
+
+socket.on('send to caller', function (data) {
+  setCallerDescription(data.description);
 })
 
 export default socket;

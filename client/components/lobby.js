@@ -6,11 +6,18 @@ import FriendsList from './friendsList';
 import Chat from './chat';
 import Input from './input';
 import io from 'socket.io-client';
+import socket from '../sync';
 // import remote from 'electron';
 
 class Lobby extends React.Component {
   constructor (props) {
     super(props);
+
+    socket.on('userHasJoinedSession', function (mes) {
+      const { router } = props;
+      console.log('to make sure');
+      router.replace('/session');
+    });
   }
 
   componentWillMount () {

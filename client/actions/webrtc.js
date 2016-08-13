@@ -54,7 +54,30 @@ export function successCaller (stream) {
     .then(onCreateOfferSuccess, onCreateSessionDescriptionError);
 }
 
+const onCreateOfferSuccess = (description) => {
+  const data = {
+    description: description,
+    roomname: global.localStorage.roomname
+  };
+  // send the offer
+  socket.emit('send offer', data);
+
+  pc1.setLocalDescription(description)
+    .then(() => {
+      onSetLocalSuccess(pc1);
+    }, onSetSessionDescriptionError);
+};
+
 export function successReceiver (stream) {
+  video = document.getElementById('localVideo');
+  window.localStream = localStream = stream; // stream available to console
+
+  if (window.URL) {
+    video.src = window.URL.createObjectURL(stream);
+  } else {
+    video.src = stream;
+  }
+
   window.remoteStream = remoteStream = stream;
 
   window.pc2 = pc2 = new webkitRTCPeerConnection(config);
@@ -70,10 +93,9 @@ export function successReceiver (stream) {
   }
 
   pc2.addStream(remoteStream);
-
-  pc2.createAnswer(offerOptions)
-    .then(onCreatedAnswerSuccess, onSetSessionDescriptionError);
 }
+
+
 
 const onCreatedAnswerSuccess = (description) => {
   pc2.setLocalDescription(description)
@@ -88,9 +110,15 @@ const setCallerDescription = (description) => {
   pc1.setRemoteDescription(description);
 }
 
+const makeAnswer = () => {
+  pc2.createAnswer(offerOptions)
+    .then(onCreatedAnswerSuccess, onSetSessionDescriptionError);
+}
+
 export const setReceiverDescription = (description) => {
-  pc2.setRemoteDescription(description);
   navigator.webkitGetUserMedia(constraints, successReceiver, errorCallback);
+  pc2.setRemoteDescription(description);
+  makeAnswer();
 }
 
 
@@ -122,28 +150,9 @@ const getOtherPc = (pc) => {
   return (pc === pc1) ? pc2 : pc1;
 }
 
-const gotStream = (stream) => {
-  localVideo.srcObject = stream;
-  window.localStream = localStream = stream;
-}
-
 const onCreateSessionDescriptionError = (error) => {
   console.log('Failed to create session description : ' + error.toString());
 }
-
-const onCreateOfferSuccess = (description) => {
-  const data = {
-    description: description,
-    roomname: global.localStorage.roomname
-  };
-  // send the offer
-  socket.emit('send offer', data);
-
-  pc1.setLocalDescription(description)
-    .then(() => {
-      onSetLocalSuccess(pc1);
-    }, onSetSessionDescriptionError);
-};
 
 const onSetLocalSuccess = (pc) => {
   console.log(getName(pc) + ' setLocalDescription complete');

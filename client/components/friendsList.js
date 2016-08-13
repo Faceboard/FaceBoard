@@ -21,7 +21,6 @@ class FriendsList extends React.Component {
           global.localStorage.roomname = data.firstUserName + '*' + data.secondUserName;
           global.localStorage.inSession = true;
           socket.emit('userWantsToJoinSession', data);
-          router.replace('/session');
         }
       }
     });
@@ -30,7 +29,6 @@ class FriendsList extends React.Component {
   createSession (username) {
     const { session, router } = this.props;
     makePrivateSession(global.localStorage.username, username);
-    router.replace('/session');
   }
 
   sessionChange (e) {
