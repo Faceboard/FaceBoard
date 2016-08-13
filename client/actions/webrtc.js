@@ -3,7 +3,10 @@ export const constraints = {
   video: true
 };
 
+let video;
+
 export function successCallback (stream) {
+  video = document.getElementById('localVideo');
   window.stream = stream; // stream available to console
   if (window.URL) {
     video.src = window.URL.createObjectURL(stream);

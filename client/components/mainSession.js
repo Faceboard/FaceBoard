@@ -10,12 +10,11 @@ class MainSession extends React.Component {
   }
 
   componentDidMount () {
-    this.props.dispatch(fetchFirepad('/' + global.localStorage.session));
+    this.props.dispatch(fetchFirepad());
   }
 
   componentWillUnmount () {
-    document.getElementById('firepad').innerHTML = '';
-    deleteFirepad('/' + global.localStorage.session);
+    this.props.dispatch(deleteFirepad());
   }
 
   render () {

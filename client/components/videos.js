@@ -7,7 +7,6 @@ class Videos extends React.Component {
   }
 
   componentDidMount () {
-    const video = document.getElementById('localVideo');
     navigator.webkitGetUserMedia(constraints, successCallback, errorCallback);
   }
 

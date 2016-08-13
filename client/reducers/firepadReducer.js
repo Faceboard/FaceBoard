@@ -1,6 +1,7 @@
 const initialState = {
   fetching: false,
-  fetched: false
+  fetched: false,
+  firepad: null
 };
 
 const firepadReducer = (state = {}, action) => {

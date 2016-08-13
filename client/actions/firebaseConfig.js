@@ -8,15 +8,18 @@ var config = {
   storageBucket: 'face-board.appspot.com'
 };
 
-export function configFirebase (id) {
+export function configFirebase () {
   Firebase.initializeApp(config);
 }
 
-export function fetchFirepad (id) {
+export function fetchFirepad () {
   return function (dispatch) {
-    configFirebase(id);
+    console.log('FIREBASE APPS', Firebase.apps);
+    if (!Firebase.apps.length) {
+      configFirebase();
+    }
     dispatch({type: 'FETCHING_FIREPAD'});
-    var firepadRef = Firebase.database().ref(id);
+    var firepadRef = Firebase.app().database().ref('/' + global.localStorage.roomname);
     var codeMirror = CodeMirror(document.getElementById('firepad'),
       { lineWrapping: true, lineNumbers: true, mode: 'javascript' });
     Firepad.fromCodeMirror(firepadRef, codeMirror, { defaultText: 'Hello, World!' });
@@ -24,9 +27,10 @@ export function fetchFirepad (id) {
   };
 }
 
-export function deleteFirepad (id) {
-  Firebase.app().delete().then(function (err) {
-    if (err) throw err;
-    console.log('SUCCESSFULLY DELETED APP');
-  });
+export function deleteFirepad () {
+  return function (dispatch) {
+    Firebase.app().database().ref('/' + global.localStorage.roomname).remove().then(function (err) {
+      if (err) throw err;
+    });
+  };
 }
