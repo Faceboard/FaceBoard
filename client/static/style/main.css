@@ -59,9 +59,10 @@ ul li:before {
   width: 20%;
 }
 
-#localVideo {
+#localVideo, #remoteVideo {
   border: 1px solid black;
   height: 50%;
+  width: 100%;
 }
 
 .whiteboard {
