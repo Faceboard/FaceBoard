@@ -1,8 +1,6 @@
 import Firebase from 'firebase';
 import Firepad from 'firepad';
 
-// var CodeMirror = CodeMirror;
-
 var config = {
   apiKey: 'AIzaSyBgx7ye7Nlfo8UwlbhpWhBqwsYDkhs7QQc',
   authDomain: 'face-board.firebaseapp.com',
@@ -16,15 +14,23 @@ export function configFirebase () {
 
 export function fetchFirepad () {
   return function (dispatch) {
-    configFirebase();
+    console.log('FIREBASE APPS', Firebase.apps);
+    if (!Firebase.apps.length) {
+      configFirebase();
+    }
     dispatch({type: 'FETCHING_FIREPAD'});
-    console.log('WHYYYYYYYYYYYYYYYYYYYYYYYY');
-    var firepadRef = Firebase.database().ref('/test');
-    var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
-    console.log('codemirror', codeMirror);
-    Firepad.fromCodeMirror(firepadRef, codeMirror,
-        { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
-    console.log('ABOUT TO DISPATCH');
+    var firepadRef = Firebase.app().database().ref('/' + global.localStorage.roomname);
+    var codeMirror = CodeMirror(document.getElementById('firepad'),
+      { lineWrapping: true, lineNumbers: true, mode: 'javascript' });
+    Firepad.fromCodeMirror(firepadRef, codeMirror, { defaultText: 'Hello, World!' });
     dispatch({type: 'FIREPAD_FETCHED'});
+  };
+}
+
+export function deleteFirepad () {
+  return function (dispatch) {
+    Firebase.app().database().ref('/' + global.localStorage.roomname).remove().then(function (err) {
+      if (err) throw err;
+    });
   };
 }

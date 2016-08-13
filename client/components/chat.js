@@ -10,7 +10,7 @@ class Chat extends React.Component {
     super(props);
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.props.dispatch(getAllMessages());
   }
 
@@ -27,7 +27,7 @@ class Chat extends React.Component {
       <div id="chatBox">
         {messages.map(message => <Message key={message.id} user={message.user} text={message.text} />)}
       </div>
-    )
+    );
   }
 }
 

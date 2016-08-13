@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { configFirebase, fetchFirepad } from '../actions/firebaseConfig';
+import { configFirebase, fetchFirepad, deleteFirepad } from '../actions/firebaseConfig';
 
 
 class MainSession extends React.Component {
@@ -11,6 +11,10 @@ class MainSession extends React.Component {
 
   componentDidMount () {
     this.props.dispatch(fetchFirepad());
+  }
+
+  componentWillUnmount () {
+    this.props.dispatch(deleteFirepad());
   }
 
   render () {

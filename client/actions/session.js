@@ -36,4 +36,5 @@ export function makePrivateSession (firstUserName, secondUserName) {
     secondUserName: secondUserName
   };
   socket.emit('privateSessionCreation', userObj);
+  global.localStorage.roomname = firstUserName + '*' + secondUserName;
 }
