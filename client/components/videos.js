@@ -6,17 +6,18 @@ class Videos extends React.Component {
     super(props);
   }
 
-<<<<<<< d156d6c0df28d00262d5a191adf674a336fba4a9
-=======
   componentDidMount() {
     initOffer();
   }
 
->>>>>>> (feat) add local session description and prepare to send an offer
   render() {
     return (
-      <video id="localVideo">
-      </video>
+      <div>
+        <video id="localVideo">
+        </video>
+        <video id="remoteVideo">
+        </video>
+      </div>
     )
   }
 }

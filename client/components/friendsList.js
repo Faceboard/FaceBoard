@@ -3,6 +3,7 @@ import { getAllUsers } from '../actions/userActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { inviteToSession, makeSession, sessionChange, makePrivateSession } from '../actions/session';
+import { initOffer } from '../actions/webrtc';
 import socket from '../sync';
 import io from 'socket.io-client';
 
@@ -17,9 +18,9 @@ class FriendsList extends React.Component {
     socket.on('userWantsToCreateSession', function (data) {
       if (global.localStorage.username === data.secondUserName && !global.localStorage.inSession) {
         if (confirm(data.firstUserName + ' wants to create a private session with you. Would you like to join?')) {
-          socket.emit('userWantsToJoinSession', data);
-          global.localStorage.inSession = true;
           global.localStorage.roomname = data.firstUserName + '*' + data.secondUserName;
+          global.localStorage.inSession = true;
+          socket.emit('userWantsToJoinSession', data);
           router.replace('/session');
         }
       }

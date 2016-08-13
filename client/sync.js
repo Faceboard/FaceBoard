@@ -1,6 +1,7 @@
 import io from 'socket.io-client';
 import { store } from './index';
 import { getAllMessages } from './actions/chat';
+import { setReceiverDescription } from './actions/webrtc'
 
 let options = {
   'force new connection': true
@@ -25,5 +26,9 @@ socket.on('user connected', function (data) {
 socket.on('send message', function (data) {
   store.dispatch(getAllMessages());
 });
+
+socket.on('call received', function (data) {
+  setReceiverDescription(data.description);
+})
 
 export default socket;

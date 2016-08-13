@@ -1,7 +1,9 @@
 import socket from '../sync';
 
 let localStream;
+let remoteStream;
 let localVideo = document.getElementById('localVideo');
+let remoteVideo = document.getElementById('remoteVideo');
 let video;
 let pc1;
 let pc2;
@@ -22,9 +24,7 @@ export const constraints = {
   video: true
 };
 
-let video;
-
-export function successCallback (stream) {
+export function successCaller (stream) {
   video = document.getElementById('localVideo');
   window.localStream = localStream = stream; // stream available to console
 
@@ -35,6 +35,8 @@ export function successCallback (stream) {
   }
 
   window.pc1 = pc1 = new webkitRTCPeerConnection(config);
+
+  pc1.onaddstream = gotRemoteStream;
 
   pc1.onicecandidate = (event) => {
     onIceCandidiate(pc1, event);
@@ -52,14 +54,64 @@ export function successCallback (stream) {
     .then(onCreateOfferSuccess, onCreateSessionDescriptionError);
 }
 
+export function successReceiver (stream) {
+  window.remoteStream = remoteStream = stream;
+
+  window.pc2 = pc2 = new webkitRTCPeerConnection(config);
+
+  pc2.onaddstream = gotRemoteStream;
+
+  pc2.onIceCandidiate = (event) => {
+    onIceCandidiate(pc2, event);
+  }
+
+  pc2.oniceconnectionstatechange = (event) => {
+    onIceStateChange(pc2, event);
+  }
+
+  pc2.addStream(remoteStream);
+
+  pc2.createAnswer(offerOptions)
+    .then(onCreatedAnswerSuccess, onSetSessionDescriptionError);
+}
+
+const onCreatedAnswerSuccess = (description) => {
+  pc2.setLocalDescription(description)
+  let answer = {
+    roomname: global.localStorage.roomname,
+    description: description
+  };
+  socket.emit('answer sent', answer);
+}
+
+const setCallerDescription = (description) => {
+  pc1.setRemoteDescription(description);
+}
+
+export const setReceiverDescription = (description) => {
+  pc2.setRemoteDescription(description);
+  navigator.webkitGetUserMedia(constraints, successReceiver, errorCallback);
+}
+
+
+export const makeOffer = () => {
+  pc1.createOffer(offerOptions)
+    .then(onCreateOfferSuccess, onCreateSessionDescriptionError);
+}
+
 export function errorCallback (error) {
   console.log('navigator.webkitGetUserMedia error: ', error);
 }
 
+const gotRemoteStream = (event) => {
+  // Add remoteStream to global scope so it's accessible from the browser console
+  window.remoteStream = remoteVideo.srcObject = event.stream;
+}
+
+// this is why webcam is not showing up when you first get in for Caller
 export function initOffer () {
   // set local webcam
-  navigator.webkitGetUserMedia(constraints, successCallback, errorCallback);
-
+  navigator.webkitGetUserMedia(constraints, successCaller, errorCallback);
 }
 
 const getName = (pc) => {
@@ -75,68 +127,22 @@ const gotStream = (stream) => {
   window.localStream = localStream = stream;
 }
 
-const start = () => {
-  navigator.mediaDevices.getUserMedia({
-    audio: true,
-    video: true
-  })
-  .then(gotStream)
-  .catch((e) => {
-    alert('getUserMedia() error: ' + e.name);
-  });
-}
-
-const call = () => {
-  startTime = window.performance.now();
-  let videoTracks = localStream.getVideoTracks();
-  let audioTracks = localStream.getAudioTracks();
-
-  window.pc1 = pc1 = new webkitRTCPeerConnection(config);
-
-  pc1.onicecandidate = (event) => {
-    onIceCandidiate(pc1, event);
-  }
-
-  window.pc2 = pc2 = new webkitRTCPeerConnection(config);
-
-  pc2.onicecandidate = (event) => {
-    onIceCandidiate(pc2, event);
-  }
-
-  pc1.oniceconnectionstatechange = (event) => {
-    onIceStateChange(pc1, event);
-  }
-
-  pc2.oniceconnectionstatechange = (event) => {
-    onIceStateChange(pc2, event);
-  }
-
-  pc2.onaddstream = gotRemoteStream;
-
-  pc1.addStream(localStream);
-
-  pc1.createOffer(offerOptions)
-    .then(onCreateOfferSuccess, onCreateSessionDescriptionError);
-}
-
 const onCreateSessionDescriptionError = (error) => {
   console.log('Failed to create session description : ' + error.toString());
 }
 
 const onCreateOfferSuccess = (description) => {
-  // setting our local description, we need our local and remote description to be set
+  const data = {
+    description: description,
+    roomname: global.localStorage.roomname
+  };
+  // send the offer
+  socket.emit('send offer', data);
+
   pc1.setLocalDescription(description)
     .then(() => {
       onSetLocalSuccess(pc1);
     }, onSetSessionDescriptionError);
-
-  // pc2.setRemoteDescription(description)
-  //   .then(() => {
-  //     onSetRemoteSuccess(pc2);
-  //   }, onSetSessionDescriptionError);
-
-  // pc2.createAnswer()
-  //   .then(oncreateAnswerSuccess, onCreateSessionDescriptionError);
 };
 
 const onSetLocalSuccess = (pc) => {
@@ -149,22 +155,6 @@ const onSetRemoteSuccess = (pc) => {
 
 const onSetSessionDescriptionError = (error) => {
   console.log('Failed to set session description: ' + error.toString());
-}
-
-const gotRemoteStream = (event) => {
-  window.remoteStream = remoteVideo.srcObject = event.stream;
-}
-
-const oncreateAnswerSuccess = (description) => {
-  pc2.setLocalDescription(description)
-    .then(() => {
-      onSetLocalSuccess(pc2);
-    }, onSetSessionDescriptionError);
-
-  pc1.setRemoteDescription(description)
-    .then(() => {
-      onSetRemoteSuccess(pc1);
-    }, onSetSessionDescriptionError);
 }
 
 const onIceCandidiate = (pc, event) => {
