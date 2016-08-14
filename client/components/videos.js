@@ -11,13 +11,6 @@ class Videos extends React.Component {
     Pubnub();
   }
 
-  componentDidUpdate() {
-    if (global.localStorage.test === 'false') {
-      delete global.localStorage.test;
-      this.forceUpdate();
-    }
-  }
-
   render() {
     return (
       <div id="remoteVideo">
