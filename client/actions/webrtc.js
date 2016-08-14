@@ -40,6 +40,11 @@ export function successCaller (stream) {
 
   pc1.onaddstream = gotRemoteStream;
 
+  pc1.oniceconnectionstatechange = (event) => {
+    onIceStateChange(pc1, event);
+  }
+
+
   // building up our session description
   pc1.addStream(localStream);
 
@@ -102,10 +107,6 @@ const setCallerDescription = (description) => {
   pc1.onicecandidate = (event) => {
     onIceCandidiate(pc1, event);
   }
-
-  pc1.oniceconnectionstatechange = (event) => {
-    onIceStateChange(pc1, event);
-  }
 }
 
 const makeAnswer = () => {
@@ -143,8 +144,9 @@ export function errorCallback (error) {
 
 const gotRemoteStream = (event) => {
   // Add remoteStream to global scope so it's accessible from the browser console
-  console.log('got remote stream');
-  window.remoteStream = remoteVideo.srcObject = event.stream;
+  var test = document.getElementById('remoteVideo');
+  console.log('got remote stream', test);
+  window.remoteStream = remoteVideo.src = event.stream;
 }
 
 // this is why webcam is not showing up when you first get in for Caller

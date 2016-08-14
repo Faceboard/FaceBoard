@@ -20,6 +20,7 @@ class FriendsList extends React.Component {
         if (confirm(data.firstUserName + ' wants to create a private session with you. Would you like to join?')) {
           global.localStorage.roomname = data.firstUserName + '*' + data.secondUserName;
           global.localStorage.inSession = true;
+          delete global.localStorage.isCaller;
           socket.emit('userWantsToJoinSession', data);
         }
       }
