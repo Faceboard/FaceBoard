@@ -1,24 +1,26 @@
 import React from 'react';
-import { constraints, successCallback, errorCallback, initOffer } from '../actions/webrtc';
+import { Pubnub } from '../actions/pubnub';
 
 class Videos extends React.Component {
   constructor(props) {
     super(props);
+    global.localStorage.test = false;
   }
 
   componentDidMount() {
-    if (global.localStorage.isCaller) {
-      initOffer();
+    Pubnub();
+  }
+
+  componentDidUpdate() {
+    if (global.localStorage.test === 'false') {
+      delete global.localStorage.test;
+      this.forceUpdate();
     }
   }
 
   render() {
     return (
-      <div>
-        <video id="localVideo">
-        </video>
-        <video id="remoteVideo">
-        </video>
+      <div id="remoteVideo">
       </div>
     )
   }
