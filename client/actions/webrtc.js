@@ -73,19 +73,14 @@ export function successReceiver (stream) {
   }
 
   window.remoteStream = remoteStream = stream;
+  window.pc1 = pc1 = new webkitRTCPeerConnection(config);
 
   window.pc2 = pc2 = new webkitRTCPeerConnection(config);
+
   console.log('success receiver', pc2);
 
   pc2.onaddstream = gotRemoteStream;
 
-  pc2.onIceCandidiate = (event) => {
-    onIceCandidiate(pc2, event);
-  }
-
-  pc2.oniceconnectionstatechange = (event) => {
-    onIceStateChange(pc2, event);
-  }
 
   pc2.addStream(remoteStream);
 }
@@ -120,7 +115,7 @@ const makeAnswer = () => {
 
 export function setReceiverDescription (description) {
   navigator.webkitGetUserMedia(constraints, successReceiver, errorCallback);
-  console.log('i am called');
+  console.log('i am called', pc2);
   pc2.setRemoteDescription(description);
   iceCandidate();
   makeAnswer();
@@ -185,13 +180,14 @@ const onSetSessionDescriptionError = (error) => {
 
 const onIceCandidiate = (pc, event) => {
   if (event.candidate) {
-    console.log('this is the pc', getOtherPc(pc));
-    getOtherPc(pc).addIceCandidate(new RTCIceCandidate(event.candidate))
-      .then(() => {
-        onAddIceCandidateSuccess(pc);
-      }, (error) => {
-        onAddIceCandidateError(pc, error);
-      });
+    if (!getOtherPc(pc).remoteDescription.sdp.length){
+      getOtherPc(pc).addIceCandidate(new RTCIceCandidate(event.candidate))
+        .then(() => {
+          onAddIceCandidateSuccess(pc);
+        }, (error) => {
+          onAddIceCandidateError(pc, error);
+        });
+    }
   }
 }
 
