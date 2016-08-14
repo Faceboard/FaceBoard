@@ -7,10 +7,6 @@ class Videos extends React.Component {
     global.localStorage.test = false;
   }
 
-  componentDidMount() {
-    Pubnub();
-  }
-
   render() {
     return (
       <div id="remoteVideo">
