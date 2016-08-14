@@ -40,14 +40,6 @@ export function successCaller (stream) {
 
   pc1.onaddstream = gotRemoteStream;
 
-  pc1.onicecandidate = (event) => {
-    onIceCandidiate(pc1, event);
-  }
-
-  pc1.oniceconnectionstatechange = (event) => {
-    onIceStateChange(pc1, event);
-  }
-
   // building up our session description
   pc1.addStream(localStream);
 
@@ -111,6 +103,14 @@ const onCreatedAnswerSuccess = (description) => {
 
 const setCallerDescription = (description) => {
   pc1.setRemoteDescription(description);
+
+  pc1.onicecandidate = (event) => {
+    onIceCandidiate(pc1, event);
+  }
+
+  pc1.oniceconnectionstatechange = (event) => {
+    onIceStateChange(pc1, event);
+  }
 }
 
 const makeAnswer = () => {
