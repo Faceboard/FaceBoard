@@ -15,8 +15,8 @@ let config = {
   }]
 };
 let offerOptions = {
-  offerToReceiveAudio: 1,
-  offerToReceiveVideo: 1
+  offerToReceiveVideo: 1,
+  offerToReceiveAudio: 1
 };
 
 export const constraints = {
@@ -35,6 +35,8 @@ export function successCaller (stream) {
   }
 
   window.pc1 = pc1 = new webkitRTCPeerConnection(config);
+
+  window.pc2 = pc2 = new webkitRTCPeerConnection(config);
 
   pc1.onaddstream = gotRemoteStream;
 
@@ -81,6 +83,7 @@ export function successReceiver (stream) {
   window.remoteStream = remoteStream = stream;
 
   window.pc2 = pc2 = new webkitRTCPeerConnection(config);
+  console.log('success receiver', pc2);
 
   pc2.onaddstream = gotRemoteStream;
 
@@ -115,10 +118,22 @@ const makeAnswer = () => {
     .then(onCreatedAnswerSuccess, onSetSessionDescriptionError);
 }
 
-export const setReceiverDescription = (description) => {
+export function setReceiverDescription (description) {
   navigator.webkitGetUserMedia(constraints, successReceiver, errorCallback);
+  console.log('i am called');
   pc2.setRemoteDescription(description);
+  iceCandidate();
   makeAnswer();
+}
+
+const iceCandidate = () => {
+  pc2.onIceCandidiate = (event) => {
+    onIceCandidiate(pc2, event);
+  }
+
+  pc2.oniceconnectionstatechange = (event) => {
+    onIceStateChange(pc2, event);
+  }
 }
 
 
@@ -133,6 +148,7 @@ export function errorCallback (error) {
 
 const gotRemoteStream = (event) => {
   // Add remoteStream to global scope so it's accessible from the browser console
+  console.log('got remote stream');
   window.remoteStream = remoteVideo.srcObject = event.stream;
 }
 
@@ -147,6 +163,7 @@ const getName = (pc) => {
 }
 
 const getOtherPc = (pc) => {
+  console.log('what are you using', pc === pc1);
   return (pc === pc1) ? pc2 : pc1;
 }
 
@@ -168,6 +185,7 @@ const onSetSessionDescriptionError = (error) => {
 
 const onIceCandidiate = (pc, event) => {
   if (event.candidate) {
+    console.log('this is the pc', getOtherPc(pc));
     getOtherPc(pc).addIceCandidate(new RTCIceCandidate(event.candidate))
       .then(() => {
         onAddIceCandidateSuccess(pc);
