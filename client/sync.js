@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import { store } from './index';
 import { getAllMessages } from './actions/chat';
-import { setReceiverDescription } from './actions/webrtc'
+import { setReceiverDescription, setCallerDescription } from './actions/webrtc'
 
 let options = {
   'force new connection': true
@@ -28,11 +28,12 @@ socket.on('send message', function (data) {
 });
 
 socket.on('call received', function (data) {
+  console.log('this is data call received', data);
   setReceiverDescription(data.description);
 })
 
 socket.on('send to caller', function (data) {
-  setCallerDescription(data.description);
+  pc1.setRemoteDescription(data.description);
 })
 
 export default socket;
