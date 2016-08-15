@@ -2,7 +2,6 @@ import io from 'socket.io-client';
 import { store } from './index';
 import { getAllMessages } from './actions/chat';
 
-
 let options = {
   'force new connection': true
 };
@@ -10,7 +9,7 @@ let options = {
 // let socket = io('http://localhost:3000/test', options);
 let socket = io('https://face-board-pr-31.herokuapp.com/test', options);
 
-socket.on('userHasJoinedSession', function (mes) {
+socket.on('userHasJoinedSession', (mes) => {
   global.phone = PHONE({
     number: global.localStorage.username,
     publish_key: 'pub-c-561a7378-fa06-4c50-a331-5c0056d0163c',
@@ -26,29 +25,38 @@ socket.on('userHasJoinedSession', function (mes) {
     ssl: true
   });
 
-  phone.ready(function() {
+  phone.ready(() => {
     let secondName = global.localStorage.roomname.split('*')[1];
     let session = phone.dial(secondName);
   });
 
-  phone.receive(function(session) {
-    session.connected(function(session) {
+  phone.receive((session) => {
+
+    session.connected((session) => {
+      console.log('session', session);
+      global.session = session;
       document.getElementById('remoteVideo').appendChild(session.video);
+    });
+
+    session.ended((session) => {
+      let video = document.querySelector('video');
+      video.src = '';
+      session.hangup();
     });
   })
   console.log(mes);
 });
 
-socket.on('userHasLeftSession', function (mes) {
+socket.on('userHasLeftSession', (mes) => {
   console.log(mes);
 });
 
-socket.on('user connected', function (data) {
+socket.on('user connected', (data) => {
   console.log(data);
   socket.emit('make sesssion', 'User has connected');
 });
 
-socket.on('send message', function (data) {
+socket.on('send message', (data) => {
   store.dispatch(getAllMessages());
 });
 
