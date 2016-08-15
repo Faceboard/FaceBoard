@@ -25,7 +25,6 @@ export function fetchFirepad () {
         lineNumbers: true,
         mode: 'javascript',
         theme: 'atom',
-        // theme: 'solarized dark',
         tabSize: 2,
         extraKeys: { 'Ctrl-Space': 'autocomplete' },
         autoCloseBrackets: true,
