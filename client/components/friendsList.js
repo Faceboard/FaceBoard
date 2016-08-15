@@ -5,7 +5,9 @@ import { withRouter } from 'react-router';
 import { inviteToSession, makeSession, sessionChange, makePrivateSession, askSecondUserToJoin } from '../actions/session';
 import socket from '../sync';
 import io from 'socket.io-client';
+import { makeMenu } from '../actions/menu';
 const ipcRenderer = window.require('electron').ipcRenderer;
+
 
 class FriendsList extends React.Component {
   constructor (props) {
@@ -20,10 +22,16 @@ class FriendsList extends React.Component {
     });
   }
 
-  createSession (username) {
-    const { session, router } = this.props;
-    makePrivateSession(global.localStorage.username, username);
+  componentDidUpdate () {
+    makeMenu();
   }
+
+  // createSession (username) {
+  //   const { session, router } = this.props;
+  //   makePrivateSession(global.localStorage.username, username);
+  // }
+  // onClick={this.createSession.bind(this, user.userid)}
+
 
   sessionChange (e) {
     this.props.dispatch(sessionChange(e.target.name, e.target.value));
@@ -31,7 +39,7 @@ class FriendsList extends React.Component {
 
   render () {
     const { users } = this.props;
-    const mapUsers = users.map(user => <li onClick={this.createSession.bind(this, user.userid)} key={user.userid}>{user.userid} | {user.id} </li>);
+    const mapUsers = users.map(user => <li className="friends" key={user.userid}>{user.userid}</li>);
 
     if (!users.length) {
       return (
