@@ -38,3 +38,17 @@ export function makePrivateSession (firstUserName, secondUserName) {
   socket.emit('privateSessionCreation', userObj);
   global.localStorage.roomname = firstUserName + '*' + secondUserName;
 }
+
+export function confirmJoinSession (firstUsername) {
+  return confirm(firstUsername + 'wants to create a private session with you. Would you like to join?');
+}
+
+export function setSessionGlobals (firstUser, secondUser, data) {
+  global.localStorage.roomname = firstUser + '*' + secondUser;
+  global.localStorage.inSession = true;
+  socket.emit('userWantsToJoinSession', data);
+}
+
+export function isSecondUser (secondUser) {
+  return global.localStorage.username === secondUser && !global.localStorage.inSession;
+}
