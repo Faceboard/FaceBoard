@@ -33,13 +33,9 @@ socket.on('userHasJoinedSession', (mes) => {
   phone.receive((session) => {
 
     session.connected((session) => {
-      console.log('session', session);
-      global.session = session;
       document.getElementById('remoteVideo').appendChild(session.video);
     });
-
   })
-  console.log(mes);
 });
 
 socket.on('userHasLeftSession', (mes) => {
