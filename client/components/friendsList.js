@@ -2,9 +2,12 @@ import React from 'react';
 import { getAllUsers } from '../actions/userActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { inviteToSession, makeSession, sessionChange, makePrivateSession } from '../actions/session';
+import { inviteToSession, makeSession, sessionChange, makePrivateSession, askSecondUserToJoin } from '../actions/session';
 import socket from '../sync';
 import io from 'socket.io-client';
+import { makeMenu } from '../actions/menu';
+const ipcRenderer = window.require('electron').ipcRenderer;
+
 
 class FriendsList extends React.Component {
   constructor (props) {
@@ -15,32 +18,20 @@ class FriendsList extends React.Component {
     this.props.dispatch(getAllUsers());
     const { router } = this.props;
     socket.on('userWantsToCreateSession', function (data) {
-      if (global.localStorage.username === data.secondUserName && !global.localStorage.inSession) {
-        if (confirm(data.firstUserName + ' wants to create a private session with you. Would you like to join?')) {
-          socket.emit('userWantsToJoinSession', data);
-          global.localStorage.inSession = true;
-          global.localStorage.roomname = data.firstUserName + '*' + data.secondUserName;
-          router.replace('/session');
-        }
-      }
+      askSecondUserToJoin(data);
     });
   }
 
-  createPrivateSession (e) {
-    e.preventDefault();
-    const { session, router } = this.props;
-    console.log('before make session', session);
-    makeSession(session)
-      .then(() => {
-        router.replace('/session');
-      });
+  componentDidUpdate () {
+    makeMenu();
   }
 
-  createSession (username) {
-    const { session, router } = this.props;
-    makePrivateSession(global.localStorage.username, username);
-    router.replace('/session');
-  }
+  // createSession (username) {
+  //   const { session, router } = this.props;
+  //   makePrivateSession(global.localStorage.username, username);
+  // }
+  // onClick={this.createSession.bind(this, user.userid)}
+
 
   sessionChange (e) {
     this.props.dispatch(sessionChange(e.target.name, e.target.value));
@@ -48,7 +39,7 @@ class FriendsList extends React.Component {
 
   render () {
     const { users } = this.props;
-    const mapUsers = users.map(user => <li onClick={this.createSession.bind(this, user.userid)} key={user.userid}>{user.userid} | {user.id} </li>);
+    const mapUsers = users.map(user => <li className="friends" key={user.userid}>{user.userid}</li>);
 
     if (!users.length) {
       return (
@@ -58,10 +49,8 @@ class FriendsList extends React.Component {
     }
     return (
       <div id="friendsList">
-      <form onSubmit={this.createPrivateSession.bind(this)}>
         <input type="text" name="session" value={this.props.session} onChange={this.sessionChange.bind(this)}/>
         <button> Submit </button>
-      </form>
       <ul>
         {mapUsers}
       </ul>

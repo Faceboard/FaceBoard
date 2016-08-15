@@ -1,8 +1,6 @@
 'use strict';
 
-const electron = require('electron');
-const BrowserWindow = electron.BrowserWindow;
-const app = electron.app;
+const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
 
 
 //   ///////////////////////////////////////////
@@ -83,7 +81,12 @@ app.on('ready', function () {
   app.on('closed', function () {
     win = null;
   });
+
+  app.on('before-quit', function () {
+    delete window.inSession;
+  })
 });
+
 
 // auto reload on any changes
 require('electron-reload')(__dirname);

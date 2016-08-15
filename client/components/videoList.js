@@ -1,9 +1,9 @@
 import React from 'react';
-import Videos from './videos';
+import Video from './videos';
 
 const VideoList = () => (
   <div id="videoList">
-    <Videos />
+    <Video />
   </div>
 );
 

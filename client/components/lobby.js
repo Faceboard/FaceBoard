@@ -6,11 +6,15 @@ import FriendsList from './friendsList';
 import Chat from './chat';
 import Input from './input';
 import io from 'socket.io-client';
-// import remote from 'electron';
+import socket from '../sync';
 
 class Lobby extends React.Component {
   constructor (props) {
     super(props);
+
+    socket.on('userHasJoinedSession', function (mes) {
+      props.router.replace('/session');
+    });
   }
 
   componentWillMount () {
@@ -22,7 +26,6 @@ class Lobby extends React.Component {
 
   onLogout () {
     logout();
-    console.log('this ahppedn');
     this.props.router.replace('/auth');
   }
 

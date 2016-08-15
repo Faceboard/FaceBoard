@@ -2,7 +2,13 @@ export const CHANGE_AUTH_FIELD = 'CHANGE_AUTH_FIELD';
 export const FETCHING_USERS = 'FETCHING_USERS';
 export const USERS_FETCHED = 'USERS_FETCHED';
 export const FETCH_USERS_ERROR = 'FETCH_USERS_ERROR';
-
+export const CHANGE_FIELD = 'CHANGE_FIELD';
+export const FETCHING_MESSAGES = 'FETCHING_MESSAGES';
+export const MESSAGES_FETCHED = 'MESSAGES_FETCHED';
+export const MESSAGES_ERROR = 'MESSAGES_ERROR';
+export const FETCHING_FIREPAD = 'FETCHING_FIREPAD';
+export const FIREPAD_FETCHED = 'FIREPAD_FETCHED';
+export const CHANGE_MESSAGE_TEXT = 'CHANGE_MESSAGE_TEXT';
 
 export function authChange (field, value) {
   return {
