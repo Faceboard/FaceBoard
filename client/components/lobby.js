@@ -18,7 +18,6 @@ class Lobby extends React.Component {
   }
 
   componentWillMount () {
-    io.connect('https://face-board.herokuapp.com');
     if (!authenticated()) {
       this.props.router.replace('/auth');
     }
