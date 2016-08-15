@@ -21,7 +21,16 @@ export function fetchFirepad () {
     dispatch({type: 'FETCHING_FIREPAD'});
     var firepadRef = Firebase.app().database().ref('/' + global.localStorage.roomname);
     var codeMirror = CodeMirror(document.getElementById('firepad'),
-      { lineWrapping: true, lineNumbers: true, mode: 'javascript' });
+      {
+        lineNumbers: true,
+        mode: 'javascript',
+        theme: 'atom',
+        tabSize: 2,
+        extraKeys: { 'Ctrl-Space': 'autocomplete' },
+        autoCloseBrackets: true,
+        matchBrackets: true,
+        autoCloseTags: true
+      });
     Firepad.fromCodeMirror(firepadRef, codeMirror, { defaultText: 'Hello, World!' });
     dispatch({type: 'FIREPAD_FETCHED'});
   };

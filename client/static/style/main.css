@@ -75,7 +75,3 @@ ul li:before {
   height: 100%;
   background-color: #f62; /* dark orange background */
 }
-
-.CodeMirror {
-  background-color: black;
-}
