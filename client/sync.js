@@ -38,11 +38,6 @@ socket.on('userHasJoinedSession', (mes) => {
       document.getElementById('remoteVideo').appendChild(session.video);
     });
 
-    session.ended((session) => {
-      let video = document.querySelector('video');
-      video.src = '';
-      session.hangup();
-    });
   })
   console.log(mes);
 });
