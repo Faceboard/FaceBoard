@@ -1,0 +1,170 @@
+.cm-s-atom {
+  line-height: 1.45em;
+  color: #9ea5b4;
+  background-color: #282c34;
+  font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier;
+  font-size: 12px;
+}
+
+.cm-s-atom .CodeMirror-widget {
+  text-shadow: none;
+}
+
+.cm-s-atom .cm-qualifier {
+  color: #b58900;
+}
+
+.cm-s-atom .cm-keyword {
+  color: #d576ee;
+}
+
+.cm-s-atom .cm-atom {
+  color: #d19653;
+}
+
+.cm-s-atom .cm-number {
+  color: #d19653;
+}
+
+.cm-s-atom .cm-def {
+  color: #9ea5b4;
+}
+
+.cm-s-atom .cm-variable {
+  color: #9ea5b4;
+}
+
+.cm-s-atom .cm-variable-2 {
+  color: #e5c062;
+}
+
+.cm-s-atom .cm-variable-3 {
+  color: #c99530;
+}
+
+.cm-s-atom .cm-property {
+  color: #f56770;
+}
+
+.cm-s-atom .cm-operator {
+  color: #31a9b8;
+}
+
+.cm-s-atom .cm-comment {
+  color: #747983;
+  font-style: italic;
+}
+
+.cm-s-atom .cm-string {
+  color: #98c376;
+}
+
+.cm-s-atom .cm-string-2 {
+  color: #98c376;
+}
+
+.cm-s-atom .cm-error,
+.cm-s-atom .cm-invalidchar {
+  color: #586e75;
+  border-bottom: 1px dotted #dc322f;
+}
+
+.cm-s-atom div.CodeMirror-selected {
+  background: #363d49;
+}
+
+.cm-s-atom .CodeMirror-gutters {
+  border-right: 0;
+}
+
+.cm-s-atom .CodeMirror-gutters {
+  background-color: #282c34;
+}
+
+.cm-s-atom .CodeMirror-linenumber {
+  color: #747983;
+  text-shadow: #021014 0 -1px;
+}
+
+.cm-s-atom .CodeMirror-matchingbracket {
+  color: #3892ef;
+}
+
+.cm-s-atom .CodeMirror-nonmatchingbracket {
+  color: #3892ef;
+}
+
+.cm-s-atom .CodeMirror-linenumber {
+  padding: 0 5px;
+}
+
+.cm-s-atom .CodeMirror-guttermarker-subtle {
+  color: #586e75;
+}
+
+.cm-s-atom .CodeMirror-guttermarker {
+  color: #ddd;
+}
+
+.cm-s-atom .CodeMirror-gutter .CodeMirror-gutter-text {
+  color: #586e75;
+}
+
+.cm-s-atom .CodeMirror-cursor {
+  border-left: 1px solid #819090;
+}
+
+.cm-s-atom .CodeMirror-activeline-background {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+div.CodeMirror span.CodeMirror-matchingbracket {
+  color: #00ffe4;
+}
+
+
+/* HTML/XML COLORS */
+/* Possibly to be added later */
+
+/*.cm-s-atom .cm-meta {
+  color: #000000;
+}
+
+.cm-s-atom .cm-qualifier {
+  color: #000000;
+}
+
+.cm-s-atom .cm-builtin {
+  color: #000000;
+}
+
+.cm-s-atom .cm-bracket {
+  color: #000000;
+}
+
+.cm-s-atom .cm-tag {
+  color: #000000;
+}
+
+.cm-s-atom .cm-attribute {
+  color: #000000;
+}
+
+.cm-s-atom .cm-link {
+  color: #000000;
+  cursor: pointer;
+}
+
+.cm-s-atom .cm-special {
+  color: #000000;
+}
+
+.cm-s-atom .cm-em {
+  color: #000000;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.cm-s-atom .cm-strong {
+  color: #000000;
+}*/

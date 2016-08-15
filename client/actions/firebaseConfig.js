@@ -22,10 +22,12 @@ export function fetchFirepad () {
     var firepadRef = Firebase.app().database().ref('/' + global.localStorage.roomname);
     var codeMirror = CodeMirror(document.getElementById('firepad'),
       {
-        lineWrapping: true,
         lineNumbers: true,
         mode: 'javascript',
+        theme: 'atom',
+        // theme: 'solarized dark',
         tabSize: 2,
+        extraKeys: { 'Ctrl-Space': 'autocomplete' },
         autoCloseBrackets: true,
         matchBrackets: true,
         autoCloseTags: true
