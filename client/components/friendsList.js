@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import { inviteToSession, makeSession, sessionChange, makePrivateSession, askSecondUserToJoin } from '../actions/session';
 import socket from '../sync';
 import io from 'socket.io-client';
+const ipcRenderer = window.require('electron').ipcRenderer;
 
 class FriendsList extends React.Component {
   constructor (props) {
