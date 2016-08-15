@@ -24,7 +24,7 @@ ul li:before {
 #chatBox {
   border: 1px solid black;
   height: 80%;
-  overflow: auto;
+  overfloat: auto;
 }
 
 #logout {
@@ -68,6 +68,10 @@ ul li:before {
 #firepad {
   width: 100%;
   height: 100%;
+<<<<<<< 03fbf0448dd207e49c1ea8265279bf70958af89d
+=======
+  background-color: #f62; /* dark orange background */
+>>>>>>> (fix) fix bug where multiple video divs were showing
 }
 
 video {

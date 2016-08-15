@@ -17,9 +17,11 @@ class Session extends React.Component {
   }
 
   leaveSession () {
-    delete window.inSession;
-    socket.emit('leaveSession', global.localStorage.session);
     const { router } = this.props;
+    phone.hangup();
+    delete window.inSession;
+    delete window.connected;
+    socket.emit('leaveSession', global.localStorage.roomname);
     router.replace('/');
   }
 
