@@ -1,9 +1,8 @@
 import React from 'react';
-import { Pubnub } from '../actions/pubnub';
 
-const Videos = () => (
+const Video = () => (
   <div id="remoteVideo">
   </div>
 )
 
-export default Videos;
+export default Video;
