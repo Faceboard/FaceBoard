@@ -27,10 +27,6 @@ const userReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         [action.field]: action.value
       });
-    case 'SESSION_MADE':
-      return Object.assign({}, state, {
-        session: action.payload
-      });
     default:
       return state;
   }

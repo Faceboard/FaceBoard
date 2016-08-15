@@ -15,7 +15,6 @@ class Lobby extends React.Component {
 
     socket.on('userHasJoinedSession', function (mes) {
       const { router } = props;
-      console.log('to make sure');
       router.replace('/session');
     });
   }
@@ -29,7 +28,6 @@ class Lobby extends React.Component {
 
   onLogout () {
     logout();
-    console.log('this ahppedn');
     this.props.router.replace('/auth');
   }
 

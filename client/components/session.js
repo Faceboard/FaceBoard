@@ -16,10 +16,6 @@ class Session extends React.Component {
     super(props);
   }
 
-  componentDidMount () {
-    // fetchFirepad();
-  }
-
   leaveSession () {
     delete global.localStorage.inSession;
     socket.emit('leaveSession', global.localStorage.session);

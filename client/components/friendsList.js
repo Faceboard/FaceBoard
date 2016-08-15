@@ -2,7 +2,7 @@ import React from 'react';
 import { getAllUsers } from '../actions/userActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { inviteToSession, makeSession, sessionChange, makePrivateSession } from '../actions/session';
+import { inviteToSession, makeSession, sessionChange, makePrivateSession, confirmJoinSession, setSessionGlobals, isSecondUser } from '../actions/session';
 import { initOffer } from '../actions/webrtc';
 import socket from '../sync';
 import io from 'socket.io-client';
@@ -16,12 +16,9 @@ class FriendsList extends React.Component {
     this.props.dispatch(getAllUsers());
     const { router } = this.props;
     socket.on('userWantsToCreateSession', function (data) {
-      if (global.localStorage.username === data.secondUserName && !global.localStorage.inSession) {
-        if (confirm(data.firstUserName + ' wants to create a private session with you. Would you like to join?')) {
-          global.localStorage.roomname = data.firstUserName + '*' + data.secondUserName;
-          global.localStorage.inSession = true;
-          delete global.localStorage.isCaller;
-          socket.emit('userWantsToJoinSession', data);
+      if (isSecondUser(data.secondUserName)) {
+        if (confirmJoinSession(data.firstUserName)) {
+          setSessionGlobals(data.firstUserName, data.secondUserName, data);
         }
       }
     });
