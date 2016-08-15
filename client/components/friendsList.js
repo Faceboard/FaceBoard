@@ -6,8 +6,6 @@ import { inviteToSession, makeSession, sessionChange, makePrivateSession, askSec
 import socket from '../sync';
 import io from 'socket.io-client';
 import { makeMenu } from '../actions/menu';
-const ipcRenderer = window.require('electron').ipcRenderer;
-
 
 class FriendsList extends React.Component {
   constructor (props) {
