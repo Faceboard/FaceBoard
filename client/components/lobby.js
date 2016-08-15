@@ -13,7 +13,7 @@ class Lobby extends React.Component {
     super(props);
 
     socket.on('userHasJoinedSession', function (mes) {
-      router.replace('/session');
+      props.router.replace('/session');
     });
   }
 
