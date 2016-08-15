@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCHING_PRIVATE_MESSAGES } from './action';
+import { FETCHING_PRIVATE_MESSAGES, MESSAGES_FETCHED, MESSAGES_ERROR } from './action';
 
 export function getAllMessages () {
   return function (dispatch) {
@@ -7,11 +7,11 @@ export function getAllMessages () {
     // axios.get('https://face-board.herokuapp.com/messages/findAllMessages')
     axios.get('http://localhost:3000/messages/findAllMessages')
     .then( (response) => {
-      dispatch({type: 'MESSAGES_FETCHED',
+      dispatch({type: MESSAGES_FETCHED,
       payload: response.data });
     })
     .catch( (error) => {
-      dispatch({type: 'MESSAGES_ERROR',
+      dispatch({type: MESSAGES_ERROR,
       error: error });
     });
   };
@@ -23,11 +23,11 @@ export function getPrivateMessages () {
 
     axios.post('http://localhost:3000/messages/private/findAll')
       .then((response) => {
-        dispatch({type: 'MESSAGES_FETCHED',
+        dispatch({type: MESSAGES_FETCHED,
         payload: response.data });
       })
       .catch((error) => {
-        dispatch({type: 'MESSAGES_ERROR',
+        dispatch({type: MESSAGES_ERROR,
         error: error });
       });
   };

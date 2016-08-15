@@ -9,6 +9,7 @@ export const MESSAGES_ERROR = 'MESSAGES_ERROR';
 export const FETCHING_FIREPAD = 'FETCHING_FIREPAD';
 export const FIREPAD_FETCHED = 'FIREPAD_FETCHED';
 export const CHANGE_MESSAGE_TEXT = 'CHANGE_MESSAGE_TEXT';
+export const FETCHING_PRIVATE_MESSAGES = 'FETCHING_PRIVATE_MESSAGES';
 
 export function authChange (field, value) {
   return {
