@@ -17,7 +17,7 @@ class Session extends React.Component {
   }
 
   leaveSession () {
-    delete global.localStorage.inSession;
+    delete window.inSession;
     socket.emit('leaveSession', global.localStorage.session);
     const { router } = this.props;
     router.replace('/');

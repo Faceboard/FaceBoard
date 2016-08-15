@@ -8,12 +8,12 @@ const confirmJoinSession = (firstUsername) => {
 
 const setSessionGlobals = (firstUser, secondUser, data) => {
   global.localStorage.roomname = firstUser + '*' + secondUser;
-  global.localStorage.inSession = true;
+  window.inSession = true;
   socket.emit('userWantsToJoinSession', data);
 };
 
 const isSecondUser = (secondUser) => {
-  return global.localStorage.username === secondUser && !global.localStorage.inSession;
+  return global.localStorage.username === secondUser && !window.inSession;
 };
 
 export function sessionChange (field, value) {

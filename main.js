@@ -82,9 +82,9 @@ app.on('ready', function () {
     win = null;
   });
 
-  ipcMain.on('some-event', function () {
-    console.log('yeeeeeee BOY');
-  });
+  app.on('before-quit', function () {
+    delete window.inSession;
+  })
 });
 
 
