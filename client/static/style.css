@@ -53,16 +53,9 @@ ul li:before {
 }
 
 #videoList {
-  border: 1px solid black;
   float: right;
   height: 50%;
   width: 20%;
-}
-
-#localVideo, #remoteVideo {
-  border: 1px solid black;
-  height: 50%;
-  width: 100%;
 }
 
 .whiteboard {
@@ -79,4 +72,10 @@ ul li:before {
 
 .CodeMirror {
   background-color: black;
+}
+
+video {
+  border: 1px solid black;
+  height: 50%;
+  width: 100%;
 }
