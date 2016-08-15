@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { getAllMessages } from '../actions/chat';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -12,6 +13,20 @@ class Chat extends React.Component {
 
   componentWillMount () {
     this.props.dispatch(getAllMessages());
+  }
+
+  componentWillUpdate () {
+    var node = ReactDOM.findDOMNode(this);
+    console.log(node.scrollTop + node.offsetHeight);
+    console.log(node.scrollHeight);
+    this.shouldScroll = Math.abs((node.scrollTop + node.offsetHeight) - node.scrollHeight) < 3;
+  }
+
+  componentDidUpdate () {
+    if (this.shouldScroll) {
+      var node = ReactDOM.findDOMNode(this);
+      node.scrollTop = node.scrollHeight;
+    }
   }
 
   render () {
