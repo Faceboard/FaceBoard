@@ -2,6 +2,7 @@ import { makePrivateSession } from './session';
 const remote = window.require('electron').remote;
 const Menu = remote.Menu;
 const MenuItem = remote.MenuItem;
+const ipcRenderer = window.require('electron').ipcRenderer;
 
 export function makeMenu () {
   let menu = new Menu();
@@ -11,7 +12,7 @@ export function makeMenu () {
     click: () => {
       makePrivateSession(global.localStorage.username, global.localStorage.secondPerson);
     }
-  }))
+  }));
 
   let allFriends = document.getElementsByClassName('friends');
   for (var i = 0; i < allFriends.length; i++) {
@@ -19,6 +20,6 @@ export function makeMenu () {
       event.preventDefault();
       global.localStorage.secondPerson = event.target.innerHTML;
       menu.popup(remote.getCurrentWindow());
-    }, false)
+    }, false);
   }
 }

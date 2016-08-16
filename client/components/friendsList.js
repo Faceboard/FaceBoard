@@ -40,18 +40,15 @@ class FriendsList extends React.Component {
 
   render () {
     const { users, friends } = this.props;
-<<<<<<< 3c602ead1f9186c3ebee87e45cf096dff45bc2d5
     const mapUsers = users.map(user => <li onClick={this.addPerson.bind(this)} className="friends" key={user.username} value={user.id}>{user.username}</li>);
     const filterFriends  = _.uniqBy(friends, (f) => f.friendid ).filter((f) => f.friendname !== global.localStorage.username );
     const mapFriends = filterFriends.map(friend => <li key={friend.id}>{friend.friendname}</li>);
     const { users } = this.props;
     const mapUsers = users.map(user => <li className="friends" key={user.username}>{user.username}</li>);
-=======
 
     const mapUsers = users.map(user => <li onClick={this.addPerson.bind(this)} className="friends" key={user.username} value={user.id}>{user.username}</li>);
     const filterFriends  = _.uniqBy(friends, (f) => f.friendid ).filter((f) => f.friendname !== global.localStorage.username );
     const mapFriends = filterFriends.map(friend => <li key={friend.id}>{friend.friendname}</li>);
->>>>>>> (feat) add friends list functionality
 
     if (!users.length) {
       return (
