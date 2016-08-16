@@ -1,9 +1,10 @@
 import React from 'react';
-import Designer from '../actions/whiteboardConfig';
+import Designer, { connectRtc } from '../actions/whiteboardConfig';
 
 class Whiteboard extends React.Component {
 
   componentDidMount () {
+    connectRtc();
     Designer.appendTo(document.getElementsByClassName('whiteboard')[0]);
   }
 
