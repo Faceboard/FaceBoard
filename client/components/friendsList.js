@@ -54,7 +54,11 @@ class FriendsList extends React.Component {
     const { users, friends } = this.props;
     const mapUsers = users.map(user => <li onClick={this.addPerson.bind(this)} className="friends" key={user.username} value={user.id}>{user.username}</li>);
     const filterFriends  = _.uniqBy(friends, (f) => f.friendid ).filter((f) => f.friendname !== global.localStorage.username );
+<<<<<<< a1ae64a55b8ac635d257ccca697b8e195e5ca2c2
     const mapFriends = filterFriends.map(friend => <li key={friend.id}>{friend.friendname}</li>);
+=======
+    const mapFriends = filterFriends.map(friend => <li onClick={this.privateMessageStart.bind(this)} key={friend.id} value={friend.friendid}>{friend.friendname}</li>);
+>>>>>>> (feat) add joining private session
 
     if (!users.length) {
       return (
