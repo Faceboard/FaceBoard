@@ -51,4 +51,18 @@ socket.on('send message', (data) => {
   store.dispatch(getAllMessages());
 });
 
+socket.on('send private message', (data) => {
+  let userOne = global.localStorage.userid;
+  let userTwo = global.localStorage.secondpersonid;
+  store.dispatch(getPrivateMessages(userOne, userTwo));
+});
+
+socket.on('confirm private chat', (data) => {
+  global.localStorage.pchat = data.pchat;
+  if (data.seconduserid === global.localStorage.userid) {
+    console.log('user private chat joined');
+    socket.emit()
+  }
+});
+
 export default socket;
