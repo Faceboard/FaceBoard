@@ -12,8 +12,10 @@ export function configFirebase () {
   Firebase.initializeApp(config);
 }
 
-export function fetchFirepad () {
+export function fetchFirepad (mode) {
   return function (dispatch) {
+    console.log(mode);
+    mode = mode || 'javascript';
     console.log('FIREBASE APPS', Firebase.apps);
     if (!Firebase.apps.length) {
       configFirebase();
@@ -23,7 +25,7 @@ export function fetchFirepad () {
     var codeMirror = CodeMirror(document.getElementById('firepad'),
       {
         lineNumbers: true,
-        mode: 'javascript',
+        mode: mode,
         theme: 'atom',
         tabSize: 2,
         extraKeys: { 'Ctrl-Space': 'autocomplete' },

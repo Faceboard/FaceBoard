@@ -28,6 +28,10 @@ class MainSession extends React.Component {
     this.props.dispatch(fetchFirepad());
   }
 
+  changeMode (e) {
+    this.props.dispatch(fetchFirepad(e.target.value));
+  }
+
   render () {
     return (
       <div id="mainSession">
@@ -35,6 +39,18 @@ class MainSession extends React.Component {
         </div>
         <div id="whiteboard">
         </div>
+        <select id="cmMode" onChange={this.changeMode.bind(this)}>
+          <option value="javascript">javascript</option>
+          <option value="jsx">jsx</option>
+          <option value="css">css</option>
+          <option value="htmlmixed">html - mixed</option>
+          <option value="php">php</option>
+          <option value="ruby">ruby</option>
+          <option value="python">python</option>
+          <option value="markdown">markdown</option>
+          <option value="sass">sass</option>
+          <option value="sql">sql</option>
+        </select>
       </div>
     );
   }
