@@ -1,9 +1,10 @@
 import React from 'react';
+import Designer from '../actions/whiteboardConfig';
 
 class Whiteboard extends React.Component {
 
   componentDidMount () {
-    designer.appendTo(document.getElementsByClassName('whiteboard')[0]);
+    Designer.appendTo(document.getElementsByClassName('whiteboard')[0]);
   }
 
   render () {
