@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { authChange } from '../actions/action';
-import { signUp } from '../auth';
+import { signUp, authenticated } from '../auth';
 
 class Signup extends React.Component {
   constructor (props) {
@@ -15,8 +15,15 @@ class Signup extends React.Component {
 
   onSignUp (e) {
     e.preventDefault();
-    const { username, password } = this.props;
-    signUp(username, password);
+    const { username, password, router } = this.props;
+    signUp(username, password)
+      .then(() => {
+        if (authenticated()) {
+          router.replace('/');
+        } else {
+          console.log('Failed to find or create user');
+        }
+      })
   }
 
   render () {
