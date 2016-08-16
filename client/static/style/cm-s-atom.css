@@ -122,6 +122,11 @@ div.CodeMirror span.CodeMirror-matchingbracket {
   color: #00ffe4;
 }
 
+.CodeMirror-foldmarker {
+  color: #747983;
+  text-shadow: none;
+}
+
 
 /* HTML/XML COLORS */
 /* Possibly to be added later */

@@ -29,17 +29,11 @@ export function fetchFirepad () {
         extraKeys: { 'Ctrl-Space': 'autocomplete' },
         autoCloseBrackets: true,
         matchBrackets: true,
-        autoCloseTags: true
+        autoCloseTags: true,
+        foldGutter: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
       });
     Firepad.fromCodeMirror(firepadRef, codeMirror, { defaultText: 'Hello, World!' });
     dispatch({type: 'FIREPAD_FETCHED'});
-  };
-}
-
-export function deleteFirepad () {
-  return function (dispatch) {
-    Firebase.app().database().ref('/' + global.localStorage.roomname).remove().then(function (err) {
-      if (err) throw err;
-    });
   };
 }

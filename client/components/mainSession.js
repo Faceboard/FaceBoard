@@ -28,10 +28,6 @@ class MainSession extends React.Component {
     this.props.dispatch(fetchFirepad());
   }
 
-  componentWillUnmount () {
-    this.props.dispatch(deleteFirepad());
-  }
-
   render () {
     return (
       <div id="mainSession">
