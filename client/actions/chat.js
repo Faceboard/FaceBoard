@@ -10,8 +10,10 @@ export function getAllMessages () {
       payload: response.data });
     })
     .catch( (error) => {
-      dispatch({type: MESSAGES_ERROR,
-      error: error });
+      dispatch({
+        type: MESSAGES_ERROR,
+        error: error
+      });
     });
   };
 }
@@ -22,8 +24,10 @@ export function getPrivateMessages () {
 
     axios.get('http://localhost:3000/messages/private/findAll')
       .then((response) => {
-        dispatch({type: MESSAGES_FETCHED,
-        payload: response.data });
+        dispatch({
+          type: MESSAGES_FETCHED,
+          payload: response.data
+        });
       })
       .catch((error) => {
         dispatch({type: MESSAGES_ERROR,
