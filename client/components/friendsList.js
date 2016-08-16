@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { getAllUsers } from '../actions/userActions';
 import { connect } from 'react-redux';
@@ -6,6 +7,7 @@ import { inviteToSession, makeSession, sessionChange, makePrivateSession, askSec
 import socket from '../sync';
 import io from 'socket.io-client';
 import { makeMenu } from '../actions/menu';
+import { addFriend, getAllFriends } from '../actions/friends';
 const ipcRenderer = window.require('electron').ipcRenderer;
 
 
@@ -15,7 +17,9 @@ class FriendsList extends React.Component {
   }
 
   componentWillMount () {
-    this.props.dispatch(getAllUsers());
+    this.props.dispatch(getAllUsers(), getAllFriends());
+    this.props.dispatch(getAllFriends());
+    console.log('this is props', this.props);
     const { router } = this.props;
     socket.on('userWantsToCreateSession', function (data) {
       askSecondUserToJoin(data);
@@ -26,20 +30,20 @@ class FriendsList extends React.Component {
     makeMenu();
   }
 
-  // createSession (username) {
-  //   const { session, router } = this.props;
-  //   makePrivateSession(global.localStorage.username, username);
-  // }
-  // onClick={this.createSession.bind(this, user.userid)}
-
-
-  sessionChange (e) {
-    this.props.dispatch(sessionChange(e.target.name, e.target.value));
+  addPerson (e) {
+    e.preventDefault();
+    console.log('this is user', this.props.users);
+    // e.target.value for id, e.target.innerHTML for username
+    this.props.dispatch(addFriend(e.target.value, e.target.innerHTML));
+    console.log('this worked');
   }
 
   render () {
-    const { users } = this.props;
-    const mapUsers = users.map(user => <li className="friends" key={user.userid}>{user.userid}</li>);
+    const { users, friends } = this.props;
+
+    const mapUsers = users.map(user => <li onClick={this.addPerson.bind(this)} className="friends" key={user.username} value={user.id}>{user.username}</li>);
+    const filterFriends  = _.uniqBy(friends, (f) => f.friendid ).filter((f) => f.friendname !== global.localStorage.username );
+    const mapFriends = filterFriends.map(friend => <li key={friend.id}>{friend.friendname}</li>);
 
     if (!users.length) {
       return (
@@ -49,11 +53,15 @@ class FriendsList extends React.Component {
     }
     return (
       <div id="friendsList">
-        <input type="text" name="session" value={this.props.session} onChange={this.sessionChange.bind(this)}/>
-        <button> Submit </button>
-      <ul>
-        {mapUsers}
-      </ul>
+        <h2> All Users </h2>
+        <ul>
+          {mapUsers}
+        </ul>
+        <hr/>
+        <h2> All Friends </h2>
+        <ul>
+          {mapFriends}
+        </ul>
       </div>
     );
   }
