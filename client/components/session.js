@@ -31,7 +31,6 @@ class Session extends React.Component {
         <FriendsList />
         <MainSession />
         <VideoList />
-        <Whiteboard />
       </div>
     );
   }

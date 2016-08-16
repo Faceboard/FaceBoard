@@ -10,7 +10,7 @@ class Whiteboard extends React.Component {
 
   render () {
     return (
-      <div className="whiteboard">
+      <div id="whiteboard">
       </div>
     );
   }

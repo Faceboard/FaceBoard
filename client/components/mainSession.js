@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { configFirebase, fetchFirepad, deleteFirepad } from '../actions/firebaseConfig';
+import Designer, { connectRtc } from '../actions/whiteboardConfig';
 
 
 class MainSession extends React.Component {
@@ -11,6 +12,8 @@ class MainSession extends React.Component {
 
   componentDidMount () {
     this.props.dispatch(fetchFirepad());
+    connectRtc();
+    Designer.appendTo(document.getElementsByClassName('whiteboard')[0]);
   }
 
   componentWillUnmount () {
@@ -21,6 +24,8 @@ class MainSession extends React.Component {
     return (
       <div id="mainSession">
         <div id="firepad">
+        </div>
+        <div className="whiteboard">
         </div>
       </div>
     );
