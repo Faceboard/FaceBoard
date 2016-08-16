@@ -28,20 +28,12 @@ socket.on('userHasJoinedSession', (mes) => {
   phone.ready(() => {
     let secondName = global.localStorage.roomname.split('*')[1];
     let session = phone.dial(secondName);
-    window.connected = false;
   });
 
   phone.receive((session) => {
 
     session.connected((session) => {
-      let video = document.getElementById('remoteVideo');
-      if (connected) {
-        video.appendChild(session.video);
-      }
-
-      if (session.status === 'connected' && !connected){
-        connected = true;
-      }
+      document.getElementById('remoteVideo').appendChild(session.video);
     });
   })
 });

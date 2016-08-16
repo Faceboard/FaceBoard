@@ -5,6 +5,7 @@ const MenuItem = remote.MenuItem;
 
 export function makeMenu () {
   let menu = new Menu();
+  console.log('made menu');
   menu.append(new MenuItem({
     label: 'Invite user',
     click: () => {
@@ -20,5 +21,4 @@ export function makeMenu () {
       menu.popup(remote.getCurrentWindow());
     }, false)
   }
-  window.menuMade = true;
 }
