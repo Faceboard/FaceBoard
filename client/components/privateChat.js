@@ -4,6 +4,8 @@ import { withRouter } from 'react-router';
 import { getPrivateMessages } from '../actions/chat';
 import FriendsList from './friendsList';
 import socket from '../sync';
+import PrivateChatInput from './privateChatInput';
+
 
 
 class PrivateChat extends React.Component {
@@ -30,6 +32,7 @@ class PrivateChat extends React.Component {
         <FriendsList />
         <div className="chatBox">
         </div>
+        <PrivateChatInput />
       </div>
     );
   }

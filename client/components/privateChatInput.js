@@ -1,7 +1,8 @@
 import React from 'react';
 import { changeMessageText } from '../actions/message';
 import socket from '../sync';
-import { withRouter } from 'react-redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 class privateInput extends React.Component {
   constructor(props) {
@@ -20,5 +21,5 @@ class privateInput extends React.Component {
   }
 }
 
-const mapStateToProps = state => state.inputReducer;
-export default connect(mapStateToProps)(withRouter(Input));
+const mapStateToProps = (state) => state.inputReducer;
+export default connect(mapStateToProps)(withRouter(privateInput));
