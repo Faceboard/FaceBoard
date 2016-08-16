@@ -27,8 +27,8 @@ class privateInput extends React.Component {
           <textarea id="privateMessage" type="text" name="messageText" >
           </textarea>
           <button> Send Text </button>
-        </form>
-      </div>
+          </form>
+        </div>
     )
   }
 }
