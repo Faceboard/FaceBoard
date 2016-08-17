@@ -13,6 +13,9 @@ export const FETCHING_PRIVATE_MESSAGES = 'FETCHING_PRIVATE_MESSAGES';
 export const FETCHING_FRIENDS = 'FETCHING_FRIENDS';
 export const FRIENDS_FETCHED = 'FRIENDS_FETCHED';
 export const FETCHING_FRIENDS_ERROR = 'FETCHING_FRIENDS_ERROR';
+export const FETCHING_PCHAT = "FETCHING_PCHAT";
+export const PCHAT_FETCHED = "PCHAT_FETCHED";
+export const PCHAT_ERROR = "PCHAT_ERROR";
 
 export function authChange (field, value) {
   return {
