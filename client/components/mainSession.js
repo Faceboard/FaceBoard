@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { modeChange } from '../actions/action';
+import { modeChange, toggleDiv } from '../actions/action';
 import { configFirebase, fetchFirepad, deleteFirepad } from '../actions/firebaseConfig';
 
 class MainSession extends React.Component {
@@ -39,10 +39,16 @@ class MainSession extends React.Component {
     this.props.dispatch(fetchFirepad(e.target.value));
   }
 
+  toogleEditor () {
+    this.props.dispatch(toggleDiv());
+  }
+
   render () {
     return (
       <div id="mainSession">
-        <div id="firepad">
+        <button onClick={this.toggleEditor.bind(this)} >click me</button>
+        <div className={this.props.hidden ? 'hidden' : 'open'}></div>
+        <div id="firepad" className={this.props.hidden}>
         </div>
         <select id="cmMode" onChange={this.changeMode.bind(this)}>
           <option value="javascript">javascript</option>
@@ -65,3 +71,22 @@ class MainSession extends React.Component {
 
 const mapStateToProps = state => state.firepadReducer;
 export default connect(mapStateToProps)(withRouter(MainSession));
+
+// component
+// const ShowHideDiv = (props) => (
+//   <div>
+//     <Button onClick={props.toggleDiv} />
+//     <div className={props.hidden ? style.hidden : style.open}>
+//       <TextInput />
+//     </div>
+//   </div>
+// );
+
+// display
+// <ShowHideDiv hidden={props.hidden} />
+
+// function mapStateToProps({demo}) {
+  // return {
+//     hidden: demo.hidden,
+//   };
+// }
