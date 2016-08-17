@@ -42,13 +42,11 @@ html, body, .lobby, #root, #sessionWrapper {
   color: green;
 }
 
-.inputMessageBox {
-  height: 10%;
-}
-
 #inputMessage {
   width: 70%;
   margin-left: 15%;
+  height: 25px;
+  display: inline-flex;
 }
 
 #mainSession {
