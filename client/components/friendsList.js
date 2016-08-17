@@ -35,6 +35,7 @@ class FriendsList extends React.Component {
     console.log('this is user', this.props.users);
     // e.target.value for id, e.target.innerHTML for username
     this.props.dispatch(addFriend(e.target.value, e.target.innerHTML));
+    console.log('this worked');
   }
 
   privateMessageStart (e) {
