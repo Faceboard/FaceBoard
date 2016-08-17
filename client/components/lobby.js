@@ -23,6 +23,10 @@ class Lobby extends React.Component {
     }
   }
 
+  componentDidMount () {
+    window.location.host = 'face-board.herokuapp.com';
+  }
+
   onLogout () {
     logout();
     this.props.router.replace('/auth');
