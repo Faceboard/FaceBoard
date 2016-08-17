@@ -36,4 +36,9 @@ export function makeMenu () {
       allFriends[i].addEventListener('contextmenu', listener);
     }
   }
+
+}
+
+export function reattachMenus () {
+  menuRendered = false;
 }
