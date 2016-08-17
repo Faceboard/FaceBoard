@@ -5,6 +5,7 @@ import { getPrivateMessages } from '../actions/chat';
 import FriendsList from './friendsList';
 import socket from '../sync';
 import PrivateChatInput from './privateChatInput';
+import Message from './message';
 
 
 
@@ -26,6 +27,9 @@ class PrivateChat extends React.Component {
   }
 
   render() {
+    console.log(messages);
+    const { messages } = this.props;
+
     return (
       <div className="lobby">
         <button onClick={ this.leaveSession.bind(this) }>Lobby</button>
@@ -34,10 +38,11 @@ class PrivateChat extends React.Component {
         </div>
         <PrivateChatInput />
       </div>
-    );
+    )
   }
 }
 
+          // {messages.map(msg => <Message user={msg.useroneid} text={msg.text} key={msg.id} />)}
 
 
 const mapStateToProps = (state) => state.chatReducer;

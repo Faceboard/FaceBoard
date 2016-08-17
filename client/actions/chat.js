@@ -22,8 +22,10 @@ export function getPrivateMessages () {
   return function (dispatch) {
     dispatch({type: FETCHING_PRIVATE_MESSAGES});
 
-    axios.get('http://localhost:3000/messages/private/findAll')
+
+    axios.post('https://face-board-pr-35.herokuapp.com/messages/private/findAll', {useroneid, usertwoid})
       .then((response) => {
+        console.log(' This is response.data', response.data);
         dispatch({
           type: MESSAGES_FETCHED,
           payload: response.data
