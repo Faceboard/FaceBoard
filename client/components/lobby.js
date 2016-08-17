@@ -36,7 +36,12 @@ class Lobby extends React.Component {
     let username = global.localStorage.username;
     return (
       <div className="lobby">
-        <h1>{username}</h1>
+        <div className="toolbar toolbar-header">
+          <button className="btn btn-default">
+            <span className="icon icon-home"></span>
+          </button>
+        </div>
+        <div className="mainHeader">Hello World</div>
         <FriendsList />
         <button id="logout" onClick={this.onLogout.bind(this)}>Logout</button>
         <Chat />

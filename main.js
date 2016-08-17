@@ -73,6 +73,7 @@ app.on('ready', function () {
   win = new BrowserWindow({
     width: 1176,
     height: 600
+    // frame: false
   });
 
   win.loadURL(`file://${__dirname}/client/static/index.html`);

@@ -26,7 +26,7 @@ class Input extends React.Component {
         <form onSubmit={this.sendMessage.bind(this)}>
           <textarea id="inputMessage" type="text" name="messageText" value={this.props.message} onChange={this.changeMessage.bind(this)}>
           </textarea>
-          <button> Send Text </button>
+          {/* <button> Send Text </button>*/}
         </form>
       </div>
     );
