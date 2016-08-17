@@ -7,8 +7,6 @@ import socket from '../sync';
 import PrivateChatInput from './privateChatInput';
 import Message from './message';
 
-
-
 class PrivateChat extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +15,6 @@ class PrivateChat extends React.Component {
   componentWillMount () {
     this.props.dispatch(getPrivateMessages(global.localStorage.seconduserid));
   }
-
 
   leaveSession () {
     delete window.inSession;
@@ -43,7 +40,7 @@ class PrivateChat extends React.Component {
           <button onClick={ this.leaveSession.bind(this) }>Lobby</button>
           <FriendsList />
           <div className="chatBox">
-            {privMessages.map(priv => <Message user={priv.useroneid} text={priv.text} />)}
+            {privMessages.map(priv => <Message user={priv.useronename} text={priv.text} />)}
           </div>
           <PrivateChatInput />
         </div>
@@ -52,29 +49,5 @@ class PrivateChat extends React.Component {
   }
 }
 
-          // {messages.map(msg => <Message user={msg.useroneid} text={msg.text} key={msg.id} />)}
-
-
 const mapStateToProps = (state) => state.pchatReducer;
 export default connect(mapStateToProps)(withRouter(PrivateChat));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

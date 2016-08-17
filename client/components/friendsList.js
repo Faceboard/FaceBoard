@@ -35,31 +35,18 @@ class FriendsList extends React.Component {
 
   addPerson (e) {
     e.preventDefault();
-    console.log('this is user', this.props.users);
-    // e.target.value for id, e.target.innerHTML for username
     this.props.dispatch(addFriend(e.target.value, e.target.innerHTML));
-    console.log('this worked');
   }
 
   privateMessageStart (e) {
     const { router } = this.props;
     global.localStorage.seconduserid = e.target.value;
+    global.localStorage.secondusername = e.target.innerHTML;
     global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;
     let data = {
       pchat: global.localStorage.pchat,
-      seconduserid: global.localStorage.seconduserid
-    }
-    socket.emit('makePrivateChat', data);
-    router.replace('/privateChat');
-  }
-
-  privateMessageStart (e) {
-    const { router } = this.props;
-    global.localStorage.seconduserid = e.target.value;
-    global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;
-    let data = {
-      pchat: global.localStorage.pchat,
-      seconduserid: global.localStorage.seconduserid
+      seconduserid: global.localStorage.seconduserid,
+      secondusername: global.localStorage.secondusername
     }
     socket.emit('makePrivateChat', data);
     router.replace('/privateChat');
@@ -69,7 +56,7 @@ class FriendsList extends React.Component {
     const { users, friends } = this.props;
     const mapUsers = users.map(user => <li onClick={this.addPerson.bind(this)} className="friends" key={user.username} value={user.id}>{user.username}</li>);
     const filterFriends  = _.uniqBy(friends, (f) => f.friendid ).filter((f) => f.friendname !== global.localStorage.username );
-    const mapFriends = filterFriends.map(friend => <li onClick={this.privateMessageStart.bind(this)} key={friend.id} value={friend.friendid}>{friend.friendname}</li>);
+    const mapFriends = filterFriends.map(friend => <li onClick={this.privateMessageStart.bind(this)} key={friend.id} value={friend.friendid} >{friend.friendname}</li>);
 
     if (!users.length) {
       return (
