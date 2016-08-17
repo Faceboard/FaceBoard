@@ -39,7 +39,7 @@ class Chat extends React.Component {
       );
     }
     return (
-      <div id="chatBox">
+      <div className="chatBox">
         {messages.map(message => <Message key={message.id} user={message.user} text={message.text} />)}
       </div>
     );
