@@ -15,6 +15,8 @@ class privateInput extends React.Component {
       text: msg,
       useroneid: global.localStorage.userid,
       usertwoid: global.localStorage.seconduserid,
+      useronename: global.localStorage.username,
+      usertwoname: global.localStorage.secondusername,
       chatRoom: global.localStorage.pchat
     };
     socket.emit('send private message', msgObj);

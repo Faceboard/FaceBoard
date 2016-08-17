@@ -40,7 +40,7 @@ class PrivateChat extends React.Component {
           <button onClick={ this.leaveSession.bind(this) }>Lobby</button>
           <FriendsList />
           <div className="chatBox">
-            {privMessages.map(priv => <Message user={priv.useroneid} text={priv.text} />)}
+            {privMessages.map(priv => <Message user={priv.useronename} text={priv.text} />)}
           </div>
           <PrivateChatInput />
         </div>
