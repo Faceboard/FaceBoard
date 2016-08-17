@@ -15,7 +15,7 @@ class PrivateChat extends React.Component {
   }
 
   componentWillMount () {
-    this.props.dispatch(getPrivateMessages(global.localStorage.userid, global.localStorage.secondpersonid));
+    this.props.dispatch(getPrivateMessages(global.localStorage.seconduserid));
   }
 
 
@@ -27,25 +27,35 @@ class PrivateChat extends React.Component {
   }
 
   render() {
-    console.log(messages);
-    const { messages } = this.props;
-
-    return (
-      <div className="lobby">
-        <button onClick={ this.leaveSession.bind(this) }>Lobby</button>
-        <FriendsList />
-        <div className="chatBox">
+    const { privMessages } = this.props;
+    console.log('priv messages', privMessages);
+    if (!privMessages) {
+      return(
+        <div>
+          Loading...
         </div>
-        <PrivateChatInput />
-      </div>
-    )
+      )
+    }
+
+    if (privMessages) {
+      return (
+        <div className="lobby">
+          <button onClick={ this.leaveSession.bind(this) }>Lobby</button>
+          <FriendsList />
+          <div className="chatBox">
+            {privMessages.map(priv => <Message user={priv.useroneid} text={priv.text} />)}
+          </div>
+          <PrivateChatInput />
+        </div>
+      )
+    }
   }
 }
 
           // {messages.map(msg => <Message user={msg.useroneid} text={msg.text} key={msg.id} />)}
 
 
-const mapStateToProps = (state) => state.chatReducer;
+const mapStateToProps = (state) => state.pchatReducer;
 export default connect(mapStateToProps)(withRouter(PrivateChat));
 
 
