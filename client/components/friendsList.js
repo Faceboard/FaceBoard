@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 import { inviteToSession, makeSession, sessionChange, makePrivateSession, askSecondUserToJoin } from '../actions/session';
 import socket from '../sync';
 import io from 'socket.io-client';
-import { makeMenu } from '../actions/menu';
+import { makeMenu, reattachMenus } from '../actions/menu';
 import { addFriend, getAllFriends } from '../actions/friends';
 const ipcRenderer = window.require('electron').ipcRenderer;
 
@@ -27,6 +27,10 @@ class FriendsList extends React.Component {
 
   componentDidUpdate () {
     makeMenu();
+  }
+
+  componentWillUnmount () {
+    reattachMenus();
   }
 
   addPerson (e) {
