@@ -4,6 +4,8 @@ const Menu = remote.Menu;
 const MenuItem = remote.MenuItem;
 const ipcRenderer = window.require('electron').ipcRenderer;
 
+let menuRendered;
+
 export function makeMenu () {
   let menu = new Menu();
   console.log('made menu');
@@ -13,16 +15,25 @@ export function makeMenu () {
       makePrivateSession(global.localStorage.username, global.localStorage.secondPerson);
     }
   }));
-  window.addList = 1;
-  let allFriends = document.getElementsByClassName('friends');
-  if (window.addList !== 2) {
+
+  var listener = (event) => {
+    event.preventDefault();
+    global.localStorage.secondPerson = event.target.innerHTML;
+    menu.popup(remote.getCurrentWindow());
+  }
+
+  if (!menuRendered) {
+    let allFriends = document.getElementsByClassName('friends');
+    if (allFriends.length) {
+      menuRendered = true;
+    }
     for (var i = 0; i < allFriends.length; i++) {
-      allFriends[i].addEventListener('contextmenu', (event) => {
-        event.preventDefault();
-        global.localStorage.secondPerson = event.target.innerHTML;
-        menu.popup(remote.getCurrentWindow());
-        window.addList = 2;
-      }, false);
+      // remove previous event listener before adding a new one
+      allFriends[i].removeEventListener('contextmenu', listener);
+
+      console.log('THIS IS WHERE LISTENER IS ADDED');
+
+      allFriends[i].addEventListener('contextmenu', listener);
     }
   }
 }
