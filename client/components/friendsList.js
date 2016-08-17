@@ -50,6 +50,18 @@ class FriendsList extends React.Component {
     router.replace('/privateChat');
   }
 
+  privateMessageStart (e) {
+    const { router } = this.props;
+    global.localStorage.seconduserid = e.target.value;
+    global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;
+    let data = {
+      pchat: global.localStorage.pchat,
+      seconduserid: global.localStorage.seconduserid
+    }
+    socket.emit('makePrivateChat', data);
+    router.replace('/privateChat');
+  }
+
   render () {
     const { users, friends } = this.props;
     const mapUsers = users.map(user => <li onClick={this.addPerson.bind(this)} className="friends" key={user.username} value={user.id}>{user.username}</li>);
