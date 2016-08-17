@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { inviteToSession, makeSession, sessionChange, makePrivateSession, askSecondUserToJoin } from '../actions/session';
 import socket from '../sync';
-import io from 'socket.io-client';
 import { makeMenu, reattachMenus } from '../actions/menu';
 import { addFriend, getAllFriends } from '../actions/friends';
-const ipcRenderer = window.require('electron').ipcRenderer;
+import { getPrivateMessages, getAllFriendPrivateMsg } from '../actions/chat';
+
 
 
 class FriendsList extends React.Component {
@@ -17,7 +17,7 @@ class FriendsList extends React.Component {
   }
 
   componentWillMount () {
-    this.props.dispatch(getAllUsers(), getAllFriends());
+    this.props.dispatch(getAllUsers());
     this.props.dispatch(getAllFriends());
     const { router } = this.props;
     socket.on('userWantsToCreateSession', function (data) {
@@ -50,6 +50,7 @@ class FriendsList extends React.Component {
     }
     socket.emit('makePrivateChat', data);
     router.replace('/privateChat');
+    this.props.dispatch(getAllFriendPrivateMsg(data.seconduserid));
   }
 
   render () {

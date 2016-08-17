@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { FETCHING_MESSAGES, FETCHING_PRIVATE_MESSAGES, MESSAGES_FETCHED, MESSAGES_ERROR, FETCHING_PCHAT, PCHAT_FETCHED, PCHAT_ERROR } from './action';
+import { getAllFriends } from './friends';
 
 export function getAllMessages () {
   return function (dispatch) {
@@ -33,4 +34,11 @@ export function getPrivateMessages (usertwoid) {
         error: error });
       });
   };
+}
+
+export function getAllFriendPrivateMsg (seconduserid) {
+  return function (dispatch) {
+    dispatch(getPrivateMessages(seconduserid));
+    dispatch(getAllFriends());
+  }
 }

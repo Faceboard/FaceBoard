@@ -76,6 +76,14 @@ ul li:before {
   border-width: 2px;
 }
 
+.hidden {
+  display: none;
+}
+
+.open {
+
+}
+
 #firepad {
   width: 100%;
   height: 100%;
