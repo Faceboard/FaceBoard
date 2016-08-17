@@ -8,6 +8,7 @@ import Firebase from 'firebase';
 import Firepad from 'firepad';
 import { configFirebase, fetchFirepad } from '../actions/firebaseConfig';
 import socket from '../sync';
+const remote = window.require('electron').remote;
 
 
 class Session extends React.Component {
@@ -20,6 +21,7 @@ class Session extends React.Component {
     socket.emit('leaveSession', global.localStorage.session);
     const { router } = this.props;
     router.replace('/');
+    remote.getCurrentWindow().reload();
   }
 
   render () {

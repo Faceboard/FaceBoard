@@ -31,11 +31,16 @@ socket.on('userHasJoinedSession', (mes) => {
     let secondName = global.localStorage.roomname.split('*')[1];
     let session = phone.dial(secondName);
   });
-
+  let inSession = false;
   phone.receive((session) => {
 
     session.connected((session) => {
-      document.getElementById('remoteVideo').appendChild(session.video);
+      if (!inSession){
+        inSession = true;
+      }
+      if (inSession) {
+        document.getElementById('remoteVideo').appendChild(session.video);
+      }
     });
   })
 });
