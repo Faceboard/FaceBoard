@@ -34,9 +34,9 @@ export function modeChange (mode) {
   };
 }
 
-export function toggleDiv () {
-  console.log('TEST')
+export function toggleDiv (hidden) {
   return {
-    type: TOGGLE_DIV
+    type: TOGGLE_DIV,
+    hidden: hidden
   };
 };

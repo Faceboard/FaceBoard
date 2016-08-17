@@ -4,8 +4,7 @@ const initialState = {
   fetching: false,
   fetched: false,
   firepad: null,
-  mode: 'javascript',
-  hidden: false
+  mode: 'javascript'
 };
 
 const firepadReducer = (state = initialState, action) => {
@@ -17,7 +16,7 @@ const firepadReducer = (state = initialState, action) => {
     case FIREPAD_MODE:
       return Object.assign({}, state, { mode: action.mode });
     case TOGGLE_DIV:
-      return Object.assign({}, state, { hidden: true });
+      return Object.assign({}, state, { hidden: !action.hidden });
     default:
       return state;
   }
