@@ -8,7 +8,6 @@ import Firebase from 'firebase';
 import Firepad from 'firepad';
 import { configFirebase, fetchFirepad } from '../actions/firebaseConfig';
 import socket from '../sync';
-import Whiteboard from './whiteBoard';
 
 
 class Session extends React.Component {
@@ -31,7 +30,6 @@ class Session extends React.Component {
         <FriendsList />
         <MainSession />
         <VideoList />
-        <Whiteboard />
       </div>
     );
   }
