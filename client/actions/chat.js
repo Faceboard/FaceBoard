@@ -18,10 +18,9 @@ export function getAllMessages () {
   };
 }
 
-export function getPrivateMessages () {
+export function getPrivateMessages (useroneid, usertwoid) {
   return function (dispatch) {
     dispatch({type: FETCHING_PRIVATE_MESSAGES});
-
 
     axios.post('https://face-board-pr-35.herokuapp.com/messages/private/findAll', {useroneid, usertwoid})
       .then((response) => {

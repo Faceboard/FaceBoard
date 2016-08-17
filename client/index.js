@@ -10,6 +10,7 @@ import Signup from './components/signup';
 import Signin from './components/signin';
 import Lobby from './components/lobby';
 import Session from './components/session';
+import PrivateChat from './components/privateChat';
 import configureStore from './store/configureStore';
 
 axios.interceptors.request.use(function (config) {
@@ -27,6 +28,7 @@ ReactDOM.render(
       <Route path="/signup" component={Signup}/>
       <Route path="/signin" component={Signin}/>
       <Route path="/session" component={Session}/>
+      <Route path="/privateChat" component={PrivateChat}/>
     </Router>
   </Provider>
 , document.getElementById('root'));
