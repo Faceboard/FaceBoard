@@ -31,10 +31,14 @@ socket.on('userHasJoinedSession', (mes) => {
     let session = phone.dial(secondName);
   });
 
+  let phoneReceived = false;
   phone.receive((session) => {
-
     session.connected((session) => {
-      document.getElementById('remoteVideo').appendChild(session.video);
+      if (!phoneReceived) {
+        phoneReceived = true;
+      }else if (phoneReceived){
+        document.getElementById('remoteVideo').appendChild(session.video);
+      }
     });
   })
 });
