@@ -25,7 +25,6 @@ class PrivateChat extends React.Component {
 
   render() {
     const { privMessages } = this.props;
-    console.log('priv messages', privMessages);
     if (!privMessages) {
       return(
         <div>

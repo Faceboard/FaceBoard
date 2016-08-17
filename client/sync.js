@@ -2,6 +2,7 @@ import io from 'socket.io-client';
 import { store } from './index';
 import { getAllMessages } from './actions/chat';
 import { getPrivateMessages } from './actions/chat';
+import { findFriend } from './helpers/friendHelpers';
 
 let options = {
   'force new connection': true
@@ -31,14 +32,10 @@ socket.on('userHasJoinedSession', (mes) => {
     let session = phone.dial(secondName);
   });
 
-  let phoneReceived = false;
   phone.receive((session) => {
+
     session.connected((session) => {
-      if (!phoneReceived) {
-        phoneReceived = true;
-      }else if (phoneReceived){
-        document.getElementById('remoteVideo').appendChild(session.video);
-      }
+      document.getElementById('remoteVideo').appendChild(session.video);
     });
   })
 });
@@ -58,6 +55,7 @@ socket.on('send message', (data) => {
 
 socket.on('send private message', (data) => {
   let userTwo = global.localStorage.seconduserid;
+  findFriend();
   store.dispatch(getPrivateMessages(userTwo));
 });
 
