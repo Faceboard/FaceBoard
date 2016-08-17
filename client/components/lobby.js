@@ -30,7 +30,7 @@ class Lobby extends React.Component {
 
   render () {
     return (
-      <div id="lobby">
+      <div className="lobby">
         <h1>Hello World</h1>
         <FriendsList />
         <button id="logout" onClick={this.onLogout.bind(this)}>Logout</button>

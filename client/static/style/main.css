@@ -1,4 +1,4 @@
-html, body, #lobby, #root, #sessionWrapper {
+html, body, .lobby, #root, #sessionWrapper {
   height: 100%;
 }
 
@@ -21,7 +21,7 @@ ul li:before {
     color: green;
 }
 
-#chatBox {
+.chatBox {
   border: 1px solid black;
   height: 80%;
   overflow: auto;
@@ -35,12 +35,12 @@ ul li:before {
   color: green;
 }
 
-#inputMessageBox {
+.inputMessageBox {
   border: 1px solid black;
   height: 10%;
 }
 
-#inputMessage {
+.inputMessage {
   width: 800px;
   margin-left: 290px;
 }
