@@ -19,7 +19,6 @@ class FriendsList extends React.Component {
   componentWillMount () {
     this.props.dispatch(getAllUsers(), getAllFriends());
     this.props.dispatch(getAllFriends());
-    console.log('this is props', this.props);
     const { router } = this.props;
     socket.on('userWantsToCreateSession', function (data) {
       askSecondUserToJoin(data);
