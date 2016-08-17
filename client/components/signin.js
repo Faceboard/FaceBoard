@@ -16,7 +16,6 @@ class Signin extends React.Component {
   onSignIn (e) {
     e.preventDefault();
     const { username, password, router } = this.props;
-    console.log('USERNAME', username);
     signIn(username, password)
       .then(() => {
         if (authenticated()) {

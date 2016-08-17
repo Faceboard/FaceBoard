@@ -9,16 +9,26 @@ html, body, .lobby, #root, #sessionWrapper {
   height: 80%;
 }
 
+.hasMessage {
+  background-color: black;
+  color: white;
+}
+
+.selectedUser {
+  background-color: green;
+  color: white;
+}
+
 ul {
   list-style-type: none;
   margin-left: -20px;
 }
 
 ul li:before {
-    /* Unicode bullet symbol */
-    content: '\2022 ';
-    /* Bullet color */
-    color: green;
+  /* Unicode bullet symbol */
+  content: '\2022 ';
+  /* Bullet color */
+  color: green;
 }
 
 .chatBox {
@@ -76,12 +86,4 @@ video {
   border: 1px solid black;
   height: 50%;
   width: 100%;
-}
-
-.hidden {
-  display: none;
-}
-
-.open {
-
 }

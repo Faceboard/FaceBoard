@@ -17,7 +17,6 @@ export const FETCHING_FRIENDS_ERROR = 'FETCHING_FRIENDS_ERROR';
 export const FETCHING_PCHAT = "FETCHING_PCHAT";
 export const PCHAT_FETCHED = "PCHAT_FETCHED";
 export const PCHAT_ERROR = "PCHAT_ERROR";
-export const TOGGLE_DIV = "TOGGLE_DIV";
 
 export function authChange (field, value) {
   return {
@@ -33,10 +32,3 @@ export function modeChange (mode) {
     mode
   };
 }
-
-export function toggleDiv (hidden) {
-  return {
-    type: TOGGLE_DIV,
-    hidden: hidden
-  };
-};

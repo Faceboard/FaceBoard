@@ -25,7 +25,6 @@ export function sessionChange (field, value) {
 };
 
 export function makeSession (sessionName) {
-  console.log('here');
   return axios.post('https://face-board.herokuapp.com/session/start', {
     sessionName: sessionName
   })
@@ -39,9 +38,6 @@ export function inviteToSession (sessionId, invitedUserId) {
   return axios.post('https://face-board.herokuapp.com/' + invitedUserId, {
     id: sessionId,
     secondId: invitedUserId
-  })
-  .then(function (session) {
-    console.log(session);
   });
 };
 

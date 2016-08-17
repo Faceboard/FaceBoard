@@ -23,19 +23,16 @@ class Lobby extends React.Component {
     }
   }
 
-  componentDidMount () {
-    window.location.host = 'face-board.herokuapp.com';
-  }
-
   onLogout () {
     logout();
     this.props.router.replace('/auth');
   }
 
   render () {
+    let username = global.localStorage.username;
     return (
       <div className="lobby">
-        <h1>Hello World</h1>
+        <h1>{username}</h1>
         <FriendsList />
         <button id="logout" onClick={this.onLogout.bind(this)}>Logout</button>
         <Chat />
