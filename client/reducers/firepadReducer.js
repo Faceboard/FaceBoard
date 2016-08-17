@@ -1,17 +1,20 @@
-import { FETCHING_FIREPAD, FIREPAD_FETCHED } from '../actions/action';
+import { FETCHING_FIREPAD, FIREPAD_FETCHED, FIREPAD_MODE } from '../actions/action';
 
 const initialState = {
   fetching: false,
   fetched: false,
-  firepad: null
+  firepad: null,
+  mode: 'javascript'
 };
 
-const firepadReducer = (state = {}, action) => {
+const firepadReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCHING_FIREPAD:
       return Object.assign({}, state, { fetching: true });
     case FIREPAD_FETCHED:
       return Object.assign({}, state, { fetched: true, fetching: false});
+    case FIREPAD_MODE:
+      return Object.assign({}, state, { mode: action.mode });
     default:
       return state;
   }

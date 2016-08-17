@@ -14,9 +14,8 @@ export function configFirebase () {
 
 export function fetchFirepad (mode) {
   return function (dispatch) {
-    console.log(mode);
+    dispatch({type: 'FIREPAD_MODE', mode: mode});
     mode = mode || 'javascript';
-    console.log('FIREBASE APPS', Firebase.apps);
     if (!Firebase.apps.length) {
       configFirebase();
     }
