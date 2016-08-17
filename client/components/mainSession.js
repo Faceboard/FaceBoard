@@ -44,8 +44,6 @@ class MainSession extends React.Component {
       <div id="mainSession">
         <div id="firepad">
         </div>
-        <div id="whiteboard">
-        </div>
         <select id="cmMode" onChange={this.changeMode.bind(this)}>
           <option value="javascript">javascript</option>
           <option value="jsx">jsx</option>
@@ -58,6 +56,8 @@ class MainSession extends React.Component {
           <option value="sass">sass</option>
           <option value="sql">sql</option>
         </select>
+        <div id="whiteboard">
+        </div>
       </div>
     );
   }
