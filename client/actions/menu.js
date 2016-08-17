@@ -13,13 +13,16 @@ export function makeMenu () {
       makePrivateSession(global.localStorage.username, global.localStorage.secondPerson);
     }
   }));
-
+  window.addList = 1;
   let allFriends = document.getElementsByClassName('friends');
-  for (var i = 0; i < allFriends.length; i++) {
-    allFriends[i].addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      global.localStorage.secondPerson = event.target.innerHTML;
-      menu.popup(remote.getCurrentWindow());
-    }, false);
+  if (window.addList !== 2) {
+    for (var i = 0; i < allFriends.length; i++) {
+      allFriends[i].addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+        global.localStorage.secondPerson = event.target.innerHTML;
+        menu.popup(remote.getCurrentWindow());
+        window.addList = 2;
+      }, false);
+    }
   }
 }
