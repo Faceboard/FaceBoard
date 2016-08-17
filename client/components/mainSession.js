@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { modeChange } from '../actions/action';
+import { modeChange, toggleDiv } from '../actions/action';
 import { configFirebase, fetchFirepad, deleteFirepad } from '../actions/firebaseConfig';
 
 class MainSession extends React.Component {
@@ -39,11 +39,19 @@ class MainSession extends React.Component {
     this.props.dispatch(fetchFirepad(e.target.value));
   }
 
+  toggleEditor () {
+    console.log("made it to toggleEditor")
+    this.props.dispatch(toggleDiv(this.props.hidden));
+  }
+
   render () {
     return (
       <div id="mainSession">
-        <div id="firepad">
+        <div id="firepad" className={!this.props.hidden ? 'hidden' : 'open'}>
         </div>
+        <div id="whiteboard" className={this.props.hidden ? 'hidden' : 'open'}>
+        </div>
+        <button onClick={this.toggleEditor.bind(this)} >click me</button>
         <select id="cmMode" onChange={this.changeMode.bind(this)}>
           <option value="javascript">javascript</option>
           <option value="jsx">jsx</option>
@@ -56,8 +64,6 @@ class MainSession extends React.Component {
           <option value="sass">sass</option>
           <option value="sql">sql</option>
         </select>
-        <div id="whiteboard">
-        </div>
       </div>
     );
   }

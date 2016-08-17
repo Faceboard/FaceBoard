@@ -77,3 +77,11 @@ video {
   height: 50%;
   width: 100%;
 }
+
+.hidden {
+  display: none;
+}
+
+.open {
+
+}
