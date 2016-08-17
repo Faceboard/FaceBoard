@@ -5,11 +5,13 @@ import userReducer from './userReducer';
 import chatReducer from './chatReducer';
 import inputReducer from './inputReducer';
 import firepadReducer from './firepadReducer';
+import pchatReducer from './pchatReducer';
 
 export default combineReducers({
   authReducer,
   userReducer,
   chatReducer,
   inputReducer,
-  firepadReducer
+  firepadReducer,
+  pchatReducer
 });

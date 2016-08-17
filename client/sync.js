@@ -53,17 +53,13 @@ socket.on('send message', (data) => {
 });
 
 socket.on('send private message', (data) => {
-  let userOne = global.localStorage.userid;
-  let userTwo = global.localStorage.secondpersonid;
-  store.dispatch(getPrivateMessages(userOne, userTwo));
+  let userTwo = global.localStorage.seconduserid;
+  store.dispatch(getPrivateMessages(userTwo));
 });
 
 socket.on('confirm private chat', (data) => {
-  global.localStorage.pchat = data.pchat;
-  console.log(data.seconduserid);
-  console.log('THIS IS GLOBAL', global.localStorage.userid);
   if (data.seconduserid === global.localStorage.userid) {
-    console.log('user private chat joined');
+    global.localStorage.pchat = data.pchat;
     socket.emit('join pchat', data);
   }
 });

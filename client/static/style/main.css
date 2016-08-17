@@ -40,7 +40,7 @@ ul li:before {
   height: 10%;
 }
 
-.inputMessage {
+#inputMessage {
   width: 800px;
   margin-left: 290px;
 }
