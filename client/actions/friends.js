@@ -4,7 +4,6 @@ import { FETCHING_FRIENDS, FRIENDS_FETCHED, FETCHING_FRIENDS_ERROR } from './act
 export function getAllFriends () {
   return function (dispatch) {
     dispatch({type: FETCHING_FRIENDS });
-    console.log('GETTING FRIENDS RIGHT HERE');
     axios.get('https://face-board.herokuapp.com/friends/findAll')
       .then((response) => {
         dispatch({type: FRIENDS_FETCHED, payload: response.data });

@@ -45,7 +45,6 @@ socket.on('userHasLeftSession', (mes) => {
 });
 
 socket.on('user connected', (data) => {
-  console.log(data);
   socket.emit('make sesssion', 'User has connected');
 });
 
