@@ -32,6 +32,7 @@ class privateInput extends React.Component {
     )
   }
 }
-
+// convert inputMessageBox to class in css
+// convert inputMessage to class
 const mapStateToProps = (state) => state.inputReducer;
 export default connect(mapStateToProps)(withRouter(privateInput));
