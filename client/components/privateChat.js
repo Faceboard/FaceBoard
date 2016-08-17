@@ -34,8 +34,10 @@ class PrivateChat extends React.Component {
     }
 
     if (privMessages) {
+      let headerString = global.localStorage.username + "'s chat session with " + global.localStorage.secondusername;
       return (
         <div className="lobby">
+          <h1>{headerString}</h1>
           <button onClick={ this.leaveSession.bind(this) }>Lobby</button>
           <FriendsList />
           <div className="chatBox">
