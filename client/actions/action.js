@@ -8,6 +8,7 @@ export const MESSAGES_FETCHED = 'MESSAGES_FETCHED';
 export const MESSAGES_ERROR = 'MESSAGES_ERROR';
 export const FETCHING_FIREPAD = 'FETCHING_FIREPAD';
 export const FIREPAD_FETCHED = 'FIREPAD_FETCHED';
+export const FIREPAD_MODE = 'FIREPAD_MODE';
 export const CHANGE_MESSAGE_TEXT = 'CHANGE_MESSAGE_TEXT';
 export const FETCHING_PRIVATE_MESSAGES = 'FETCHING_PRIVATE_MESSAGES';
 export const FETCHING_FRIENDS = 'FETCHING_FRIENDS';
@@ -19,5 +20,12 @@ export function authChange (field, value) {
     type: CHANGE_AUTH_FIELD,
     field,
     value
+  };
+}
+
+export function modeChange (mode) {
+  return {
+    type: FIREPAD_MODE,
+    mode
   };
 }

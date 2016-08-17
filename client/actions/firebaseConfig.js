@@ -12,9 +12,10 @@ export function configFirebase () {
   Firebase.initializeApp(config);
 }
 
-export function fetchFirepad () {
+export function fetchFirepad (mode) {
   return function (dispatch) {
-    console.log('FIREBASE APPS', Firebase.apps);
+    dispatch({type: 'FIREPAD_MODE', mode: mode});
+    mode = mode || 'javascript';
     if (!Firebase.apps.length) {
       configFirebase();
     }
@@ -23,23 +24,17 @@ export function fetchFirepad () {
     var codeMirror = CodeMirror(document.getElementById('firepad'),
       {
         lineNumbers: true,
-        mode: 'javascript',
+        mode: mode,
         theme: 'atom',
         tabSize: 2,
         extraKeys: { 'Ctrl-Space': 'autocomplete' },
         autoCloseBrackets: true,
         matchBrackets: true,
-        autoCloseTags: true
+        autoCloseTags: true,
+        foldGutter: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
       });
     Firepad.fromCodeMirror(firepadRef, codeMirror, { defaultText: 'Hello, World!' });
     dispatch({type: 'FIREPAD_FETCHED'});
-  };
-}
-
-export function deleteFirepad () {
-  return function (dispatch) {
-    Firebase.app().database().ref('/' + global.localStorage.roomname).remove().then(function (err) {
-      if (err) throw err;
-    });
   };
 }
