@@ -1,6 +1,7 @@
 import io from 'socket.io-client';
 import { store } from './index';
 import { getAllMessages } from './actions/chat';
+import { getPrivateMessages } from './actions/chat';
 
 let options = {
   'force new connection': true
