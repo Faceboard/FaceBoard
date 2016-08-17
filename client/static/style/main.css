@@ -9,6 +9,7 @@ html, body, .lobby, #root, #sessionWrapper {
   display: block;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
+  -webkit-font-smoothing: antialiased;
   min-width: 100%;
 }
 
@@ -18,7 +19,6 @@ html, body, .lobby, #root, #sessionWrapper {
   height: 80%;
 }
 
-<<<<<<< c60f23e059f8635b5e68559286091cdfda97e202
 .hasMessage {
   background-color: black;
   color: white;
@@ -29,20 +29,6 @@ html, body, .lobby, #root, #sessionWrapper {
   color: white;
 }
 
-ul {
-  list-style-type: none;
-  margin-left: -20px;
-}
-
-ul li:before {
-  /* Unicode bullet symbol */
-  content: '\2022 ';
-  /* Bullet color */
-  color: green;
-}
-
-=======
->>>>>>> (feat) style basic friendslist
 .chatBox {
   height: 80%;
   overflow: auto;
@@ -61,7 +47,7 @@ ul li:before {
 }
 
 #inputMessage {
-  width: 80%;
+  width: 70%;
   margin-left: 15%;
 }
 
@@ -107,6 +93,7 @@ video {
 }
 
 .open {
+}
 
 .allUsers {
   max-height: 45%;

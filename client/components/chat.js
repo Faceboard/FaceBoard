@@ -20,7 +20,15 @@ class Chat extends React.Component {
     this.shouldScroll = Math.abs((node.scrollTop + node.offsetHeight) - node.scrollHeight) < 3;
   }
 
+  componentDidMount () {
+    this.scrollToBottomAtStart();
+  }
+
   componentDidUpdate () {
+    this.scrollToBottomAtStart();
+  }
+
+  scrollToBottomAtStart () {
     if (this.shouldScroll) {
       var node = ReactDOM.findDOMNode(this);
       node.scrollTop = node.scrollHeight;

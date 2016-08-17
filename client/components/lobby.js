@@ -40,10 +40,12 @@ class Lobby extends React.Component {
           <button className="btn btn-default">
             <span className="icon icon-home"></span>
           </button>
+          <button className="btn btn-default btn-dropdown pull-right" onClick={this.onLogout.bind(this)} alt="Logout">
+            <span className="icon icon-megaphone"></span>
+          </button>
         </div>
         <div className="mainHeader">Hello World</div>
         <FriendsList />
-        <button id="logout" onClick={this.onLogout.bind(this)}>Logout</button>
         <Chat />
         <Input />
       </div>
