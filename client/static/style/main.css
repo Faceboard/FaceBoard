@@ -156,7 +156,6 @@ select {
 video {
   height: 50%;
   width: 100%;
-  border: 1px solid black;
 }
 
 .hidden {
@@ -212,11 +211,11 @@ video {
 }
 
 .tab-item {
-  background-image: linear-gradient(to bottom,#666666 0,#8c8c8c 100%);
+  background-image: linear-gradient(to bottom,#8c8c8c 0,#666666 100%);
 }
 
 .tab-item.active {
-  background-image: linear-gradient(to bottom,#8c8c8c 0,#b3b3b3 100%);
+  background-image: linear-gradient(to bottom,#666666 0,#8c8c8c 100%);
 }
 
 .mainHeader {

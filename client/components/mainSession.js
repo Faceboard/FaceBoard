@@ -36,11 +36,9 @@ class MainSession extends React.Component {
       <div id="mainSession">
         <div className="tab-group">
           <div className={ this.props.hidden ? 'tab-item active' : 'tab-item' } id="codeshareTab" onClick={this.toggleEditor.bind(this)}>
-            <span className="icon icon-cancel icon-close-tab"></span>
             Codeshare
           </div>
           <div className={ !this.props.hidden ? 'tab-item active' : 'tab-item' } id="whiteboardTab" onClick={this.toggleEditor.bind(this)}>
-            <span className="icon icon-cancel icon-close-tab"></span>
             Whiteboard
           </div>
         </div>
