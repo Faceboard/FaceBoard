@@ -31,8 +31,10 @@ class MainSession extends React.Component {
   render () {
     return (
       <div id="mainSession">
-        <div id="firepad" className={!this.props.hidden ? 'hidden' : 'open'}>
-        </div>
+        <div id="firepad" className={this.props.hidden ? 'hidden' : 'open'}></div>
+        <iframe id="whiteboard"
+                className={!this.props.hidden ? 'hidden' : 'open'}
+                src="https://www.twiddla.com/api/start.aspx?sessionid=2796834&hide=chat,bottomtray,url,invite,profile,voice,welcome,etherpad,documents,images,email,math,roomsettings,logo&autostart=true"></iframe>
         <button onClick={this.toggleEditor.bind(this)} >click me</button>
         <select id="cmMode" onChange={this.changeMode.bind(this)}>
           <option value="javascript">javascript</option>
