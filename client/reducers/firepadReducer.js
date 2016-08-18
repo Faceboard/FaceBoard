@@ -1,4 +1,4 @@
-import { FETCHING_FIREPAD, FIREPAD_FETCHED, FIREPAD_MODE } from '../actions/action';
+import { FETCHING_FIREPAD, FIREPAD_FETCHED, FIREPAD_MODE, TOGGLE_DIV } from '../actions/action';
 
 const initialState = {
   fetching: false,
@@ -15,6 +15,8 @@ const firepadReducer = (state = initialState, action) => {
       return Object.assign({}, state, { fetched: true, fetching: false});
     case FIREPAD_MODE:
       return Object.assign({}, state, { mode: action.mode });
+    case TOGGLE_DIV:
+      return Object.assign({}, state, { hidden: !action.hidden });
     default:
       return state;
   }
