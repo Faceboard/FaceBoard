@@ -31,18 +31,18 @@ socket.on('userHasJoinedSession', (mes) => {
     let secondName = global.localStorage.roomname.split('*')[1];
     let session = phone.dial(secondName);
   });
-  let inSession = false;
+
   phone.receive((session) => {
 
     session.connected((session) => {
-      if (!inSession){
-        inSession = true;
-      }
-      if (inSession) {
+      console.log('this ius session', session);
+      if (session.number !== global.localStorage.username){
+        console.log('this happened once');
         document.getElementById('remoteVideo').appendChild(session.video);
       }
     });
-  })
+
+  });
 });
 
 socket.on('userHasLeftSession', (mes) => {
