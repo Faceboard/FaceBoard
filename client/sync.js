@@ -56,8 +56,8 @@ socket.on('send message', (data) => {
 });
 
 socket.on('send private message', (data) => {
-  console.log('this is data',data);
-  let userTwo = data.seconduserid;
+  console.log('this is data', data);
+  let userTwo = data.usertwoid;
   findFriend(data);
   store.dispatch(getPrivateMessages(userTwo));
 });
