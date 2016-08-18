@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>FaceBoard</title>
     <!-- CodeMirror -->
     <!-- CM styles -->
     <link rel="stylesheet" href="../../node_modules/codemirror/lib/codemirror.css" />
@@ -44,14 +44,23 @@
     <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.css" />
     <script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
 
+    <!-- Other -->
+    <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
+    <script src="https://stephenlb.github.io/webrtc-sdk/js/webrtc.js"></script>
+
+  </head>
+  <body>
+
     <!-- Custom -->
+    <!-- CSS must be added here to prevent awwapp css from overwriting due to poor CSS implementation in the API -->
+    <link rel="stylesheet" type="text/css" href="src/photon-0.1.2-dist/css/photon.min.css">
     <link rel="stylesheet" type="text/css" href="style/cm-s-atom.css">
     <link rel="stylesheet" type="text/css" href="style/main.css">
 
-    <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
-    <script src="https://stephenlb.github.io/webrtc-sdk/js/webrtc.js"></script>
-  </head>
-  <body>
-    <div id="root"></div>
+    <div class="window">
+      <div id="root"></div>
+      <div class="toolbar toolbar-footer"></div>
+    </div>
+
     <script src="../compiled/bundle.js"></script>
 </html>

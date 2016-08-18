@@ -2,11 +2,55 @@ html, body, .lobby, #root, #sessionWrapper {
   height: 100%;
 }
 
+.lobby, #sessionWrapper, .authPage {
+  position: absolute;
+  top: 50%;
+  min-height: 100%;
+  display: block;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -webkit-font-smoothing: antialiased;
+  min-width: 100%;
+  background-color: #3d3d3d;
+  color: #dddddd;
+}
+
+a {
+  color: #3d3d3d;
+}
+
+.centerAuth, .centerSign {
+  margin: auto;
+  display: block;
+}
+
+.centerAuth {
+  width: 139px;
+}
+
+.centerSign {
+  width: 250px;
+}
+
+.signInput {
+  margin: 5px;
+  width: 85%;
+  color: #3d3d3d;
+}
+
+.centerBtn {
+  margin: auto;
+  display: block;
+}
+
 #friendsList {
   float: left;
-  border: 1px solid black;
   width: 15%;
   height: 80%;
+}
+
+.list-group-item {
+  color: #dddddd;
 }
 
 .hasMessage {
@@ -19,48 +63,62 @@ html, body, .lobby, #root, #sessionWrapper {
   color: white;
 }
 
-ul {
-  list-style-type: none;
-  margin-left: -20px;
-}
-
-ul li:before {
-  /* Unicode bullet symbol */
-  content: '\2022 ';
-  /* Bullet color */
-  color: green;
-}
-
 .chatBox {
-  border: 1px solid black;
   height: 80%;
   overflow: auto;
+}
+
+.chatBox::-webkit-scrollbar {
+  opacity: 0;
+}
+
+.table-striped tr {
+  background-color: #636363;
+}
+
+.table-striped tr:nth-child(even) {
+  background-color: #515151;
 }
 
 #logout {
   float: right;
 }
 
-.user {
-  color: green;
-}
-
 .inputMessageBox {
-  border: 1px solid black;
-  height: 10%;
+  margin-top: 15px;
 }
 
-#inputMessage {
-  width: 800px;
-  margin-left: 290px;
+.inputMessage {
+  width: 90%;
+  margin-left: 1%;
+  display: inline-block;
+  opacity: 0.8;
+}
+
+.inputMessage textarea {
+  height: 25px;
+  width: 100%;
+  color: #3d3d3d;
+}
+
+.inputMessageButton {
+  position: relative;
+  display: inline-block;
+}
+
+.inputMessageButton button {
+  position: absolute;
+  top: -30px;
+}
+
+select {
+  color: #3d3d3d;
 }
 
 #mainSession {
   display: inline-block;
-  border: 1px solid black;
   width: 64%;
   height: 80%;
-  background-color: black;
 }
 
 #videoList {
@@ -74,6 +132,7 @@ ul li:before {
   height: 100%;
   border-style: solid;
   border-width: 2px;
+  background-color: white;
 }
 
 .hidden {
@@ -84,14 +143,101 @@ ul li:before {
 
 }
 
+#firepadContainer {
+  width: 100%;
+  height: 100%;
+}
+
 #firepad {
   width: 100%;
   height: 100%;
-  background-color: #f62; /* dark orange background */
 }
 
 video {
-  border: 1px solid black;
   height: 50%;
   width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.open {
+  max-height: 90%;
+}
+
+.allUsers {
+  max-height: 45%;
+  overflow: scroll;
+  width: 85%;
+}
+
+.allUsers::-webkit-scrollbar {
+  opacity: 0;
+  width: 0;
+}
+
+.friends {
+  list-style: none;
+}
+
+.window {
+  overflow: auto;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.user {
+  display: inline-flex;
+  font-weight: bold;
+  color: #898989;
+}
+
+.timestamp {
+  display: inline-flex;
+  color: #939393;
+}
+
+.text {
+  display: block;
+  padding: 10px;
+  padding-top: 6px;
+}
+
+.btn {
+  -webkit-filter: brightness(80%);
+}
+
+.tab-item {
+  background-image: linear-gradient(to bottom,#8c8c8c 0,#666666 100%);
+}
+
+.tab-item.active {
+  background-image: linear-gradient(to bottom,#666666 0,#8c8c8c 100%);
+}
+
+.mainHeader {
+  text-align: center;
+  padding: 15px;
+  font-size: 26px;
+  letter-spacing: 2px;
+  font-family: "raleway";
+}
+
+@font-face {
+  font-family: "raleway";
+  src: url("../src/fonts/Raleway-Regular/Raleway-Regular.eot");
+  src: url("../src/fonts/Raleway-Regular/Raleway-Regular.eot?#iefix") format("eot"), url("../src/fonts/Raleway-Regular/Raleway-Regular.woff") format("woff"), url("../src/fonts/Raleway-Regular/Raleway-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "raleway-extra-light";
+  src: url("../src/fonts/Raleway-ExtraLight/Raleway-ExtraLight.eot");
+  src: url("../src/fonts/Raleway-ExtraLight/Raleway-ExtraLight.eot?#iefix") format("eot"), url("../src/fonts/Raleway-ExtraLight/Raleway-ExtraLight.woff") format("woff"), url("../src/fonts/Raleway-ExtraLight/Raleway-ExtraLight.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
