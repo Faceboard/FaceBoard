@@ -4,7 +4,6 @@ import { withRouter } from 'react-router';
 import { logout, authenticated } from '../auth';
 import FriendsList from './friendsList';
 import Chat from './chat';
-import Input from './input';
 import io from 'socket.io-client';
 import socket from '../sync';
 
@@ -36,18 +35,14 @@ class Lobby extends React.Component {
     let username = global.localStorage.username;
     return (
       <div className="lobby">
-        <div className="toolbar toolbar-header">
-          <button className="btn btn-default">
-            <span className="icon icon-home"></span>
-          </button>
-          <button className="btn btn-default btn-dropdown pull-right" onClick={this.onLogout.bind(this)} alt="Logout">
-            <span className="icon icon-megaphone"></span>
+        <div className="mainHeader">
+          Lobby
+          <button className="btn btn-default pull-right" onClick={this.onLogout.bind(this)}>
+            <span className="icon icon-logout"></span>
           </button>
         </div>
-        <div className="mainHeader">Hello World</div>
         <FriendsList />
         <Chat />
-        <Input />
       </div>
     );
   }

@@ -4,6 +4,7 @@ import { getAllMessages } from '../actions/chat';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Message from './message';
+import Input from './input';
 import socket from '../sync';
 
 class Chat extends React.Component {
@@ -46,7 +47,12 @@ class Chat extends React.Component {
     }
     return (
       <div className="chatBox">
-        {messages.map(message => <Message key={message.id} user={message.user} text={message.text} />)}
+        <table className="table-striped">
+          <tbody>
+            {messages.map(message => <Message key={message.id} user={message.user} text={message.text} timestamp={message.createdAt}/>)}
+          </tbody>
+        </table>
+        <Input />
       </div>
     );
   }

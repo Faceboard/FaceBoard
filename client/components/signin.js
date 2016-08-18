@@ -26,15 +26,23 @@ class Signin extends React.Component {
       });
   }
 
+  goBack () {
+    this.props.router.replace('/auth');
+  }
+
   render () {
     return (
-      <div>
-        <form onSubmit={this.onSignIn.bind(this)}>
-          <h2> Sign In! </h2>
-          <input value={this.props.username} name="username" onChange={this.onFieldChange.bind(this)} />
-          <input value={this.props.password} name="password" onChange={this.onFieldChange.bind(this)} type="password" />
-          <button>Sign in</button><br />
-          <Link to="/auth"><button> Back to homepage </button></Link>
+      <div className="authPage">
+        <div className="mainHeader">
+          Welcome to Faceboard!
+          <button className="btn btn-default pull-right" onClick={this.goBack.bind(this)}>
+            <span className="icon icon-home"></span>
+          </button>
+        </div>
+        <form className="centerSign" onSubmit={this.onSignIn.bind(this)}>
+          <input value={this.props.username} className="signInput" name="username" placeholder="username" onChange={this.onFieldChange.bind(this)} />
+          <input value={this.props.password} className="signInput" name="password" placeholder="password" onChange={this.onFieldChange.bind(this)} type="password" />
+          <button className="btn btn-default centerBtn">Sign in</button>
         </form>
       </div>
     );

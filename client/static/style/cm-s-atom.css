@@ -1,7 +1,7 @@
 .cm-s-atom {
   line-height: 1.45em;
   color: #9ea5b4;
-  background-color: #282c34;
+  background-color: #2d2f33;
   font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier;
   font-size: 12px;
 }
@@ -78,7 +78,7 @@
 }
 
 .cm-s-atom .CodeMirror-gutters {
-  background-color: #282c34;
+  background-color: #2d2f33;
 }
 
 .cm-s-atom .CodeMirror-linenumber {
