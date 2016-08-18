@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { getPrivateMessages } from '../actions/chat';
@@ -13,7 +14,28 @@ class PrivateChat extends React.Component {
   }
 
   componentWillMount () {
+    socket.emit('join pchat', {pchat: global.localStorage.pchat});
     this.props.dispatch(getPrivateMessages(global.localStorage.seconduserid));
+  }
+
+  componentWillUpdate () {
+    var node = ReactDOM.findDOMNode(this);
+    this.shouldScroll = Math.abs((node.scrollTop + node.offsetHeight) - node.scrollHeight) < 3;
+  }
+
+  componentDidMount () {
+    this.scrollToBottomAtStart();
+  }
+
+  componentDidUpdate () {
+    this.scrollToBottomAtStart();
+  }
+
+  scrollToBottomAtStart () {
+    if (this.shouldScroll) {
+      var node = ReactDOM.findDOMNode(this);
+      node.scrollTop = node.scrollHeight;
+    }
   }
 
   leaveSession () {
@@ -37,13 +59,21 @@ class PrivateChat extends React.Component {
       let headerString = global.localStorage.username + "'s chat session with " + global.localStorage.secondusername;
       return (
         <div className="lobby">
-          <h1>{headerString}</h1>
-          <button onClick={ this.leaveSession.bind(this) }>Lobby</button>
-          <FriendsList />
-          <div className="chatBox">
-            {privMessages.map(priv => <Message user={priv.useronename} text={priv.text} />)}
+          <div className="mainHeader">
+            {'Private Chat - ' + global.localStorage.secondusername}
+            <button className="btn btn-default pull-right" onClick={this.leaveSession.bind(this)}>
+              <span className="icon icon-logout"></span>
+            </button>
           </div>
-          <PrivateChatInput />
+          <FriendsList />
+            <div className="chatBox">
+              <table className="table-striped">
+                <tbody>
+                  {privMessages.map(priv => <Message user={priv.useronename} text={priv.text} timestamp={priv.createdAt}/>)}
+                </tbody>
+              </table>
+              <PrivateChatInput />
+            </div>
         </div>
       )
     }

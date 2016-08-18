@@ -10,9 +10,9 @@ class privateInput extends React.Component {
 
   sendMessage(e) {
     e.preventDefault();
-    let msg = document.getElementById('privateMessage').value;
+    let msg = document.getElementById('privateMessage');
     let msgObj = {
-      text: msg,
+      text: msg.value,
       useroneid: global.localStorage.userid,
       usertwoid: global.localStorage.seconduserid,
       useronename: global.localStorage.username,
@@ -20,15 +20,20 @@ class privateInput extends React.Component {
       chatRoom: global.localStorage.pchat
     };
     socket.emit('send private message', msgObj);
+    console.log('SEND MESSAGE');
+    msg.value = '';
   }
 
   render () {
     return (
       <div className="inputMessageBox">
         <form onSubmit={this.sendMessage.bind(this)}>
-          <textarea id="privateMessage" type="text" name="messageText" >
-          </textarea>
-          <button> Send Text </button>
+          <div className="inputMessage">
+            <textarea id="privateMessage" type="text" name="messageText" />
+          </div>
+          <div className="inputMessageButton">
+            <button className="btn btn-default">Send Text</button>
+          </div>
         </form>
       </div>
     )

@@ -24,6 +24,7 @@ export function getPrivateMessages (usertwoid) {
     dispatch({type: FETCHING_PCHAT });
     axios.post('https://face-board.herokuapp.com/messages/private/findAll', {usertwoid})
       .then((response) => {
+        console.log('RESPONSE', response);
         dispatch({
           type: PCHAT_FETCHED,
           payload: response.data
