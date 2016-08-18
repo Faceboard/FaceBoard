@@ -35,7 +35,7 @@ socket.on('userHasJoinedSession', (mes) => {
   phone.receive((session) => {
 
     session.connected((session) => {
-      if (session.number !== global.localStorage.username){
+      if (session.number !== global.localStorage.username) {
         document.getElementById('remoteVideo').appendChild(session.video);
       }
     });
