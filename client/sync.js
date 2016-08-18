@@ -35,9 +35,7 @@ socket.on('userHasJoinedSession', (mes) => {
   phone.receive((session) => {
 
     session.connected((session) => {
-      console.log('this ius session', session);
       if (session.number !== global.localStorage.username){
-        console.log('this happened once');
         document.getElementById('remoteVideo').appendChild(session.video);
       }
     });
@@ -58,8 +56,9 @@ socket.on('send message', (data) => {
 });
 
 socket.on('send private message', (data) => {
-  let userTwo = global.localStorage.seconduserid;
-  findFriend();
+  console.log('this is data',data);
+  let userTwo = data.seconduserid;
+  findFriend(data);
   store.dispatch(getPrivateMessages(userTwo));
 });
 
