@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { FETCHING_MESSAGES, FETCHING_PRIVATE_MESSAGES, MESSAGES_FETCHED, MESSAGES_ERROR, FETCHING_PCHAT, PCHAT_FETCHED, PCHAT_ERROR } from './action';
 import { getAllFriends } from './friends';
+import { constantUrl } from '../sync';
 
 export function getAllMessages () {
   return function (dispatch) {
     dispatch({type: FETCHING_MESSAGES });
-    axios.get('https://face-board.herokuapp.com/messages/findAllMessages')
+    axios.get(constantUrl + '/messages/findAllMessages')
     .then( (response) => {
       dispatch({type: MESSAGES_FETCHED,
       payload: response.data });
@@ -22,7 +23,7 @@ export function getAllMessages () {
 export function getPrivateMessages (usertwoid) {
   return function (dispatch) {
     dispatch({type: FETCHING_PCHAT });
-    axios.post('https://face-board.herokuapp.com/messages/private/findAll', {usertwoid})
+    axios.post(constantUrl + '/messages/private/findAll', {usertwoid})
       .then((response) => {
         console.log('RESPONSE', response);
         dispatch({
