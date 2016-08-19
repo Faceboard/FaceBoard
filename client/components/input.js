@@ -9,28 +9,21 @@ class Input extends React.Component {
     super(props);
   }
 
-  changeMessage (e) {
-    this.props.dispatch(changeMessageText(e.target.name, e.target.value));
-  }
-
   sendMessage (e) {
-    e.preventDefault();
-    let msg = document.getElementById('inputMessage');
-    socket.emit('send message', {text: msg.value, username: global.localStorage.username});
-    msg.value = '';
+    console.log('test', e.which);
+    if (e.which === 13 && !e.shiftKey) {
+      let msg = document.getElementById('inputMessage');
+      socket.emit('send message', {text: msg.value, username: global.localStorage.username});
+      msg.value = '';
+    }
   }
 
   render () {
     return (
       <div className="inputMessageBox">
-        <form onSubmit={this.sendMessage.bind(this)}>
-          <div className="inputMessage">
-            <textarea id="inputMessage" type="text" name="messageText" value={this.props.message} onChange={this.changeMessage.bind(this)} />
-          </div>
-          <div className="inputMessageButton">
-            <button className="btn btn-default">Send Text</button>
-          </div>
-        </form>
+        <div className="inputMessage">
+          <textarea id="inputMessage" type="text" name="messageText" onKeyPress={this.sendMessage.bind(this)}/>
+        </div>
       </div>
     );
   }
