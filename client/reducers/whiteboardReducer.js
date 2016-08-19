@@ -2,8 +2,7 @@ import { FETCHING_WHITEBOARD, WHITEBOARD_FETCHED, WHITEBOARD_ERROR } from '../ac
 
 const initialState = {
   fetching: false,
-  fetched: false,
-  firepad: null
+  fetched: false
 };
 
 const whiteboardReducer = (state = initialState, action) => {

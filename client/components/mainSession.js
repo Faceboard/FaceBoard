@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { modeChange, toggleDiv } from '../actions/action';
 import { configFirebase, fetchFirepad, deleteFirepad } from '../actions/firebaseConfig';
+import { fetchWhiteboard } from '../actions/whiteboardConfig';
 
 class MainSession extends React.Component {
   constructor (props) {
@@ -13,6 +14,7 @@ class MainSession extends React.Component {
   componentDidMount () {
     const { mode } = this.props;
     this.props.dispatch(fetchFirepad(this.props.mode));
+    this.props.dispatch(fetchWhiteboard());
   }
 
   toggleEditor (e) {
