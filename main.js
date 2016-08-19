@@ -88,5 +88,5 @@ app.on('ready', function () {
 });
 
 
-// auto reload on any changes
-require('electron-reload')(__dirname);
+// // auto reload on any changes
+// require('electron-reload')(__dirname);
