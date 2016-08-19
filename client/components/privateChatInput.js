@@ -9,32 +9,28 @@ class privateInput extends React.Component {
   }
 
   sendMessage(e) {
-    e.preventDefault();
-    let msg = document.getElementById('privateMessage');
-    let msgObj = {
-      text: msg.value,
-      useroneid: global.localStorage.userid,
-      usertwoid: global.localStorage.seconduserid,
-      useronename: global.localStorage.username,
-      usertwoname: global.localStorage.secondusername,
-      chatRoom: global.localStorage.pchat
-    };
-    socket.emit('send private message', msgObj);
-    console.log('SEND MESSAGE');
-    msg.value = '';
+    if (e.which === 13 && !e.shiftKey) {
+      let msg = document.getElementById('privateMessage');
+      let msgObj = {
+        text: msg.value,
+        useroneid: global.localStorage.userid,
+        usertwoid: global.localStorage.seconduserid,
+        useronename: global.localStorage.username,
+        usertwoname: global.localStorage.secondusername,
+        chatRoom: global.localStorage.pchat
+      };
+      socket.emit('send private message', msgObj);
+      console.log('SEND MESSAGE');
+      msg.value = '';
+    }
   }
 
   render () {
     return (
       <div className="inputMessageBox">
-        <form onSubmit={this.sendMessage.bind(this)}>
-          <div className="inputMessage">
-            <textarea id="privateMessage" type="text" name="messageText" />
-          </div>
-          <div className="inputMessageButton">
-            <button className="btn btn-default">Send Text</button>
-          </div>
-        </form>
+        <div className="inputMessage">
+          <textarea id="privateMessage" type="text" name="messageText" onKeyPress={this.sendMessage.bind(this)}/>
+        </div>
       </div>
     )
   }
