@@ -18,6 +18,9 @@ export const FETCHING_PCHAT = "FETCHING_PCHAT";
 export const PCHAT_FETCHED = "PCHAT_FETCHED";
 export const PCHAT_ERROR = "PCHAT_ERROR";
 export const TOGGLE_DIV = "TOGGLE_DIV";
+export const FETCHING_WHITEBOARD = 'FETCHING_WHITEBOARD';
+export const WHITEBOARD_FETCHED = 'WHITEBOARD_FETCHED';
+export const WHITEBOARD_ERROR = 'WHITEBOARD_ERROR';
 
 export function authChange (field, value) {
   return {
