@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { FETCHING_FRIENDS, FRIENDS_FETCHED, FETCHING_FRIENDS_ERROR } from './action';
+import { constantUrl } from '../sync';
 
 export function getAllFriends () {
   return function (dispatch) {
     dispatch({type: FETCHING_FRIENDS });
-    axios.get('https://face-board.herokuapp.com/friends/findAll')
+    axios.get(constantUrl + '/friends/findAll')
       .then((response) => {
         dispatch({type: FRIENDS_FETCHED, payload: response.data });
       })
@@ -17,7 +18,7 @@ export function getAllFriends () {
 export function addFriend (friendid, friendname) {
   return function (dispatch) {
     dispatch({type: FETCHING_FRIENDS});
-    axios.post('https://face-board.herokuapp.com/friends/add', {
+    axios.post(constantUrl + '/friends/add', {
       friendid,
       friendname
     })

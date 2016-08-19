@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { constantUrl } from './sync';
 
 export function signIn (username, password) {
-  return axios.post('https://face-board.herokuapp.com/users/signin', {
+  return axios.post(constantUrl + '/users/signin', {
     username,
     password
   })
@@ -11,7 +12,7 @@ export function signIn (username, password) {
 }
 
 export function signUp (username, password) {
-  return axios.post('https://face-board.herokuapp.com/users/signup', {
+  return axios.post(constantUrl + '/users/signup', {
     username,
     password
   })
