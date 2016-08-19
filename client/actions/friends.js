@@ -17,14 +17,12 @@ export function getAllFriends () {
 
 export function addFriend (friendid, friendname) {
   return function (dispatch) {
-    console.log('addFriend fired');
     dispatch({type: FETCHING_FRIENDS});
     axios.post(constantUrl + '/friends/add', {
       friendid,
       friendname
     })
     .then((response) => {
-      console.log(response);
       dispatch(getAllFriends());
     })
     .catch((error) => {

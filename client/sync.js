@@ -8,7 +8,7 @@ let options = {
   'force new connection': true
 };
 
-export const constantUrl = 'https://face-board-pr-45.herokuapp.com';
+export const constantUrl = 'https://face-board.herokuapp.com';
 
 // let socket = io('http://localhost:3000/test', options);
 let socket = io(constantUrl + '/test', options);
