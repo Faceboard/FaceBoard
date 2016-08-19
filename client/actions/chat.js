@@ -21,11 +21,11 @@ export function getAllMessages () {
 }
 
 export function getPrivateMessages (usertwoid) {
+  console.log(test);
   return function (dispatch) {
     dispatch({type: FETCHING_PCHAT });
     axios.post(constantUrl + '/messages/private/findAll', {usertwoid})
       .then((response) => {
-        console.log('RESPONSE', response);
         dispatch({
           type: PCHAT_FETCHED,
           payload: response.data
