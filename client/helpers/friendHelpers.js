@@ -6,5 +6,3 @@ export function findFriend (data) {
     }
   }
 };
-
-export const FINAL_URL = 'https://face-board.herokuapp.com/';
