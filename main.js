@@ -77,7 +77,6 @@ app.on('ready', function () {
   });
 
   win.loadURL(`file://${__dirname}/client/static/index.html`);
-  win.webContents.openDevTools();
 
   app.on('closed', function () {
     win = null;

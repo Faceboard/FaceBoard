@@ -62,7 +62,7 @@ class PrivateChat extends React.Component {
           <div className="mainHeader">
             {'Private Chat - ' + global.localStorage.secondusername}
             <button className="btn btn-default pull-right" onClick={this.leaveSession.bind(this)}>
-              <span className="icon icon-logout"></span>
+              <span className="icon icon-home"></span>
             </button>
           </div>
           <FriendsList />
