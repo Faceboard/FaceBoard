@@ -9,8 +9,8 @@ let options = {
 };
 
 export const constantUrl = 'https://face-board.herokuapp.com';
+// export const constantUrl = 'http://localhost:3000';
 
-// let socket = io('http://localhost:3000/test', options);
 let socket = io(constantUrl + '/test', options);
 
 socket.on('userHasJoinedSession', (mes) => {
@@ -58,10 +58,9 @@ socket.on('send message', (data) => {
 });
 
 socket.on('send private message', (data) => {
-  console.log('this is data', data);
-  let userTwo = data.usertwoid;
+  let sender = data.useroneid;
   findFriend(data);
-  store.dispatch(getPrivateMessages(userTwo));
+  store.dispatch(getPrivateMessages(sender));
 });
 
 socket.on('confirm private chat', (data) => {
