@@ -35,7 +35,9 @@ class FriendsList extends React.Component {
 
   addPerson (e) {
     e.preventDefault();
-    this.props.dispatch(addFriend(e.target.value, e.target.innerHTML));
+    if (e.target.innerHTML !== global.localStorage.username) {
+      this.props.dispatch(addFriend(e.target.value, e.target.innerHTML));
+    }
   }
 
   privateMessageStart (e) {
@@ -57,7 +59,7 @@ class FriendsList extends React.Component {
 
   render () {
     const { users, friends } = this.props;
-    const mapUsers = users.map(user => <li onClick={this.addPerson.bind(this)} className="list-group-item" key={user.username} value={user.id}>{user.username}</li>);
+    const mapUsers = users.map(user => <li onClick={this.addPerson.bind(this)} className=" list-group-item" key={user.username} value={user.id}>{user.username}</li>);
     const mapFriends = friends.map(friend => <li onClick={this.privateMessageStart.bind(this)}
       className="friends list-group-item" key={friend.id} value={friend.friendid}>{friend.friendname}</li>);
 
