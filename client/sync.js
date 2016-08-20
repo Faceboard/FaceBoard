@@ -58,7 +58,7 @@ socket.on('send message', (data) => {
 });
 
 socket.on('send private message', (data) => {
-  let sender = data.useroneid;
+  let sender = global.localStorage.seconduserid;
   findFriend(data);
   store.dispatch(getPrivateMessages(sender));
 });
