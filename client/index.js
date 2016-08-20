@@ -28,10 +28,8 @@ ReactDOM.render(
       <Route path="/auth" component={App}/>
       <Route path="/signup" component={Signup}/>
       <Route path="/signin" component={Signin}/>
-      <Route component={FriendsList}>
-        <Route path="/session" component={Session}/>
-        <Route path="/privateChat" component={PrivateChat}/>
-      </Route>
+      <Route path="/session" component={Session}/>
+      <Route path="/privateChat" component={PrivateChat}/>
     </Router>
   </Provider>
 , document.getElementById('root'));
