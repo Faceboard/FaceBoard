@@ -6,7 +6,7 @@ describe('application launch', function () {
 
   beforeEach(function () {
     this.app = new Application({
-      path: 'main.js'
+      path: '/Users/Ron/Desktop/FaceBoard/main.js'
     })
     return this.app.start()
   })
@@ -20,6 +20,7 @@ describe('application launch', function () {
   it('shows an initial window', function () {
     return this.app.client.getWindowCount().then(function (count) {
       assert.equal(count, 1)
+      done()
     })
   })
 })
