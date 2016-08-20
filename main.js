@@ -78,13 +78,14 @@ app.on('ready', function () {
 
   win.loadURL(`file://${__dirname}/client/static/index.html`);
 
+  app.on('before-quit', function () {
+    delete win.inSession;
+  });
+
   app.on('closed', function () {
     win = null;
   });
 
-  app.on('before-quit', function () {
-    delete window.inSession;
-  })
 });
 
 
