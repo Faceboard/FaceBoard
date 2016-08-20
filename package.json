@@ -1,6 +1,6 @@
 {
   "name": "faceboard",
-  "version": "0.0.1",
+  "version": "0.1.3",
   "description": "All in one collabration application",
   "main": "main.js",
   "scripts": {
@@ -23,7 +23,10 @@
     "appId": "com.hrr17-cauliflower.faceboard",
     "app-category-type": "public.app-category.video",
     "win": {
-      "iconUrl": "/client/static/icon.ico"
+      "iconUrl": "https://s3.amazonaws.com/hrr17faceboard/logo.ico"
+    },
+    "mac": {
+      "icon": "client/static/imgs/logo.icns"
     },
     "asar": "false"
   },
