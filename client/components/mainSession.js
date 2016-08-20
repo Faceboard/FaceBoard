@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import { modeChange, toggleDiv } from '../actions/action';
 import { configFirebase, fetchFirepad, deleteFirepad } from '../actions/firebaseConfig';
 import { fetchWhiteboard } from '../actions/whiteboardConfig';
+import socket from '../sync';
 
 class MainSession extends React.Component {
   constructor (props) {
@@ -13,7 +14,11 @@ class MainSession extends React.Component {
 
   componentDidMount () {
     this.props.dispatch(fetchFirepad(this.props.firepadReducer.mode));
-    this.props.dispatch(fetchWhiteboard());
+    var dispatch = this.props.dispatch;
+    socket.on('userHasSentWBID', function (id) {
+      dispatch(fetchWhiteboard(id));
+    })
+    // this.props.dispatch(fetchWhiteboard());
   }
 
   toggleEditor (e) {

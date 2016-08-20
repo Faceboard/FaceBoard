@@ -3,6 +3,7 @@ import { store } from './index';
 import { getAllMessages } from './actions/chat';
 import { getPrivateMessages } from './actions/chat';
 import { findFriend } from './helpers/friendHelpers';
+import { fetchWhiteboard } from './actions/whiteboardConfig';
 
 let options = {
   'force new connection': true
@@ -13,7 +14,7 @@ export const constantUrl = 'https://face-board.herokuapp.com';
 
 let socket = io(constantUrl + '/test', options);
 
-socket.on('userHasJoinedSession', (mes) => {
+socket.on('userHasJoinedSession', (firstUsername) => {
   global.phone = PHONE({
     number: global.localStorage.username,
     publish_key: 'pub-c-561a7378-fa06-4c50-a331-5c0056d0163c',
@@ -43,6 +44,10 @@ socket.on('userHasJoinedSession', (mes) => {
     });
 
   });
+
+  if (firstUsername === global.localStorage.username) {
+    store.dispatch(fetchWhiteboard());
+  }
 });
 
 socket.on('userHasLeftSession', (mes) => {
