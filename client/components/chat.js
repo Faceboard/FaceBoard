@@ -6,6 +6,7 @@ import { withRouter } from 'react-router';
 import Message from './message';
 import Input from './input';
 import socket from '../sync';
+import { ProgressCircle } from 'react-desktop/macOs';
 
 class Chat extends React.Component {
   constructor (props) {
@@ -40,8 +41,8 @@ class Chat extends React.Component {
     const { messages } = this.props;
     if (!messages) {
       return (
-        <div className="loading">
-          Loading...
+        <div className="progresscircle">
+          <ProgressCircle size={40}/>
         </div>
       );
     }

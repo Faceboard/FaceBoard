@@ -36,6 +36,7 @@
     "firebase": "^3.2.1",
     "firepad": "^1.4.0",
     "react": "^15.3.0",
+    "react-desktop": "^0.2.12",
     "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",

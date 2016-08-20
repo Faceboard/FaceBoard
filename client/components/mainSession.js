@@ -6,6 +6,7 @@ import { modeChange, toggleDiv } from '../actions/action';
 import { configFirebase, fetchFirepad, deleteFirepad } from '../actions/firebaseConfig';
 import { fetchWhiteboard } from '../actions/whiteboardConfig';
 import socket from '../sync';
+import { ProgressCircle } from 'react-desktop/macOs';
 
 class MainSession extends React.Component {
   constructor (props) {
@@ -67,7 +68,7 @@ class MainSession extends React.Component {
             <iframe id="whiteboard"
                     className={!this.props.firepadReducer.hidden ? "hidden" : "open"}
                     src={"https://www.twiddla.com/api/start.aspx?sessionid=" + this.props.whiteboardReducer.whiteboardId + "&hide=chat,bottomtray,url,invite,profile,voice,welcome,etherpad,documents,images,email,math,roomsettings,logo&autostart=true"}></iframe> :
-            <div id="whiteboard" className={!this.props.firepadReducer.hidden ? "hidden" : "open"}>Whiteboard is loading...</div> }
+            <div id="whiteboard" className={!this.props.firepadReducer.hidden ? "hidden" : "open"}><ProgressCircle className="progresscircle" size={40}/></div>}
       </div>
     );
   }

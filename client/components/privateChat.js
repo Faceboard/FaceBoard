@@ -7,6 +7,7 @@ import FriendsList from './friendsList';
 import socket from '../sync';
 import PrivateChatInput from './privateChatInput';
 import Message from './message';
+import { ProgressCircle } from 'react-desktop/macOs';
 
 class PrivateChat extends React.Component {
   constructor(props) {
@@ -49,8 +50,8 @@ class PrivateChat extends React.Component {
     const { privMessages } = this.props;
     if (!privMessages) {
       return(
-        <div>
-          Loading...
+        <div className="progresscircle">
+          <ProgressCircle size={40}/>
         </div>
       )
     }
