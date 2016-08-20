@@ -248,3 +248,11 @@ video {
   font-weight: normal;
   font-style: normal;
 }
+
+.progresscircle {
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
