@@ -6,6 +6,7 @@ import chatReducer from './chatReducer';
 import inputReducer from './inputReducer';
 import firepadReducer from './firepadReducer';
 import pchatReducer from './pchatReducer';
+import whiteboardReducer from './whiteboardReducer';
 
 export default combineReducers({
   authReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   chatReducer,
   inputReducer,
   firepadReducer,
-  pchatReducer
+  pchatReducer,
+  whiteboardReducer
 });
