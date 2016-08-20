@@ -1,4 +1,4 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import App from '../client/components/app';
+// import Signin from '../client/components/signin';

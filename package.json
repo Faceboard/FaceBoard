@@ -4,7 +4,7 @@
   "description": "All in one collabration application",
   "main": "main.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --watch",
+    "test": "mocha --require test/setup.js --compilers js:babel-core/register --recursive test/*.js --watch",
     "webwatch": "webpack --watch",
     "start": "webpack && electron main.js",
     "build": "webpack && build -mw"
@@ -63,8 +63,10 @@
     "eslint": "^3.2.2",
     "eslint-loader": "^1.5.0",
     "eslint-plugin-react": "^6.0.0",
+    "jsdom": "^9.4.2",
     "mocha": "^3.0.2",
     "react-addons-test-utils": "^15.3.0",
+    "spectron": "^3.3.0",
     "typescript": "^1.8.10",
     "webpack": "^1.13.1",
     "wine": "0.0.2"
