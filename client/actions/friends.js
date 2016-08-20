@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { FETCHING_FRIENDS, FRIENDS_FETCHED, FETCHING_FRIENDS_ERROR } from './action';
 import { constantUrl } from '../sync';
+import socket from '../sync';
 
 export function getAllFriends () {
   return function (dispatch) {
@@ -32,4 +33,12 @@ export function addFriend (friendid, friendname) {
       });
     });
   }
+}
+
+export function deleteFriend (friendname) {
+  let data = {
+    userid: global.localStorage.userid,
+    friendname
+  }
+  socket.emit('delete friend', data);
 }
