@@ -4,13 +4,14 @@ import { getAllMessages } from './actions/chat';
 import { getPrivateMessages } from './actions/chat';
 import { findFriend } from './helpers/friendHelpers';
 import { fetchWhiteboard } from './actions/whiteboardConfig';
+import { getAllFriends } from './actions/friends';
 
 let options = {
   'force new connection': true
 };
 
 export const constantUrl = 'https://face-board.herokuapp.com';
-//export const constantUrl = 'http://localhost:3000';
+// export const constantUrl = 'http://localhost:3000';
 
 let socket = io(constantUrl + '/test', options);
 
@@ -77,6 +78,10 @@ socket.on('confirm private chat', (data) => {
 
 socket.on('pchat confirmed', (data) => {
   console.log('P CHAT CONFIRMED');
-})
+});
+
+socket.on('deleted friend', (data) => {
+  store.dispatch(getAllFriends());
+});
 
 export default socket;

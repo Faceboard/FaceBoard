@@ -1,4 +1,5 @@
 import { makePrivateSession } from './session';
+import { deleteFriend } from './friends';
 const remote = window.require('electron').remote;
 const Menu = remote.Menu;
 const MenuItem = remote.MenuItem;
@@ -12,6 +13,12 @@ export function makeMenu () {
     label: 'Invite user',
     click: () => {
       makePrivateSession(global.localStorage.username, global.localStorage.secondPerson);
+    }
+  }));
+  menu.append(new MenuItem({
+    label: 'Delete Friend',
+    click: () => {
+      deleteFriend(global.localStorage.secondPerson);
     }
   }));
 
