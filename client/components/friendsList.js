@@ -8,7 +8,7 @@ import socket from '../sync';
 import { makeMenu, reattachMenus } from '../actions/menu';
 import { addFriend, getAllFriends } from '../actions/friends';
 import { getPrivateMessages, getAllFriendPrivateMsg } from '../actions/chat';
-
+import { removeHighlight, startPChat } from '../helpers/friendHelpers';
 
 
 class FriendsList extends React.Component {
@@ -51,13 +51,15 @@ class FriendsList extends React.Component {
     socket.emit('makePrivateChat', data);
     router.replace('/privateChat');
     this.props.dispatch(getAllFriendPrivateMsg(data.seconduserid));
+    removeHighlight(e.target.innerHTML);
+    startPChat(e.target.innerHTML)
   }
 
   render () {
     const { users, friends } = this.props;
     const mapUsers = users.map(user => <li onClick={this.addPerson.bind(this)} className="list-group-item" key={user.username} value={user.id}>{user.username}</li>);
-    const filterFriends  = _.uniqBy(friends, (f) => f.friendid ).filter((f) => f.friendname !== global.localStorage.username );
-    const mapFriends = filterFriends.map(friend => <li onClick={this.privateMessageStart.bind(this)} className="friends list-group-item" key={friend.id} value={friend.friendid}>{friend.friendname}</li>);
+    const mapFriends = friends.map(friend => <li onClick={this.privateMessageStart.bind(this)}
+      className="friends list-group-item" key={friend.id} value={friend.friendid}>{friend.friendname}</li>);
 
     if (!users.length) {
       return (
