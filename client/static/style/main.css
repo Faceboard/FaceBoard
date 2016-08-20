@@ -196,10 +196,16 @@ video {
   margin: 5px;
 }
 
-.user {
+.user{
   display: inline-flex;
   font-weight: bold;
   color: #898989;
+  text-decoration: none;
+}
+
+.user:hover {
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .timestamp {

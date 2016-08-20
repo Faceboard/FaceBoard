@@ -22,21 +22,23 @@ export function makeMenu () {
     }
   }));
 
-  var listener = (event) => {
+  let rightClickListener = (event) => {
     event.preventDefault();
     global.localStorage.secondPerson = event.target.innerHTML;
     menu.popup(remote.getCurrentWindow());
   }
+
+
 
   if (!menuRendered) {
     let allFriends = document.getElementsByClassName('friends');
     if (allFriends.length) {
       menuRendered = true;
     }
-    for (var i = 0; i < allFriends.length; i++) {
-      // remove previous event listener before adding a new one
-      allFriends[i].removeEventListener('contextmenu', listener);
-      allFriends[i].addEventListener('contextmenu', listener);
+    for (let i = 0; i < allFriends.length; i++) {
+      // remove previous event rightClickListener before adding a new one
+      allFriends[i].removeEventListener('contextmenu', rightClickListener);
+      allFriends[i].addEventListener('contextmenu', rightClickListener);
     }
   }
 
