@@ -12,9 +12,12 @@ class MainSession extends React.Component {
   }
 
   componentDidMount () {
-    const { mode } = this.props;
-    this.props.dispatch(fetchFirepad(this.props.mode));
+    this.props.dispatch(fetchFirepad(this.props.firepadReducer.mode));
     this.props.dispatch(fetchWhiteboard());
+  }
+
+  componentDidUpdate () {
+    console.log('TEST ' + this.props.whiteboardReducer.whiteboardId);
   }
 
   toggleEditor (e) {
@@ -37,14 +40,14 @@ class MainSession extends React.Component {
     return (
       <div id="mainSession">
         <div className="tab-group">
-          <div className={ this.props.hidden ? 'tab-item active' : 'tab-item' } id="codeshareTab" onClick={this.toggleEditor.bind(this)}>
+          <div className={ this.props.firepadReducer.hidden ? 'tab-item active' : 'tab-item' } id="codeshareTab" onClick={this.toggleEditor.bind(this)}>
             Codeshare
           </div>
-          <div className={ !this.props.hidden ? 'tab-item active' : 'tab-item' } id="whiteboardTab" onClick={this.toggleEditor.bind(this)}>
+          <div className={ !this.props.firepadReducer.hidden ? 'tab-item active' : 'tab-item' } id="whiteboardTab" onClick={this.toggleEditor.bind(this)}>
             Whiteboard
           </div>
         </div>
-        <div id="firepadContainer" className={!this.props.hidden ? 'hidden' : 'open'}>
+        <div id="firepadContainer" className={!this.props.firepadReducer.hidden ? 'hidden' : 'open'}>
           <select id="cmMode" className="form-control" onChange={this.changeMode.bind(this)}>
             <option value="javascript">javascript</option>
             <option value="jsx">jsx</option>
@@ -60,12 +63,19 @@ class MainSession extends React.Component {
           <div id="firepad"></div>
         </div>
           <iframe id="whiteboard"
-                  className={this.props.hidden ? 'hidden' : 'open'}
+                  className={this.props.firepadReducer.hidden ? 'hidden' : 'open'}
                   src="https://www.twiddla.com/api/start.aspx?sessionid=2796834&hide=chat,bottomtray,url,invite,profile,voice,welcome,etherpad,documents,images,email,math,roomsettings,logo&autostart=true"></iframe>
         </div>
     );
   }
 }
 
-const mapStateToProps = state => state.firepadReducer;
+
+const mapStateToProps = (state) => {
+  return {
+    firepadReducer: state.firepadReducer,
+    whiteboardReducer: state.whiteboardReducer
+  };
+};
+
 export default connect(mapStateToProps)(withRouter(MainSession));
