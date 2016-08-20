@@ -1,7 +1,8 @@
 import React from 'react';
 import { expect } from 'chai';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import App from '../client/components/app';
+
 
 describe('Component: App', () => {
 
@@ -20,13 +21,19 @@ describe('Component: App', () => {
     let wrapper = shallow(<App />);
 
     expect(wrapper.contains(<button className="btn btn-default">Sign In!</button>)).to.eql(true);
-  })
+  });
 
-  it('has a link to sign in component', () => {
+  it('has a link to sign up route', () => {
     let wrapper = shallow(<App />);
 
-    expect(wrapper.find('Link').prop('to')).to.eql('/signin');
+    expect(wrapper.find('Link').first().prop('to')).to.eql('/signup');
+  });
 
-  })
+  it('has a link to sign in route', () => {
+    let wrapper = shallow(<App />);
+
+    expect(wrapper.find('Link').last().prop('to')).to.eql('/signin');
+  });
+
 
 });
