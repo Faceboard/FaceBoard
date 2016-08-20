@@ -58,6 +58,11 @@ a {
   color: white;
 }
 
+.in-pchat {
+  background-color: green;
+  color: white;
+}
+
 .selectedUser {
   background-color: green;
   color: white;

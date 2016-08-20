@@ -9,7 +9,7 @@ let options = {
 };
 
 export const constantUrl = 'https://face-board.herokuapp.com';
-// export const constantUrl = 'http://localhost:3000';
+//export const constantUrl = 'http://localhost:3000';
 
 let socket = io(constantUrl + '/test', options);
 
