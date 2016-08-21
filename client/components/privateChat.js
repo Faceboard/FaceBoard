@@ -8,6 +8,7 @@ import socket from '../sync';
 import PrivateChatInput from './privateChatInput';
 import Message from './message';
 import { ProgressCircle } from 'react-desktop/macOs';
+import { removeHighlight, startPChat } from '../helpers/friendHelpers';
 
 class PrivateChat extends React.Component {
   constructor(props) {
@@ -26,6 +27,8 @@ class PrivateChat extends React.Component {
 
   componentDidMount () {
     this.scrollToBottomAtStart();
+    removeHighlight(global.localStorage.secondusername);
+    startPChat(global.localStorage.secondusername)
   }
 
   componentDidUpdate () {
