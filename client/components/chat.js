@@ -43,13 +43,8 @@ class Chat extends React.Component {
     const { messages } = this.props;
     if (!messages) {
       return (
-<<<<<<< d0ee4363e5e1e4c8d7d7523de21485c0df636d52
         <div className="progresscircle">
           <ProgressCircle size={40}/>
-=======
-        <div className="loading">
-          <spinner></spinner>
->>>>>>> (feat) add spinner for when messages are loading and build skeleton for chat menu
         </div>
       );
     }
