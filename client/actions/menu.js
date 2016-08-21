@@ -50,8 +50,36 @@ export function makeMenu (router) {
     }
   }
 
+};
+
+export function makeChatMenu () {
+  let chatMenu = new Menu();
+  chatMenu.append(new MenuItem({
+    label: 'Invite user',
+    click: () => {
+      makePrivateSession(global.localStorage.username, global.localStorage.secondusername);
+    }
+  }));
+
+  chatMenu.append(new MenuItem({
+    label: 'Private message user',
+    click: () => {
+      rightClickPChat(router);
+    }
+  }));
+
+  let chatListener = (event) => {
+    event.preventDefault();
+    console.log('this worked');
+  };
+
+  let allUsers = document.getElementsByClassName('user');
+
+  for (let i = 0; i < allUsers.length; i++) {
+    allUsers[i].addEventListener('click', chatListener);
+  }
 }
 
 export function reattachMenus () {
   menuRendered = false;
-}
+};

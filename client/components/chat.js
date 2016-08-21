@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { getAllMessages } from '../actions/chat';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { makeChatMenu } from '../actions/menu';
 import Message from './message';
 import Input from './input';
 import socket from '../sync';
@@ -24,6 +25,7 @@ class Chat extends React.Component {
 
   componentDidMount () {
     this.scrollToBottomAtStart();
+    makeChatMenu();
   }
 
   componentDidUpdate () {
@@ -41,8 +43,13 @@ class Chat extends React.Component {
     const { messages } = this.props;
     if (!messages) {
       return (
+<<<<<<< d0ee4363e5e1e4c8d7d7523de21485c0df636d52
         <div className="progresscircle">
           <ProgressCircle size={40}/>
+=======
+        <div className="loading">
+          <spinner></spinner>
+>>>>>>> (feat) add spinner for when messages are loading and build skeleton for chat menu
         </div>
       );
     }

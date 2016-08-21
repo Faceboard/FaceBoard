@@ -21,7 +21,7 @@ export function getAllMessages () {
       });
     });
   };
-}
+};
 
 export function getPrivateMessages (usertwoid) {
   return function (dispatch) {
@@ -38,14 +38,14 @@ export function getPrivateMessages (usertwoid) {
         error: error });
       });
   };
-}
+};
 
 export function getAllFriendPrivateMsg (seconduserid) {
   return function (dispatch) {
     dispatch(getPrivateMessages(seconduserid));
     dispatch(getAllFriends());
-  }
-}
+  };
+};
 
 export function pChatStart (event, router) {
   global.localStorage.seconduserid = event.target.value;
@@ -61,7 +61,7 @@ export function pChatStart (event, router) {
   store.dispatch(getAllFriendPrivateMsg(data.seconduserid));
   removeHighlight(event.target.innerHTML);
   startPChat(event.target.innerHTML)
-}
+};
 
 export function rightClickPChat (router) {
   let data = {
@@ -74,4 +74,4 @@ export function rightClickPChat (router) {
   store.dispatch(getAllFriendPrivateMsg(data.seconduserid));
   removeHighlight(global.localStorage.secondusername);
   startPChat(global.localStorage.secondusername);
-}
+};
