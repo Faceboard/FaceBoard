@@ -70,12 +70,14 @@ export function makeChatMenu () {
 
   let chatListener = (event) => {
     event.preventDefault();
-    console.log('this worked');
+    console.log('called');
+    chatMenu.popup(remote.getCurrentWindow());
   };
 
   let allUsers = document.getElementsByClassName('user');
 
   for (let i = 0; i < allUsers.length; i++) {
+    console.log('this was also called');
     allUsers[i].addEventListener('click', chatListener);
   }
 }
