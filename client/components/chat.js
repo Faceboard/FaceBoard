@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { getAllMessages } from '../actions/chat';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { makeChatMenu } from '../actions/menu';
+import { makeChatMenu, reattachChathMenus } from '../actions/menu';
 import Message from './message';
 import Input from './input';
 import socket from '../sync';
@@ -16,6 +16,7 @@ class Chat extends React.Component {
 
   componentWillMount () {
     this.props.dispatch(getAllMessages());
+    reattachChathMenus();
   }
 
   componentWillUpdate () {
@@ -25,11 +26,12 @@ class Chat extends React.Component {
 
   componentDidMount () {
     this.scrollToBottomAtStart();
-    makeChatMenu();
   }
 
   componentDidUpdate () {
+    const { router } = this.props;
     this.scrollToBottomAtStart();
+    makeChatMenu(router);
   }
 
   scrollToBottomAtStart () {
