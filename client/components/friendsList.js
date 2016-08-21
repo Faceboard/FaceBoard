@@ -42,12 +42,7 @@ class FriendsList extends React.Component {
 
   privateMessageStart (e) {
     const { router } = this.props;
-    let data = pChatStart(e);
-    socket.emit('makePrivateChat', data);
-    router.replace('/privateChat');
-    this.props.dispatch(getAllFriendPrivateMsg(data.seconduserid));
-    removeHighlight(e.target.innerHTML);
-    startPChat(e.target.innerHTML)
+    pChatStart(e, router);
   }
 
   render () {
