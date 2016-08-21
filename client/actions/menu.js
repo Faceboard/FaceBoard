@@ -54,7 +54,7 @@ export function makeMenu (router) {
 
 };
 
-export function makeChatMenu () {
+export function makeChatMenu (router) {
   let chatMenu = new Menu();
   chatMenu.append(new MenuItem({
     label: 'Invite user',
