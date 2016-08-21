@@ -22,12 +22,24 @@ export function makeMenu () {
     }
   }));
 
+  menu.append(new MenuItem({
+    label: 'Private message user',
+    click: () => {
+
+    }
+  }));
+
   let rightClickListener = (event) => {
     event.preventDefault();
     global.localStorage.secondPerson = event.target.innerHTML;
     menu.popup(remote.getCurrentWindow());
-  }
+  };
 
+  let leftClickListener = (event) => {
+    event.preventDefault();
+
+    menu.pop(remote.getCurrentWindow());
+  }
 
 
   if (!menuRendered) {

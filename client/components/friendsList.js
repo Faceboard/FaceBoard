@@ -7,7 +7,7 @@ import { inviteToSession, makeSession, sessionChange, makePrivateSession, askSec
 import socket from '../sync';
 import { makeMenu, reattachMenus } from '../actions/menu';
 import { addFriend, getAllFriends } from '../actions/friends';
-import { getPrivateMessages, getAllFriendPrivateMsg } from '../actions/chat';
+import { getPrivateMessages, getAllFriendPrivateMsg, pChatStart } from '../actions/chat';
 import { removeHighlight, startPChat } from '../helpers/friendHelpers';
 
 
@@ -42,14 +42,7 @@ class FriendsList extends React.Component {
 
   privateMessageStart (e) {
     const { router } = this.props;
-    global.localStorage.seconduserid = e.target.value;
-    global.localStorage.secondusername = e.target.innerHTML;
-    global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;
-    let data = {
-      pchat: global.localStorage.pchat,
-      seconduserid: global.localStorage.seconduserid,
-      secondusername: global.localStorage.secondusername
-    }
+    let data = pChatStart(e);
     socket.emit('makePrivateChat', data);
     router.replace('/privateChat');
     this.props.dispatch(getAllFriendPrivateMsg(data.seconduserid));

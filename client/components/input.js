@@ -12,7 +12,7 @@ class Input extends React.Component {
   sendMessage (e) {
     if (e.which === 13 && !e.shiftKey) {
       let msg = document.getElementById('inputMessage');
-      socket.emit('send message', {text: msg.value, username: global.localStorage.username});
+      socket.emit('send message', {text: msg.value, username: global.localStorage.username, userid: global.localStorage.userid });
       msg.value = '';
     }
   }

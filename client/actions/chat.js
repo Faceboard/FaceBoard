@@ -43,3 +43,16 @@ export function getAllFriendPrivateMsg (seconduserid) {
     dispatch(getAllFriends());
   }
 }
+
+export function pChatStart (event) {
+  global.localStorage.seconduserid = event.target.value;
+  global.localStorage.secondusername = event.target.innerHTML;
+  global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;
+  let data = {
+    pchat: global.localStorage.pchat,
+    seconduserid: global.localStorage.seconduserid,
+    secondusername: global.localStorage.secondusername
+  }
+
+  return data;
+}
