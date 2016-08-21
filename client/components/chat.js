@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { getAllMessages } from '../actions/chat';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { makeChatMenu } from '../actions/menu';
 import Message from './message';
 import Input from './input';
 import socket from '../sync';
@@ -24,6 +25,7 @@ class Chat extends React.Component {
 
   componentDidMount () {
     this.scrollToBottomAtStart();
+    makeChatMenu();
   }
 
   componentDidUpdate () {
@@ -50,7 +52,7 @@ class Chat extends React.Component {
       <div className="chatBox">
         <table className="table-striped">
           <tbody>
-            {messages.map(message => <Message key={message.id} user={message.user} text={message.text} timestamp={message.createdAt}/>)}
+            {messages.map(message => <Message key={message.id} userid={message.userid} user={message.user} text={message.text} timestamp={message.createdAt}/>)}
           </tbody>
         </table>
         <Input />

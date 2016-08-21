@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getPrivateMessages } from '../actions/chat';
+import { getPrivateMessages, rightClickPChat } from '../actions/chat';
 import FriendsList from './friendsList';
 import socket from '../sync';
 import PrivateChatInput from './privateChatInput';
 import Message from './message';
 import { ProgressCircle } from 'react-desktop/macOs';
+import { removeHighlight, startPChat } from '../helpers/friendHelpers';
 
 class PrivateChat extends React.Component {
   constructor(props) {
@@ -26,6 +27,8 @@ class PrivateChat extends React.Component {
 
   componentDidMount () {
     this.scrollToBottomAtStart();
+    removeHighlight(global.localStorage.secondusername);
+    startPChat(global.localStorage.secondusername)
   }
 
   componentDidUpdate () {
