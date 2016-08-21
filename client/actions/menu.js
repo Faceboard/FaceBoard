@@ -19,7 +19,7 @@ export function makeMenu (router) {
   menu.append(new MenuItem({
     label: 'Delete Friend',
     click: () => {
-      deleteFriend(global.localStorage.secondPerson);
+      deleteFriend(global.localStorage.secondusername);
     }
   }));
 
