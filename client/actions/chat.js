@@ -62,3 +62,16 @@ export function pChatStart (event, router) {
   removeHighlight(event.target.innerHTML);
   startPChat(event.target.innerHTML)
 }
+
+export function rightClickPChat (router) {
+  let data = {
+    pchat: global.localStorage.pchat,
+    seconduserid: global.localStorage.seconduserid,
+    secondusername: global.localStorage.secondusername
+  }
+  socket.emit('makePrivateChat', data);
+  router.replace('/privateChat');
+  store.dispatch(getAllFriendPrivateMsg(data.seconduserid));
+  removeHighlight(global.localStorage.secondusername);
+  startPChat(global.localStorage.secondusername);
+}

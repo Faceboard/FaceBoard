@@ -26,7 +26,8 @@ class FriendsList extends React.Component {
   }
 
   componentDidUpdate () {
-    makeMenu();
+    const { router } = this.props;
+    makeMenu(router);
   }
 
   componentWillUnmount () {

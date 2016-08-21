@@ -1,5 +1,6 @@
 import { makePrivateSession } from './session';
 import { deleteFriend } from './friends';
+import { rightClickPChat } from './chat';
 const remote = window.require('electron').remote;
 const Menu = remote.Menu;
 const MenuItem = remote.MenuItem;
@@ -7,12 +8,12 @@ const ipcRenderer = window.require('electron').ipcRenderer;
 
 let menuRendered;
 
-export function makeMenu () {
+export function makeMenu (router) {
   let menu = new Menu();
   menu.append(new MenuItem({
     label: 'Invite user',
     click: () => {
-      makePrivateSession(global.localStorage.username, global.localStorage.secondPerson);
+      makePrivateSession(global.localStorage.username, global.localStorage.secondusername);
     }
   }));
   menu.append(new MenuItem({
@@ -25,22 +26,17 @@ export function makeMenu () {
   menu.append(new MenuItem({
     label: 'Private message user',
     click: () => {
-
+      rightClickPChat(router);
     }
   }));
 
   let rightClickListener = (event) => {
     event.preventDefault();
-    global.localStorage.secondPerson = event.target.innerHTML;
+    global.localStorage.seconduserid = event.target.value;
+    global.localStorage.secondusername = event.target.innerHTML;
+    global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;
     menu.popup(remote.getCurrentWindow());
   };
-
-  let leftClickListener = (event) => {
-    event.preventDefault();
-
-    menu.pop(remote.getCurrentWindow());
-  }
-
 
   if (!menuRendered) {
     let allFriends = document.getElementsByClassName('friends');

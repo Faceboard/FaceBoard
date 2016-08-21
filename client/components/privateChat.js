@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getPrivateMessages } from '../actions/chat';
+import { getPrivateMessages, rightClickPChat } from '../actions/chat';
 import FriendsList from './friendsList';
 import socket from '../sync';
 import PrivateChatInput from './privateChatInput';
