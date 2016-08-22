@@ -10,8 +10,8 @@ let options = {
   'force new connection': true
 };
 
-export const constantUrl = 'https://face-board.herokuapp.com';
-// export const constantUrl = 'http://localhost:3000';
+// export const constantUrl = 'https://face-board.herokuapp.com';
+export const constantUrl = 'http://localhost:3000';
 
 let socket = io(constantUrl + '/test', options);
 
@@ -81,7 +81,9 @@ socket.on('pchat confirmed', (data) => {
 });
 
 socket.on('deleted friend', (data) => {
-  store.dispatch(getAllFriends());
+  if (data.userid === global.localStorage.userid) {
+    store.dispatch(getAllFriends());
+  }
 });
 
 socket.on('connect', (data) => {
