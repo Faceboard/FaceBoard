@@ -8,6 +8,7 @@ const ipcRenderer = window.require('electron').ipcRenderer;
 
 let menuRendered;
 let chatMenuRendered;
+let pchatMenuRendered;
 
 export function makeMenu (router) {
   let menu = new Menu();
@@ -73,7 +74,6 @@ export function makeChatMenu (router) {
   let chatListener = (event) => {
     event.preventDefault();
     let seconduser = event.target.textContent.slice(0, event.target.textContent.length - 1);
-    console.log(seconduser);
     global.localStorage.seconduserid = event.target.getAttribute('value');
     global.localStorage.secondusername = seconduser;
     global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;
@@ -91,6 +91,33 @@ export function makeChatMenu (router) {
       allUsers[i].addEventListener('click', chatListener);
     }
   }
+};
+
+export function makePChatMenu () {
+  let pchatMenu = new Menu();
+  pchatMenu.append(new MenuItem({
+    label: 'Invite user',
+    click: () => {
+      makePrivateSession(global.localStorage.username, global.localStorage.secondusername);
+    }
+  }));
+
+  let pchatListener = (event) => {
+    let seconduser = event.target.textContent.slice(0, event.target.textContent.length - 1);
+    global.localStorage.secondusername = seconduser;
+    pchatMenu.popup(remote.getCurrentWindow());
+  }
+
+  if (!pchatMenuRendered) {
+    let allUsers = document.getElementsByClassName('user');
+    if (allUsers.length) {
+      pchatMenuRendered = true;
+    }
+    for (let i = 0; i < allUsers.length; i++) {
+      allUsers[i].removeEventListener('click', pchatListener);
+      allUsers[i].addEventListener('click', pchatListener);
+    }
+  }
 }
 
 export function reattachMenus () {
@@ -98,6 +125,10 @@ export function reattachMenus () {
 };
 
 
-export function reattachChathMenus () {
+export function reattachChatMenus () {
   chatMenuRendered = false;
+}
+
+export function reattachPChatMenu () {
+  pchatMenuRendered = false;
 }
