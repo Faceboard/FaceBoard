@@ -5,6 +5,7 @@ import { getPrivateMessages } from './actions/chat';
 import { findFriend, onlineUser, offlineUser } from './helpers/friendHelpers';
 import { fetchWhiteboard } from './actions/whiteboardConfig';
 import { getAllFriends } from './actions/friends';
+import { reattachMenus } from './actions/menu';
 
 let options = {
   'force new connection': true

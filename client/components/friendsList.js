@@ -53,7 +53,7 @@ class FriendsList extends React.Component {
       <div className='list-group-item'>
         <li onClick={this.privateMessageStart.bind(this)}
         className="friends" key={friend.id} value={friend.friendid}>{friend.friendname}</li>
-        <button className="icon icon-cancel-circled" onClick={this.removeFriend.bind(this)} value={friend.friendname}></button>
+        <button onClick={this.removeFriend.bind(this)} value={friend.friendname}></button>
       </div>
     );
 
