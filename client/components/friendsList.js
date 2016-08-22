@@ -36,6 +36,7 @@ class FriendsList extends React.Component {
 
   addPerson (e) {
     e.preventDefault();
+    reattachMenus();
     if (e.target.innerHTML !== global.localStorage.username) {
       this.props.dispatch(addFriend(e.target.value, e.target.innerHTML));
     }
