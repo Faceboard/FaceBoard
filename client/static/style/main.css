@@ -50,6 +50,10 @@ a {
   height: 80%;
 }
 
+.showUsers {
+  display: none;
+}
+
 .list-group-item {
   color: #dddddd;
 }
@@ -121,6 +125,9 @@ select {
   color: #3d3d3d;
 }
 
+.icon {
+  z-index: 1000;
+}
 #mainSession {
   display: inline-block;
   width: 64%;

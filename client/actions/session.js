@@ -3,7 +3,7 @@ import socket from '../sync';
 
 
 const confirmJoinSession = (firstUsername) => {
-  return confirm(firstUsername + 'wants to create a private session with you. Would you like to join?');
+  return confirm(firstUsername + ' wants to create a private session with you. Would you like to join?');
 };
 
 const setSessionGlobals = (firstUser, secondUser, data) => {
@@ -52,8 +52,10 @@ export function makePrivateSession (firstUserName, secondUserName) {
 
 export function askSecondUserToJoin (data) {
   if (isSecondUser(data.secondUserName)) {
+    console.log('test');
     if (confirmJoinSession(data.firstUserName)) {
       setSessionGlobals(data.firstUserName, data.secondUserName, data);
     }
+    console.log('test2');
   }
 };

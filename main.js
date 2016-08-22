@@ -90,4 +90,4 @@ app.on('ready', function () {
 
 
 // // auto reload on any changes
-// require('electron-reload')(__dirname);
+require('electron-reload')(__dirname);

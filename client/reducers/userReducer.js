@@ -3,6 +3,7 @@ import { FETCHING_USERS, USERS_FETCHED, FETCH_USERS_ERROR, CHANGE_FIELD, FETCHIN
 const initialState = {
   users: [],
   friends: [],
+  filteredUsers: [],
   fetching: false,
   fetched: false
 };
@@ -16,7 +17,8 @@ const userReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         fetching: false,
         fetched: true,
-        users: action.payload
+        users: action.payload,
+        filteredUsers: action.payload
       });
     case FETCH_USERS_ERROR:
       return Object.assign({}, state, {
@@ -42,6 +44,10 @@ const userReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         [action.field]: action.value
       });
+    case 'FILTER_USERS':
+      console.log('This is state', state);
+      let filtered = state.users.filter(u => u.username.toLowerCase().indexOf(action.filter.toLowerCase()) !== -1);
+      return Object.assign({}, state, { filteredUsers: filtered });
     default:
       return state;
   }
