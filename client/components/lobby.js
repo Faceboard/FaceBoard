@@ -58,12 +58,8 @@ class Lobby extends React.Component {
     const { filteredUsers } = this.props.userReducer;
     const mapUsers = filteredUsers.map(user =>
       <li  className=" list-group-item" key={user.username}>
-        <button onClick={this.callUser.bind(this)}>
-          <span className="icon icon-phone" value={user.username}></span>
-        </button>
-        <button onClick={this.msgUser.bind(this)}>
-          <span className="icon icon-pencil" data-username={user.username} data-user-id={user.id}></span>
-        </button>
+        <span className="icon icon-phone btn btn-default" value={user.username} onClick={this.callUser.bind(this)}></span>
+        <span className="icon icon-pencil btn btn-default" data-username={user.username} data-user-id={user.id} onClick={this.msgUser.bind(this)}></span>
         <div className="media-body pull-right">
           <strong>{user.username}</strong>
         </div>
@@ -107,3 +103,11 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(withRouter(Lobby));
+
+
+// <button onClick={this.callUser.bind(this)}>
+//           <span className="icon icon-phone" value={user.username}></span>
+//         </button>
+//         <button onClick={this.msgUser.bind(this)}>
+//           <span className="icon icon-pencil" data-username={user.username} data-user-id={user.id}></span>
+//         </button>

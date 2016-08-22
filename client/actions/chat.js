@@ -77,10 +77,9 @@ export function rightClickPChat (router) {
 };
 
 export function startPChatFromAllUsers (event, router) {
-  let info = event.target.childNodes['0'];
-  console.log('info');
-  global.localStorage.seconduserid = info.getAttribute('data-user-id');
-  global.localStorage.secondusername = info.getAttribute('data-username');
+  let info = event.target.dataset;
+  global.localStorage.seconduserid = info['userId'];
+  global.localStorage.secondusername = info['username'];
   global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;
   let data = {
     pchat: global.localStorage.pchat,
@@ -92,6 +91,6 @@ export function startPChatFromAllUsers (event, router) {
 
   socket.emit('makePrivateChat', data);
   router.replace('/privateChat');
-  removeHighlight(info.getAttribute('data-username'));
-  startPChat(info.getAttribute('data-username'));
+  removeHighlight(info['username']);
+  startPChat(info['username']);
 };

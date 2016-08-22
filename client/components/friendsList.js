@@ -48,7 +48,6 @@ class FriendsList extends React.Component {
 
   render () {
     const { friends } = this.props;
-
     const mapFriends = friends.map(friend => <li onClick={this.privateMessageStart.bind(this)}
       className="friends list-group-item" key={friend.id} value={friend.friendid}>{friend.friendname}</li>);
 

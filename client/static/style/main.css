@@ -125,9 +125,10 @@ select {
   color: #3d3d3d;
 }
 
-.icon {
-  z-index: 1000;
+span {
+  display: block;
 }
+
 #mainSession {
   display: inline-block;
   width: 64%;
