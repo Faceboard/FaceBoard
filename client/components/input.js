@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { changeMessageText } from '../actions/message';
 import socket from '../sync';
+import { reattachChathMenus } from '../actions/menu';
 
 class Input extends React.Component {
   constructor (props) {
@@ -14,6 +15,7 @@ class Input extends React.Component {
       let msg = document.getElementById('inputMessage');
       socket.emit('send message', {text: msg.value, username: global.localStorage.username, userid: global.localStorage.userid });
       msg.value = '';
+      reattachChathMenus();
     }
   }
 
