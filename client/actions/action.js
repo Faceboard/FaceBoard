@@ -22,6 +22,9 @@ export const FETCHING_WHITEBOARD = 'FETCHING_WHITEBOARD';
 export const WHITEBOARD_FETCHED = 'WHITEBOARD_FETCHED';
 export const WHITEBOARD_ERROR = 'WHITEBOARD_ERROR';
 export const FILTER_USERS = 'FILTER_USERS';
+export const GET_ROOM_MESSAGES = 'GET_ROOM_MESSAGES';
+export const ROOM_MESSAGES_FETCHED = 'ROOM_MESSAGES_FETCHED';
+export const ROOM_MESSAGES_ERROR = 'ROOM_MESSAGES_ERROR'
 
 export function authChange (field, value) {
   return {
