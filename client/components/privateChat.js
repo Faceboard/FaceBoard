@@ -9,6 +9,7 @@ import PrivateChatInput from './privateChatInput';
 import Message from './message';
 import { ProgressCircle } from 'react-desktop/macOs';
 import { removeHighlight, startPChat } from '../helpers/friendHelpers';
+import { makePChatMenu, reattachPChatMenu } from '../actions/menu';
 
 class PrivateChat extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class PrivateChat extends React.Component {
   componentWillMount () {
     socket.emit('join pchat', {pchat: global.localStorage.pchat});
     this.props.dispatch(getPrivateMessages(global.localStorage.seconduserid));
+    reattachPChatMenu();
   }
 
   componentWillUpdate () {
@@ -33,6 +35,7 @@ class PrivateChat extends React.Component {
 
   componentDidUpdate () {
     this.scrollToBottomAtStart();
+    makePChatMenu();
   }
 
   scrollToBottomAtStart () {

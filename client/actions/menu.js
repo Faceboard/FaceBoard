@@ -7,6 +7,8 @@ const MenuItem = remote.MenuItem;
 const ipcRenderer = window.require('electron').ipcRenderer;
 
 let menuRendered;
+let chatMenuRendered;
+let pchatMenuRendered;
 
 export function makeMenu (router) {
   let menu = new Menu();
@@ -32,6 +34,7 @@ export function makeMenu (router) {
 
   let rightClickListener = (event) => {
     event.preventDefault();
+    console.log('e', event.target.value);
     global.localStorage.seconduserid = event.target.value;
     global.localStorage.secondusername = event.target.innerHTML;
     global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;
@@ -52,7 +55,7 @@ export function makeMenu (router) {
 
 };
 
-export function makeChatMenu () {
+export function makeChatMenu (router) {
   let chatMenu = new Menu();
   chatMenu.append(new MenuItem({
     label: 'Invite user',
@@ -70,18 +73,62 @@ export function makeChatMenu () {
 
   let chatListener = (event) => {
     event.preventDefault();
-    console.log('called');
+    let seconduser = event.target.textContent.slice(0, event.target.textContent.length - 1);
+    global.localStorage.seconduserid = event.target.getAttribute('value');
+    global.localStorage.secondusername = seconduser;
+    global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;
     chatMenu.popup(remote.getCurrentWindow());
   };
 
-  let allUsers = document.getElementsByClassName('user');
 
-  for (let i = 0; i < allUsers.length; i++) {
-    console.log('this was also called');
-    allUsers[i].addEventListener('click', chatListener);
+  if (!chatMenuRendered) {
+    let allUsers = document.getElementsByClassName('user');
+    if (allUsers.length) {
+      chatMenuRendered = true;
+    }
+    for (let i = 0; i < allUsers.length; i++) {
+      allUsers[i].removeEventListener('click', chatListener);
+      allUsers[i].addEventListener('click', chatListener);
+    }
+  }
+};
+
+export function makePChatMenu () {
+  let pchatMenu = new Menu();
+  pchatMenu.append(new MenuItem({
+    label: 'Invite user',
+    click: () => {
+      makePrivateSession(global.localStorage.username, global.localStorage.secondusername);
+    }
+  }));
+
+  let pchatListener = (event) => {
+    let seconduser = event.target.textContent.slice(0, event.target.textContent.length - 1);
+    global.localStorage.secondusername = seconduser;
+    pchatMenu.popup(remote.getCurrentWindow());
+  }
+
+  if (!pchatMenuRendered) {
+    let allUsers = document.getElementsByClassName('user');
+    if (allUsers.length) {
+      pchatMenuRendered = true;
+    }
+    for (let i = 0; i < allUsers.length; i++) {
+      allUsers[i].removeEventListener('click', pchatListener);
+      allUsers[i].addEventListener('click', pchatListener);
+    }
   }
 }
 
 export function reattachMenus () {
   menuRendered = false;
 };
+
+
+export function reattachChatMenus () {
+  chatMenuRendered = false;
+}
+
+export function reattachPChatMenu () {
+  pchatMenuRendered = false;
+}
