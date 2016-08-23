@@ -69,6 +69,7 @@ export function rightClickPChat (router) {
     seconduserid: global.localStorage.seconduserid,
     secondusername: global.localStorage.secondusername
   };
+  global.newName = data.secondusername;
   socket.emit('makePrivateChat', data);
   router.replace('/privateChat');
   store.dispatch(addFriend(data.seconduserid, data.secondusername));
@@ -87,9 +88,7 @@ export function startPChatFromAllUsers (event, router) {
     seconduserid: global.localStorage.seconduserid,
     secondusername: global.localStorage.secondusername
   };
-
-  console.log('this is data', data);
-
+  global.newName = data.secondusername;
   socket.emit('makePrivateChat', data);
   router.replace('/privateChat');
   removeHighlight(info['username']);

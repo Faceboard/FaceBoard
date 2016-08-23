@@ -17,6 +17,16 @@ export function findFriend (data) {
   }
 };
 
+export function findNewFriend (friendname) {
+  let friendArray = document.getElementsByClassName('friends');
+  for (let i  = 0; i < friendArray.length; i++) {
+    if (friendArray[i].innerHTML === friendname) {
+      friendArray[i].classList.add('in-pchat');
+      delete global.newName;
+    }
+  }
+}
+
 export function removeHighlight (target) {
   let friendArray = document.getElementsByClassName('friends');
 
@@ -27,11 +37,19 @@ export function removeHighlight (target) {
   }
 };
 
+export function removePChatHighlighting () {
+  let friendArray = document.getElementsByClassName('friends');
+  for (let  i = 0; i < friendArray.length; i++) {
+    friendArray[i].classList.remove('in-pchat');
+  }
+}
+
 export function startPChat (target) {
   let friendArray = document.getElementsByClassName('friends');
   for (let i = 0; i < friendArray.length; i++) {
     if (friendArray[i].innerHTML === target) {
       friendArray[i].classList.add('in-pchat');
+      delete global.newName;
     }
     if (friendArray[i].innerHTML !== target) {
       friendArray[i].classList.remove('in-pchat');
