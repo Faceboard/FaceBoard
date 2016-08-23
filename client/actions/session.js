@@ -52,10 +52,9 @@ export function makePrivateSession (firstUserName, secondUserName) {
 
 export function askSecondUserToJoin (data) {
   if (isSecondUser(data.secondUserName)) {
-    console.log('test');
     if (confirmJoinSession(data.firstUserName)) {
       setSessionGlobals(data.firstUserName, data.secondUserName, data);
     }
-    console.log('test2');
+    return false;
   }
 };
