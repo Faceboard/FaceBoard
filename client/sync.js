@@ -5,6 +5,7 @@ import { getPrivateMessages } from './actions/chat';
 import { findFriend, onlineUser, offlineUser } from './helpers/friendHelpers';
 import { fetchWhiteboard } from './actions/whiteboardConfig';
 import { getAllFriends } from './actions/friends';
+import { reattachMenus } from './actions/menu';
 
 let options = {
   'force new connection': true
@@ -81,7 +82,9 @@ socket.on('pchat confirmed', (data) => {
 });
 
 socket.on('deleted friend', (data) => {
-  store.dispatch(getAllFriends());
+  if (data.userid === global.localStorage.userid) {
+    store.dispatch(getAllFriends());
+  }
 });
 
 socket.on('connect', (data) => {

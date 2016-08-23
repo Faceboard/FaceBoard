@@ -1,5 +1,4 @@
 import { makePrivateSession } from './session';
-import { deleteFriend } from './friends';
 import { rightClickPChat } from './chat';
 const remote = window.require('electron').remote;
 const Menu = remote.Menu;
@@ -16,12 +15,6 @@ export function makeMenu (router) {
     label: 'Invite user',
     click: () => {
       makePrivateSession(global.localStorage.username, global.localStorage.secondusername);
-    }
-  }));
-  menu.append(new MenuItem({
-    label: 'Delete Friend',
-    click: () => {
-      deleteFriend(global.localStorage.secondusername);
     }
   }));
 

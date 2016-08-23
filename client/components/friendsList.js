@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 import { inviteToSession, makeSession, sessionChange, makePrivateSession, askSecondUserToJoin } from '../actions/session';
 import socket from '../sync';
 import { makeMenu, reattachMenus } from '../actions/menu';
-import { addFriend, getAllFriends } from '../actions/friends';
+import { addFriend, getAllFriends, deleteFriend } from '../actions/friends';
 import { getPrivateMessages, getAllFriendPrivateMsg, pChatStart } from '../actions/chat';
 
 class FriendsList extends React.Component {
@@ -36,10 +36,19 @@ class FriendsList extends React.Component {
     pChatStart(e, router);
   }
 
+  removeFriend (e) {
+    deleteFriend(e.target.value);
+  }
+
   render () {
     const { friends } = this.props;
-    const mapFriends = friends.map(friend => <li onClick={this.privateMessageStart.bind(this)}
-      className="friends list-group-item fa fa-star-o" key={friend.id} value={friend.friendid}>{friend.friendname}</li>);
+    const mapFriends = friends.map(friend =>
+      <div className='list-group-item'>
+        <li onClick={this.privateMessageStart.bind(this)}
+        className="friends" key={friend.id} value={friend.friendid}>{friend.friendname}</li>
+        <button onClick={this.removeFriend.bind(this)} value={friend.friendname}></button>
+      </div>
+    );
 
     if (!friends.length) {
       return (
