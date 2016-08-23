@@ -51,13 +51,15 @@ class Chat extends React.Component {
       );
     }
     return (
-      <div className="chatBox">
-        <table className="table-striped">
-          <tbody>
-            {messages.map(message => <Message key={message.id} userid={message.userid} user={message.user} text={message.text} timestamp={message.createdAt}/>)}
-          </tbody>
-        </table>
-        <Input />
+      <div className="chat">
+        <div className="chatBox">
+          <table className="table-striped">
+            <tbody>
+              {messages.map(message => <Message key={message.id} userid={message.userid} user={message.user} text={message.text} timestamp={message.createdAt}/>)}
+            </tbody>
+          </table>
+          <Input />
+        </div>
       </div>
     );
   }

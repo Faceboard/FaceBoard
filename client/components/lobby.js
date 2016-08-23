@@ -5,9 +5,7 @@ import { logout, authenticated } from '../auth';
 import { getAllUsers, filterSearch } from '../actions/userActions';
 import { makePrivateSession } from '../actions/session';
 import { startPChatFromAllUsers } from '../actions/chat';
-import HeaderIcons from './headerIcons';
-
-import FriendsList from './friendsList';
+import Sidebar from './sidebar';
 import Chat from './chat';
 import RoomList from './roomList';
 import io from 'socket.io-client';
@@ -29,15 +27,24 @@ class Lobby extends React.Component {
     this.props.dispatch(getAllUsers());
   }
 
+  onLogout () {
+    logout();
+    this.props.router.replace('/auth');
+  }
+
   render () {
     return (
       <div className="lobby">
         <div className="mainHeader">
+          <div className="logo pull-left">
+            <img src="../static/imgs/logo.png" style={{maxHeight: '50px'}} />
+          </div>
           Lobby
-          <HeaderIcons />
+          <button className="btn btn-default pull-right" onClick={this.onLogout.bind(this)}>
+            <span className="icon icon-logout"></span>
+          </button>
         </div>
-        <RoomList />
-        <FriendsList />
+        <Sidebar />
         <Chat />
       </div>
     );
