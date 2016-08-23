@@ -44,16 +44,6 @@ a {
   display: block;
 }
 
-#friendsList {
-  float: left;
-  width: 15%;
-  height: 80%;
-}
-
-.showUsers {
-  display: none;
-}
-
 .list-group-item {
   color: #dddddd;
 }
@@ -73,9 +63,15 @@ a {
   color: white;
 }
 
+.chat {
+  height: 70%;
+}
+
 .chatBox {
-  height: 80%;
+  height: 100%;
+  /*height: 80%;*/
   overflow: auto;
+  padding: 30px;
 }
 
 .chatBox::-webkit-scrollbar {
@@ -125,9 +121,9 @@ select {
   color: #3d3d3d;
 }
 
-span {
+/*span {
   display: block;
-}
+}*/
 
 #mainSession {
   display: inline-block;
@@ -148,14 +144,6 @@ span {
   border-width: 2px;
   background-color: white;
   color: #3d3d3d;
-}
-
-.hidden {
-  display: none;
-}
-
-.open {
-
 }
 
 #firepadContainer {
@@ -181,39 +169,12 @@ video {
   max-height: 90%;
 }
 
-.allUsers {
-  max-height: 45%;
-  overflow: scroll;
-  width: 85%;
-}
-
-.allUsers::-webkit-scrollbar {
-  opacity: 0;
-  width: 0;
-}
-
-.friends {
-  list-style: none;
-}
-
 .window {
   overflow: auto;
 }
 
 .btn {
   margin: 5px;
-}
-
-.user{
-  display: inline-flex;
-  font-weight: bold;
-  color: #898989;
-  text-decoration: none;
-}
-
-.user:hover {
-  font-weight: bold;
-  text-decoration: underline;
 }
 
 .timestamp {
@@ -241,10 +202,73 @@ video {
 
 .mainHeader {
   text-align: center;
-  padding: 15px;
+  padding: 25px;
   font-size: 26px;
   letter-spacing: 2px;
   font-family: "raleway";
+}
+
+.progresscircle {
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.users {
+  overflow: auto;
+  height: 45%;
+  /*width: 85%;*/
+}
+
+.users::-webkit-scrollbar {
+  opacity: 0;
+  width: 0;
+}
+
+.user {
+  display: inline-flex;
+  font-weight: bold;
+  color: #898989;
+  text-decoration: none;
+}
+
+.user:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.sidebar {
+  float: left;
+  width: 20%;
+  height: 80%;
+  background: #3d3d3d;
+  /*position: absolute;*/
+}
+
+.username {
+  /*text-align: center;*/
+  padding: 10px;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-family: "raleway";
+}
+
+.showUsers {
+  display: none;
+}
+
+.friends {
+  list-style: none;
+}
+
+.logo {
+  position: absolute;
+}
+
+.search-pad {
+  margin: 13px 10px 0 0;
 }
 
 @font-face {
@@ -261,12 +285,4 @@ video {
   src: url("../src/fonts/Raleway-ExtraLight/Raleway-ExtraLight.eot?#iefix") format("eot"), url("../src/fonts/Raleway-ExtraLight/Raleway-ExtraLight.woff") format("woff"), url("../src/fonts/Raleway-ExtraLight/Raleway-ExtraLight.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
-}
-
-.progresscircle {
-  position: absolute;
-  top: 50%;
-  left: 48%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%)
 }

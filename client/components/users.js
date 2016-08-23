@@ -7,7 +7,7 @@ import { makePrivateSession } from '../actions/session';
 import { startPChatFromAllUsers } from '../actions/chat';
 import { addFriend } from '../actions/friends';
 
-class HeaderIcons extends React.Component {
+class Users extends React.Component {
   constructor (props) {
     super(props);
   }
@@ -40,7 +40,7 @@ class HeaderIcons extends React.Component {
   render () {
     const { filteredUsers } = this.props;
     const mapUsers = filteredUsers.map(user =>
-      <li  className=" list-group-item" key={user.username}>
+      <li  className="list-group-item" key={user.username}>
         <span className="icon icon-phone btn btn-default" data-username={user.username} onClick={this.callUser.bind(this)}></span>
         <span className="icon icon-pencil btn btn-default" data-username={user.username} data-user-id={user.id} onClick={this.msgUser.bind(this)}></span>
         <div className="media-body pull-right">
@@ -50,18 +50,15 @@ class HeaderIcons extends React.Component {
     );
     if (!filteredUsers) {
       return (
-        <div> Loading... </div>
+        <div className="users"> Loading... </div>
       )
     }
     return (
-      <div className="headerIcons">
-        <button className="btn btn-default pull-right" onClick={this.onLogout.bind(this)}>
-          <span className="icon icon-logout"></span>
+      <div className="users">
+        <button className="btn btn-default pull-right search-pad" >
+          <span className="icon icon-search search-icon"></span>
         </button>
-        <button className="btn btn-default pull-right" >
-          <span className="icon icon-search"></span>
-        </button>
-        <ul className="list-group pull-right showAllUsers">
+        <ul className="list-group showAllUsers">
           <li className="list-group-header">
             <input className="form-control" type="text" placeholder="Search for someone" value={this.props.value} onChange={this.filterUsers.bind(this)}/>
           </li>
@@ -73,4 +70,4 @@ class HeaderIcons extends React.Component {
 }
 
 const mapStateToProps = (state) => state.userReducer;
-export default connect(mapStateToProps)(withRouter(HeaderIcons));
+export default connect(mapStateToProps)(withRouter(Users));
