@@ -1,4 +1,4 @@
-import { FETCHING_ROOMS, FETCHED_ROOMS, FETCHED_ROOMS_ERROR } = '../actions/action';
+import { FETCHING_ROOMS, FETCHED_ROOMS, FETCHED_ROOMS_ERROR } from '../actions/action';
 
 const initialState = {
   rooms: [],
@@ -22,6 +22,8 @@ const roomReducer = (state = initialState, action) => {
         fetched: true,
         error: action.payload
       });
+    default:
+      return state;
   }
 };
 

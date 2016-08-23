@@ -9,6 +9,7 @@ import HeaderIcons from './headerIcons';
 
 import FriendsList from './friendsList';
 import Chat from './chat';
+import RoomList from './roomList';
 import io from 'socket.io-client';
 import socket from '../sync';
 
@@ -35,6 +36,7 @@ class Lobby extends React.Component {
           Lobby
           <HeaderIcons />
         </div>
+        <RoomList />
         <FriendsList />
         <Chat />
       </div>
