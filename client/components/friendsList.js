@@ -47,7 +47,8 @@ class FriendsList extends React.Component {
 
   render () {
     const { friends } = this.props;
-    const mapFriends = friends.map(friend =>
+    const friendsNoSelf = friends.filter(f => f.friendname !== global.localStorage.username)
+    const mapFriends = friendsNoSelf.map(friend =>
       <div className='list-group-item'>
         <li onClick={this.privateMessageStart.bind(this)}
         className="friends" key={friend.id} value={friend.friendid}>{friend.friendname}</li>
