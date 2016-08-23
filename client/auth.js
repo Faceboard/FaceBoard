@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { constantUrl } from './sync';
+import socket from './sync';
 
 export function signIn (username, password) {
   return axios.post(constantUrl + '/users/signin', {
@@ -36,6 +37,7 @@ export function authenticated () {
 }
 
 export function logout () {
+  socket.emit('userDisconnected', {username: global.localStorage.username});
   delete global.localStorage.token;
   delete global.localStorage.username;
   delete global.localStorage.userid;

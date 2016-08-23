@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { authChange } from '../actions/action';
 import { signIn, authenticated } from '../auth';
+import socket from '../sync';
 
 class Signin extends React.Component {
   constructor (props) {
@@ -20,6 +21,7 @@ class Signin extends React.Component {
       .then(() => {
         if (authenticated()) {
           router.replace('/');
+          socket.emit('userConnected', {username: username});
         } else {
           console.error('username or password is incorrect');
         }

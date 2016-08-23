@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { authChange } from '../actions/action';
 import { signUp, authenticated } from '../auth';
+import socket from '../sync';
 
 class Signup extends React.Component {
   constructor (props) {
@@ -20,6 +21,7 @@ class Signup extends React.Component {
       .then(() => {
         if (authenticated()) {
           router.replace('/');
+          socket.emit('userConnected', {username: username});
         } else {
           console.log('Failed to find or create user');
         }

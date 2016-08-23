@@ -19,7 +19,6 @@ class MainSession extends React.Component {
     socket.on('userHasSentWBID', function (id) {
       dispatch(fetchWhiteboard(id));
     })
-    // this.props.dispatch(fetchWhiteboard());
   }
 
   toggleEditor (e) {
