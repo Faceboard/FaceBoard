@@ -16,5 +16,3 @@ export function getRoomMessages (roomid) {
       });
   };
 };
-
-
