@@ -8,8 +8,6 @@ import socket from '../sync';
 import { makeMenu, reattachMenus } from '../actions/menu';
 import { addFriend, getAllFriends } from '../actions/friends';
 import { getPrivateMessages, getAllFriendPrivateMsg, pChatStart } from '../actions/chat';
-import { removeHighlight, startPChat } from '../helpers/friendHelpers';
-
 
 class FriendsList extends React.Component {
   constructor (props) {
@@ -31,14 +29,6 @@ class FriendsList extends React.Component {
 
   componentWillUnmount () {
     reattachMenus();
-  }
-
-  addPerson (e) {
-    e.preventDefault();
-    reattachMenus();
-    if (e.target.innerHTML !== global.localStorage.username) {
-      this.props.dispatch(addFriend(e.target.value, e.target.innerHTML));
-    }
   }
 
   privateMessageStart (e) {

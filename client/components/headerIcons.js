@@ -5,6 +5,7 @@ import { logout } from '../auth';
 import { getAllUsers, filterSearch } from '../actions/userActions';
 import { makePrivateSession } from '../actions/session';
 import { startPChatFromAllUsers } from '../actions/chat';
+import { addFriend } from '../actions/friends';
 
 class HeaderIcons extends React.Component {
   constructor (props) {
@@ -22,12 +23,13 @@ class HeaderIcons extends React.Component {
 
   callUser (e) {
     e.preventDefault();
-    makePrivateSession(global.localStorage.username, e.target.getAttribute('value'));
+    makePrivateSession(global.localStorage.username, e.target.dataset['username']);
   }
 
   msgUser (e) {
     const { router } = this.props;
     e.preventDefault();
+    this.props.dispatch(addFriend(e.target.dataset['userId'], e.target.dataset['username']));
     startPChatFromAllUsers(e, router);
   }
 
@@ -38,7 +40,7 @@ class HeaderIcons extends React.Component {
     const { filteredUsers } = this.props;
     const mapUsers = filteredUsers.map(user =>
       <li  className=" list-group-item" key={user.username}>
-        <span className="icon icon-phone btn btn-default" value={user.username} onClick={this.callUser.bind(this)}></span>
+        <span className="icon icon-phone btn btn-default" data-username={user.username} onClick={this.callUser.bind(this)}></span>
         <span className="icon icon-pencil btn btn-default" data-username={user.username} data-user-id={user.id} onClick={this.msgUser.bind(this)}></span>
         <div className="media-body pull-right">
           <strong>{user.username}</strong>
