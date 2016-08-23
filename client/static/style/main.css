@@ -50,6 +50,10 @@ a {
   height: 80%;
 }
 
+.showUsers {
+  display: none;
+}
+
 .list-group-item {
   color: #dddddd;
 }
@@ -119,6 +123,10 @@ a {
 
 select {
   color: #3d3d3d;
+}
+
+span {
+  display: block;
 }
 
 #mainSession {

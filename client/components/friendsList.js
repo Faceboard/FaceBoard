@@ -17,7 +17,6 @@ class FriendsList extends React.Component {
   }
 
   componentWillMount () {
-    this.props.dispatch(getAllUsers());
     this.props.dispatch(getAllFriends());
     const { router } = this.props;
     socket.on('userWantsToCreateSession', function (data) {
@@ -48,12 +47,11 @@ class FriendsList extends React.Component {
   }
 
   render () {
-    const { users, friends } = this.props;
-    const mapUsers = users.map(user => <li onClick={this.addPerson.bind(this)} className=" list-group-item" key={user.username} value={user.id}>{user.username}</li>);
+    const { friends } = this.props;
     const mapFriends = friends.map(friend => <li onClick={this.privateMessageStart.bind(this)}
       className="friends list-group-item" key={friend.id} value={friend.friendid}>{friend.friendname}</li>);
 
-    if (!users.length) {
+    if (!friends.length) {
       return (
         <div id="friendsList">
         </div>
@@ -61,13 +59,6 @@ class FriendsList extends React.Component {
     }
     return (
       <div id="friendsList">
-        <ul className="allUsers list-group">
-          <li className="list-group-header">
-            <h4>All Users</h4>
-          </li>
-          {mapUsers}
-        </ul>
-        <hr />
         <ul className="allUsers list-group">
           <li className="list-group-header">
             <h4>Friends</h4>

@@ -15,3 +15,10 @@ export function getAllUsers () {
       });
   };
 }
+
+export function filterSearch (filter) {
+  return {
+    type: 'FILTER_USERS',
+    filter
+  }
+}

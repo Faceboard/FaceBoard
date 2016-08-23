@@ -2,6 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { logout, authenticated } from '../auth';
+import { getAllUsers, filterSearch } from '../actions/userActions';
+import { makePrivateSession } from '../actions/session';
+import { startPChatFromAllUsers } from '../actions/chat';
+import HeaderIcons from './headerIcons';
+
 import FriendsList from './friendsList';
 import Chat from './chat';
 import io from 'socket.io-client';
@@ -20,26 +25,15 @@ class Lobby extends React.Component {
     if (!authenticated()) {
       this.props.router.replace('/auth');
     }
-  }
-
-  componentDidMount () {
-    window.location.host = 'face-board.herokuapp.com';
-  }
-
-  onLogout () {
-    logout();
-    this.props.router.replace('/auth');
+    this.props.dispatch(getAllUsers());
   }
 
   render () {
-    let username = global.localStorage.username;
     return (
       <div className="lobby">
         <div className="mainHeader">
           Lobby
-          <button className="btn btn-default pull-right" onClick={this.onLogout.bind(this)}>
-            <span className="icon icon-logout"></span>
-          </button>
+          <HeaderIcons />
         </div>
         <FriendsList />
         <Chat />
@@ -48,5 +42,19 @@ class Lobby extends React.Component {
   }
 }
 
-const mapStateToProps = state => state.authReducer;
+const mapStateToProps = (state) => {
+  return {
+    authReducer: state.authReducer,
+    userReducer: state.userReducer
+  }
+};
+
 export default connect(mapStateToProps)(withRouter(Lobby));
+
+
+// <button onClick={this.callUser.bind(this)}>
+//           <span className="icon icon-phone" value={user.username}></span>
+//         </button>
+//         <button onClick={this.msgUser.bind(this)}>
+//           <span className="icon icon-pencil" data-username={user.username} data-user-id={user.id}></span>
+//         </button>

@@ -55,7 +55,7 @@ export function pChatStart (event, router) {
     pchat: global.localStorage.pchat,
     seconduserid: global.localStorage.seconduserid,
     secondusername: global.localStorage.secondusername
-  }
+  };
   socket.emit('makePrivateChat', data);
   router.replace('/privateChat');
   store.dispatch(getAllFriendPrivateMsg(data.seconduserid));
@@ -74,4 +74,23 @@ export function rightClickPChat (router) {
   store.dispatch(getAllFriendPrivateMsg(data.seconduserid));
   removeHighlight(global.localStorage.secondusername);
   startPChat(global.localStorage.secondusername);
+};
+
+export function startPChatFromAllUsers (event, router) {
+  let info = event.target.dataset;
+  global.localStorage.seconduserid = info['userId'];
+  global.localStorage.secondusername = info['username'];
+  global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;
+  let data = {
+    pchat: global.localStorage.pchat,
+    seconduserid: global.localStorage.seconduserid,
+    secondusername: global.localStorage.secondusername
+  };
+
+  console.log('this is data', data);
+
+  socket.emit('makePrivateChat', data);
+  router.replace('/privateChat');
+  removeHighlight(info['username']);
+  startPChat(info['username']);
 };
