@@ -8,6 +8,7 @@ import socket from '../sync';
 import { makeMenu, reattachMenus } from '../actions/menu';
 import { addFriend, getAllFriends, deleteFriend } from '../actions/friends';
 import { getPrivateMessages, getAllFriendPrivateMsg, pChatStart } from '../actions/chat';
+import { findFriend } from '../helpers/friendHelpers';
 
 class FriendsList extends React.Component {
   constructor (props) {
@@ -25,6 +26,10 @@ class FriendsList extends React.Component {
   componentDidUpdate () {
     const { router } = this.props;
     makeMenu(router);
+    if (global.newFriend) {
+      console.log('this happened');
+      findFriend(global.newFriend);
+    }
   }
 
   componentWillUnmount () {
