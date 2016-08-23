@@ -45,7 +45,6 @@ const userReducer = (state = initialState, action) => {
         [action.field]: action.value
       });
     case 'FILTER_USERS':
-      console.log('This is state', state);
       let filtered = state.users.filter(u => u.username.toLowerCase().indexOf(action.filter.toLowerCase()) !== -1);
       return Object.assign({}, state, { filteredUsers: filtered });
     default:
