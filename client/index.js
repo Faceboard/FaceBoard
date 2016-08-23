@@ -12,6 +12,7 @@ import Lobby from './components/lobby';
 import Session from './components/session';
 import PrivateChat from './components/privateChat';
 import FriendsList from './components/privateChat';
+import Room from './components/room';
 import configureStore from './store/configureStore';
 
 axios.interceptors.request.use(function (config) {
@@ -30,6 +31,7 @@ ReactDOM.render(
       <Route path="/signin" component={Signin}/>
       <Route path="/session" component={Session}/>
       <Route path="/privateChat" component={PrivateChat}/>
+      <Route path="/room" component={Room}/>
     </Router>
   </Provider>
 , document.getElementById('root'));

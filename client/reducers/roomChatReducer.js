@@ -1,12 +1,12 @@
 import { FETCHING_ROOM_MESSAGES, ROOM_MESSAGES_FETCHED, ROOM_MESSAGES_ERROR } from '../actions/action';
 
 const initialState = {
-  messages: [],
+  roomMsgs: [],
   fetching: false,
   fetched: false
 };
 
-const roomChatReducer = (state = {}, action) => {
+const roomChatReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCHING_ROOM_MESSAGES:
       return Object.assign({}, state, {
@@ -16,7 +16,7 @@ const roomChatReducer = (state = {}, action) => {
       return Object.assign({}, state, {
         fetched: false,
         fetching: true,
-        privMessages: action.payload
+        roomMsgs: action.payload
       });
     case ROOM_MESSAGES_ERROR:
       return Object.assign({}, state, {
