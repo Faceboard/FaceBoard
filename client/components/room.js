@@ -4,8 +4,8 @@ import { withRouter } from 'react-router';
 import RoomList from './roomList';
 import FriendsList from './friendsList';
 import RoomChat from './roomChat';
-import HeaderIcons  from './headerIcons';
 import RoomChatInput from './roomChatInput';
+import Sidebar from './sidebar';
 import { getRoomMessages } from '../actions/room';
 
 
@@ -22,10 +22,8 @@ class Room extends React.Component {
       <div className="lobby">
         <div className="mainHeader">
           {currentRoom}
-          <HeaderIcons />
         </div>
-        <RoomList />
-        <FriendsList />
+        <Sidebar />
         <RoomChat />
       </div>
     );
