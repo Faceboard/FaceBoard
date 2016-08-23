@@ -1,3 +1,6 @@
+import { store } from '../index';
+import { addFriend } from '../actions/friends';
+
 export function findFriend (data) {
   let friendArray = document.getElementsByClassName('friends');
   let hasFriend = false;
@@ -5,9 +8,13 @@ export function findFriend (data) {
     if (friendArray[i].innerHTML === data.useronename && !friendArray[i].classList.contains('in-pchat')) {
       friendArray[i].classList.add('hasMessage');
       hasFriend = true;
+      delete global.newFriend;
     }
   }
-  console.log('this is data', data);
+  if (!hasFriend) {
+    store.dispatch(addFriend(data.useroneid, data.useronename));
+    global.newFriend = data;
+  }
 };
 
 export function removeHighlight (target) {

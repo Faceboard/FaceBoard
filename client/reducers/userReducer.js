@@ -1,4 +1,4 @@
-import { FETCHING_USERS, USERS_FETCHED, FETCH_USERS_ERROR, CHANGE_FIELD, FETCHING_FRIENDS, FRIENDS_FETCHED, FETCHING_FRIENDS_ERROR } from '../actions/action';
+import { FETCHING_USERS, USERS_FETCHED, FETCH_USERS_ERROR, CHANGE_FIELD, FETCHING_FRIENDS, FRIENDS_FETCHED, FETCHING_FRIENDS_ERROR, FILTER_USERS } from '../actions/action';
 
 const initialState = {
   users: [],
@@ -44,7 +44,7 @@ const userReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         [action.field]: action.value
       });
-    case 'FILTER_USERS':
+    case FILTER_USERS:
       let filtered = state.users.filter(u => u.username.toLowerCase().indexOf(action.filter.toLowerCase()) !== -1);
       return Object.assign({}, state, { filteredUsers: filtered });
     default:

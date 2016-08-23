@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { FETCHING_MESSAGES, FETCHING_PRIVATE_MESSAGES, MESSAGES_FETCHED, MESSAGES_ERROR, FETCHING_PCHAT, PCHAT_FETCHED, PCHAT_ERROR } from './action';
-import { getAllFriends } from './friends';
+import { getAllFriends, addFriend } from './friends';
 import { constantUrl } from '../sync';
 import socket from '../sync';
 import { store } from '../index';
@@ -60,7 +60,7 @@ export function pChatStart (event, router) {
   router.replace('/privateChat');
   store.dispatch(getAllFriendPrivateMsg(data.seconduserid));
   removeHighlight(event.target.innerHTML);
-  startPChat(event.target.innerHTML)
+  startPChat(event.target.innerHTML);
 };
 
 export function rightClickPChat (router) {
@@ -68,9 +68,10 @@ export function rightClickPChat (router) {
     pchat: global.localStorage.pchat,
     seconduserid: global.localStorage.seconduserid,
     secondusername: global.localStorage.secondusername
-  }
+  };
   socket.emit('makePrivateChat', data);
   router.replace('/privateChat');
+  store.dispatch(addFriend(data.seconduserid, data.secondusername));
   store.dispatch(getAllFriendPrivateMsg(data.seconduserid));
   removeHighlight(global.localStorage.secondusername);
   startPChat(global.localStorage.secondusername);

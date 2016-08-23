@@ -14,7 +14,7 @@ export function getAllFriends () {
         dispatch({type: FETCHING_FRIENDS_ERROR, error: error });
       });
   };
-}
+};
 
 export function addFriend (friendid, friendname) {
   return function (dispatch) {
@@ -33,12 +33,12 @@ export function addFriend (friendid, friendname) {
       });
     });
   }
-}
+};
 
 export function deleteFriend (friendname) {
   let data = {
     userid: global.localStorage.userid,
     friendname
-  }
+  };
   socket.emit('delete friend', data);
-}
+};
