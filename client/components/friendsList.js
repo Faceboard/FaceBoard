@@ -53,7 +53,7 @@ class FriendsList extends React.Component {
     const mapFriends = friendsNoSelf.map(friend =>
       <div className='list-group-item'>
         <li onClick={this.privateMessageStart.bind(this)}
-        className="friends" key={friend.id} value={friend.friendid}>{friend.friendname}</li>
+        className="friends fa fa-star-o" key={friend.id} value={friend.friendid}>{friend.friendname}</li>
         <button onClick={this.removeFriend.bind(this)} value={friend.friendname}></button>
       </div>
     );

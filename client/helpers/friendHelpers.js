@@ -63,9 +63,7 @@ export function onlineUser (target) {
 
   for (let i = 0; i < friendArray.length; i++) {
     if (friendArray[i].innerHTML === target) {
-      friendArray[i].classList.remove('fa');
       friendArray[i].classList.remove('fa-star-o');
-      friendArray[i].classList.add('fa');
       friendArray[i].classList.add('fa-star');
     }
   }
@@ -77,10 +75,8 @@ export function offlineUser (target) {
 
   for (let i = 0; i < friendArray.length; i++) {
     if (friendArray[i].innerHTML === target) {
-      friendArray[i].classList.add('fa');
-      friendArray[i].classList.add('fa-star');
-      friendArray[i].classList.remove('fa');
-      friendArray[i].classList.remove('fa-star-o');
+      friendArray[i].classList.remove('fa-star');
+      friendArray[i].classList.add('fa-star-o');
     }
   }
 };
