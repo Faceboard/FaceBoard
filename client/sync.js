@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 import { store } from './index';
 import { getAllMessages } from './actions/chat';
 import { getPrivateMessages } from './actions/chat';
-import { findFriend } from './helpers/friendHelpers';
+import { findFriend, onlineUser, offlineUser } from './helpers/friendHelpers';
 import { fetchWhiteboard } from './actions/whiteboardConfig';
 import { getAllFriends } from './actions/friends';
 
@@ -10,8 +10,8 @@ let options = {
   'force new connection': true
 };
 
-export const constantUrl = 'https://face-board.herokuapp.com';
-// export const constantUrl = 'http://localhost:3000';
+// export const constantUrl = 'https://face-board.herokuapp.com';
+export const constantUrl = 'http://localhost:3000';
 
 let socket = io(constantUrl + '/test', options);
 
@@ -82,6 +82,24 @@ socket.on('pchat confirmed', (data) => {
 
 socket.on('deleted friend', (data) => {
   store.dispatch(getAllFriends());
+});
+
+socket.on('connect', (data) => {
+  socket.emit('userConnected', {username: global.localStorage.username});
+});
+
+socket.on('userConnectedConfirmed', (data) => {
+  console.log('user connected', data.username);
+  onlineUser(data.username);
+});
+
+socket.on('disconnect', (data) => {
+  socket.emit('userDisconnected', {username: global.localStorage.username});
+});
+
+socket.on('userDisconnectedConfirmed', (data) => {
+  console.log('user disconnected', data.username);
+  offlineUser(data.username);
 });
 
 export default socket;
