@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { constantUrl } from '../sync';
 import { FETCHING_ROOM_MESSAGES, ROOM_MESSAGES_FETCHED, ROOM_MESSAGES_ERROR, FETCHING_ROOMS, FETCHED_ROOMS, FETCHED_ROOMS_ERROR } from './action';
+import socket from '../sync';
 
 export function getRoomMessages(roomid) {
   return function(dispatch) {
@@ -19,14 +20,13 @@ export function getRoomMessages(roomid) {
         });
       });
   };
-};
+}
 
 export function getRoomsForUser() {
   return function(dispatch) {
     dispatch({type: FETCHING_ROOMS});
     axios.get(constantUrl + '/rooms/findAll')
       .then((response) => {
-        //console.log(response.data);
         dispatch({
           type: FETCHED_ROOMS,
           payload: response.data
@@ -39,4 +39,12 @@ export function getRoomsForUser() {
         });
       });
   };
-};
+}
+
+export function deleteRoom(roomname) {
+  let data = {
+    userid: global.localStorage.userid,
+    roomname
+  };
+  socket.emit('delete room', data);
+}

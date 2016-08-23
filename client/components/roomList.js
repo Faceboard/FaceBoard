@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getRoomsForUser } from '../actions/room';
+import { getRoomsForUser, deleteRoom } from '../actions/room';
 
 class RoomList extends React.Component {
   constructor(props) {
@@ -12,11 +12,17 @@ class RoomList extends React.Component {
     this.props.dispatch(getRoomsForUser());
   }
 
+  removeRoom (e) {
+    deleteRoom(e.target.value);
+  }
+
   render() {
     const { rooms } = this.props;
-    console.log(rooms);
     const mapRooms = rooms.map(room =>
-      <li>{room.roomname}</li>
+      <div>
+        <li key={room.id} value={room.roomid}>{room.roomname}</li>
+        <button onClick={this.removeRoom.bind(this)} value={room.roomname}></button>
+      </div>
     );
     if (!rooms.length) {
       return (
@@ -26,7 +32,11 @@ class RoomList extends React.Component {
 
     return (
       <div>
-        hello World
+        <ul className="list-group">
+          <li className="list-group-header">
+            <h4>Rooms</h4>
+          </li>
+        </ul>
         {mapRooms}
       </div>
     );
