@@ -1,11 +1,13 @@
 export function findFriend (data) {
   let friendArray = document.getElementsByClassName('friends');
-
+  let hasFriend = false;
   for (let i = 0; i < friendArray.length; i++) {
     if (friendArray[i].innerHTML === data.useronename && !friendArray[i].classList.contains('in-pchat')) {
       friendArray[i].classList.add('hasMessage');
+      hasFriend = true;
     }
   }
+  console.log('this is data', data);
 };
 
 export function removeHighlight (target) {
