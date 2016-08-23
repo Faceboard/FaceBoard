@@ -5,14 +5,14 @@ import { getPrivateMessages } from './actions/chat';
 import { findFriend, onlineUser, offlineUser } from './helpers/friendHelpers';
 import { fetchWhiteboard } from './actions/whiteboardConfig';
 import { getAllFriends } from './actions/friends';
-import { reattachMenus } from './actions/menu';
+import { getRoomsForUser } from './actions/room';
 
 let options = {
   'force new connection': true
 };
 
 export const constantUrl = 'https://face-board.herokuapp.com';
-// export const constantUrl = 'http://localhost:3000';
+//export const constantUrl = 'http://localhost:3000';
 
 let socket = io(constantUrl + '/test', options);
 
@@ -66,7 +66,7 @@ socket.on('send message', (data) => {
 
 socket.on('send private message', (data) => {
   let sender = global.localStorage.seconduserid;
-  findFriend(data)
+  findFriend(data);
   store.dispatch(getPrivateMessages(sender));
 });
 
@@ -84,6 +84,12 @@ socket.on('pchat confirmed', (data) => {
 socket.on('deleted friend', (data) => {
   if (data.userid === global.localStorage.userid) {
     store.dispatch(getAllFriends());
+  }
+});
+
+socket.on('deleted room', (data) => {
+  if (data.userid === global.localStorage.userid) {
+    store.dispatch(getRoomsForUser());
   }
 });
 
