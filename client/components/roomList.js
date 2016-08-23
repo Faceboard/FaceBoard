@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getRoomsForUser, deleteRoom } from '../actions/room';
+import { getRoomsForUser, deleteRoom, addRooms } from '../actions/room';
 
 class RoomList extends React.Component {
   constructor(props) {
@@ -16,11 +16,19 @@ class RoomList extends React.Component {
     deleteRoom(e.target.value);
   }
 
+  addRoom (e) {
+    if (e.which === 13 && !e.shiftKey) {
+      let input = document.getElementById('roomlist-input');
+      this.props.dispatch(addRooms(input.value));
+      input.value = '';
+    }
+  }
+
   render() {
     const { rooms } = this.props;
     const mapRooms = rooms.map(room =>
       <div>
-        <li key={room.id} value={room.roomid}>{room.roomname}</li>
+        <li key={room.id} >{room.roomname}</li>
         <button onClick={this.removeRoom.bind(this)} value={room.roomname}></button>
       </div>
     );
@@ -36,7 +44,7 @@ class RoomList extends React.Component {
           <li className="list-group-header">
             <h4>Rooms</h4>
           </li>
-          <input></input>
+          <textarea id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
         </ul>
         {mapRooms}
       </div>

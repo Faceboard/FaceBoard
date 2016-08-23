@@ -11,7 +11,7 @@ let options = {
   'force new connection': true
 };
 
-// export const constantUrl = 'https://face-board.herokuapp.com';
+//export const constantUrl = 'https://face-board.herokuapp.com';
 export const constantUrl = 'http://localhost:3000';
 
 let socket = io(constantUrl + '/test', options);
@@ -66,7 +66,7 @@ socket.on('send message', (data) => {
 
 socket.on('send private message', (data) => {
   let sender = global.localStorage.seconduserid;
-  findFriend(data)
+  findFriend(data);
   store.dispatch(getPrivateMessages(sender));
 });
 

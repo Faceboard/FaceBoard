@@ -4,7 +4,7 @@ import { FETCHING_ROOM_MESSAGES, ROOM_MESSAGES_FETCHED, ROOM_MESSAGES_ERROR, FET
 import socket from '../sync';
 
 export function getRoomMessages(roomid) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch({ type: FETCHING_ROOM_MESSAGES });
     axios.post(constantUrl + '/messages/rooms/findAll', {roomid})
       .then((response) => {
@@ -23,7 +23,7 @@ export function getRoomMessages(roomid) {
 }
 
 export function getRoomsForUser() {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch({type: FETCHING_ROOMS});
     axios.get(constantUrl + '/rooms/findAll')
       .then((response) => {
@@ -40,6 +40,24 @@ export function getRoomsForUser() {
       });
   };
 }
+
+export function addRooms(roomname) {
+  return function (dispatch) {
+    dispatch({type: FETCHING_ROOMS});
+    axios.post(constantUrl + '/rooms/make', {
+      roomname
+    })
+    .then((response) => {
+      dispatch(getRoomsForUser());
+    })
+    .catch((error) => {
+      dispatch({
+        type: FETCHED_ROOMS_ERROR,
+        payload: error
+      });
+    });
+  }
+};
 
 export function deleteRoom(roomname) {
   let data = {
