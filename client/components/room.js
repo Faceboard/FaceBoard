@@ -5,7 +5,9 @@ import RoomList from './roomList';
 import FriendsList from './friendsList';
 import RoomChat from './roomChat';
 import HeaderIcons  from './headerIcons';
+import RoomChatInput from './roomChatInput';
 import { getRoomMessages } from '../actions/room';
+
 
 
 
@@ -24,6 +26,7 @@ class Room extends React.Component {
         </div>
         <RoomList />
         <FriendsList />
+        <RoomChat />
       </div>
     );
   }

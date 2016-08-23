@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { ProgressCircle } from 'react-desktop/macOs';
+import { getRoomMessages } from '../actions/room';
+import RoomChatInput from './roomChatInput';
+import Message from './message';
+
 
 
 class RoomChat extends React.Component {
@@ -14,6 +19,7 @@ class RoomChat extends React.Component {
 
   render () {
     const { roomMsgs } = this.props;
+    console.log('this is roomMsgs', roomMsgs);
     if (!roomMsgs) {
       <div className="progresscircle">
         <ProgressCircle size={40}/>
@@ -27,6 +33,7 @@ class RoomChat extends React.Component {
             {roomMsgs.map(message => <Message key={message.id} userid={message.id} user={message.user} text={message.text} timestamp={message.createdAt}/>)}
           </tbody>
         </table>
+        <RoomChatInput />
       </div>
     );
   }

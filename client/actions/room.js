@@ -12,6 +12,7 @@ export function getRoomMessages (roomid) {
           type: ROOM_MESSAGES_FETCHED,
           payload: response.data
         });
+        console.log('this is room getRoomMessages', response.data);
       })
       .catch((error) => {
         dispatch({

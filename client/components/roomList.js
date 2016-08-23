@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { getRoomsForUser, deleteRoom, addRooms } from '../actions/room';
+import socket from '../sync';
 
 class RoomList extends React.Component {
   constructor(props) {
@@ -29,6 +30,10 @@ class RoomList extends React.Component {
     const { router } = this.props;
     global.localStorage.roomid = e.target.dataset['roomId'];
     global.localStorage.currentRoom = e.target.dataset['roomname'];
+    let roomObj = {
+      roomname: global.localStorage.currentRoom
+    };
+    socket.emit('join room', roomObj);
     router.replace('/room');
   }
 
