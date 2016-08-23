@@ -32,6 +32,7 @@ export function getRoomsForUser () {
           type: FETCHED_ROOMS,
           payload: response.data
         });
+        console.log('this is response', response.data);
       })
       .catch((error) => {
         dispatch({

@@ -30,7 +30,7 @@ class RoomChat extends React.Component {
       <div className="chatBox">
         <table className="table-striped">
           <tbody>
-            {roomMsgs.map(message => <Message key={message.id} userid={message.id} user={message.user} text={message.text} timestamp={message.createdAt}/>)}
+            {roomMsgs.map(message => <Message key={message.id} userid={message.id} user={message.username} text={message.text} timestamp={message.createdAt}/>)}
           </tbody>
         </table>
         <RoomChatInput />

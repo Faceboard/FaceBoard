@@ -10,6 +10,7 @@ export function sendRoomMessage () {
     roomname: global.localStorage.currentRoom,
     roomid: global.localStorage.roomid
   };
+  msg = '';
 
   socket.emit('send message in room', msgObj);
 };

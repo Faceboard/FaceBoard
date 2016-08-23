@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getRoomsForUser, deleteRoom, addRooms } from '../actions/room';
+import { getRoomMessages, getRoomsForUser, deleteRoom, addRooms } from '../actions/room';
 import socket from '../sync';
 
 class RoomList extends React.Component {
@@ -20,6 +20,7 @@ class RoomList extends React.Component {
   addRoom (e) {
     if (e.which === 13 && !e.shiftKey) {
       let input = document.getElementById('roomlist-input');
+      console.log('this is room', input.value);
       this.props.dispatch(addRooms(input.value));
       input.value = '';
     }
@@ -35,6 +36,7 @@ class RoomList extends React.Component {
     };
     socket.emit('join room', roomObj);
     router.replace('/room');
+    this.props.dispatch(getRoomMessages(global.localStorage.roomid));
   }
 
   goToLobby () {
@@ -42,7 +44,7 @@ class RoomList extends React.Component {
     router.replace('/');
   }
 
-  render() {
+  render () {
     const { rooms } = this.props;
     const mapRooms = rooms.map(room =>
       <div>
@@ -58,6 +60,7 @@ class RoomList extends React.Component {
               <h4>Rooms</h4>
             </li>
             <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
+            <li onClick={this.goToLobby.bind(this)}>Lobby</li>
           </ul>
         </div>
       );
