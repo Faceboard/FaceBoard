@@ -27,4 +27,4 @@ class roomInput extends React.Component {
 }
 
 const mapStateToProps = (state) => state.inputReducer;
-export default connect(mapStateToProps)(withRouter(roomInput))
+export default connect(mapStateToProps)(withRouter(roomInput));
