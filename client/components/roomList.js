@@ -26,16 +26,17 @@ class RoomList extends React.Component {
     );
     if (!rooms.length) {
       return (
-        <div>Loading</div>
+        <div id="rooms-list">Loading</div>
       );
     }
 
     return (
-      <div>
+      <div id="rooms-list">
         <ul className="list-group">
           <li className="list-group-header">
             <h4>Rooms</h4>
           </li>
+          <input></input>
         </ul>
         {mapRooms}
       </div>
