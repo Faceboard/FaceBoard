@@ -14,11 +14,10 @@ class RoomList extends React.Component {
 
   render() {
     const { rooms } = this.props;
-    // console.log(rooms);
+    console.log(rooms);
     const mapRooms = rooms.map(room =>
-      <li>{rooms.roomname}</li>
+      <li>{room.roomname}</li>
     );
-    console.log('map rooms', mapRooms);
     if (!rooms.length) {
       return (
         <div>Loading</div>
