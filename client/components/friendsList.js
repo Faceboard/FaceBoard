@@ -31,13 +31,6 @@ class FriendsList extends React.Component {
     reattachMenus();
   }
 
-  addPerson (e) {
-    e.preventDefault();
-    if (e.target.innerHTML !== global.localStorage.username) {
-      this.props.dispatch(addFriend(e.target.value, e.target.innerHTML));
-    }
-  }
-
   privateMessageStart (e) {
     const { router } = this.props;
     pChatStart(e, router);
