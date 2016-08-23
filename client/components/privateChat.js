@@ -8,7 +8,7 @@ import socket from '../sync';
 import PrivateChatInput from './privateChatInput';
 import Message from './message';
 import { ProgressCircle } from 'react-desktop/macOs';
-import { removeHighlight, startPChat } from '../helpers/friendHelpers';
+import { removeHighlight, startPChat, findNewFriend, removePChatHighlighting } from '../helpers/friendHelpers';
 import { makePChatMenu, reattachPChatMenu } from '../actions/menu';
 
 class PrivateChat extends React.Component {
@@ -36,6 +36,9 @@ class PrivateChat extends React.Component {
   componentDidUpdate () {
     this.scrollToBottomAtStart();
     makePChatMenu();
+    if (global.newName) {
+      findNewFriend(global.newName);
+    }
   }
 
   scrollToBottomAtStart () {
@@ -49,6 +52,7 @@ class PrivateChat extends React.Component {
     delete window.inSession;
     socket.emit('leaveSession', global.localStorage.session);
     const { router } = this.props;
+    removePChatHighlighting();
     router.replace('/');
   }
 

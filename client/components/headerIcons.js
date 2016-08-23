@@ -36,6 +36,7 @@ class HeaderIcons extends React.Component {
   filterUsers (e) {
     this.props.dispatch(filterSearch(e.target.value));
   }
+
   render () {
     const { filteredUsers } = this.props;
     const mapUsers = filteredUsers.map(user =>
@@ -47,7 +48,6 @@ class HeaderIcons extends React.Component {
         </div>
       </li>
     );
-    console.log('map users', mapUsers);
     if (!filteredUsers) {
       return (
         <div> Loading... </div>
