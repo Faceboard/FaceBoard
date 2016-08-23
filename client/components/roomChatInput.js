@@ -1,16 +1,17 @@
 import React from 'react';
+import socket from '../sync';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { sendPrivateMessage } from '../helpers/pchatHelpers';
+import { sendRoomMessage } from '../helpers/roomChatHelpers';
 
-class privateInput extends React.Component {
+class roomInput extends React.Component {
   constructor(props) {
     super(props);
   }
 
   sendMessage(e) {
     if (e.which === 13 && !e.shiftKey) {
-      sendPrivateMessage();
+      sendRoomMessage();
     }
   }
 
@@ -18,13 +19,12 @@ class privateInput extends React.Component {
     return (
       <div className="inputMessageBox">
         <div className="inputMessage">
-          <textarea id="privateMessage" type="text" name="messageText" onKeyPress={this.sendMessage.bind(this)}/>
+          <textarea id="roomMessage" type="text" name="messageText" onKeyPress={this.sendMessage.bind(this)}/>
         </div>
       </div>
     )
   }
 }
-// convert inputMessageBox to class in css
-// convert inputMessage to class
+
 const mapStateToProps = (state) => state.inputReducer;
-export default connect(mapStateToProps)(withRouter(privateInput));
+export default connect(mapStateToProps)(withRouter(roomInput))
