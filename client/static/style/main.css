@@ -65,8 +65,7 @@ a {
 
 .chat-container {
   height: 65%;
-  margin: 30px 4% 5% 5%;
-  margin-left: 5%;
+  margin: 30px 4% 5% 10%;
   /*width: 100%;*/
 }
 
@@ -244,11 +243,12 @@ video {
 .sidebar {
   float: left;
   width: 5%;
-  height: 84%;
-  background: #3d3d3d;
+  height: 100%;
+  background: #332b2b;
   position: absolute;
+  top: 0px;
   z-index: 1001;
-  -webkit-transition:width .15s linear;
+  -webkit-transition: width .15s linear;
 }
 
 .sidebar * {
@@ -264,11 +264,21 @@ video {
 }
 
 .username {
-  /*text-align: center;*/
+  text-align: center;
   padding: 10px 5px;
   font-size: 20px;
   letter-spacing: 2px;
   font-family: "raleway";
+}
+
+.user-names {
+  padding: 6px;
+}
+
+.user-names button {
+  display: inline-block;
+  transform: scale(0.8);
+  margin: 2px;
 }
 
 .showUsers {

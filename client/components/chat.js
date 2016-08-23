@@ -19,24 +19,21 @@ class Chat extends React.Component {
     reattachChatMenus();
   }
 
-  componentWillUpdate () {
-    var node = ReactDOM.findDOMNode(this);
-    this.shouldScroll = Math.abs((node.scrollTop + node.offsetHeight) - node.scrollHeight) < 3;
-  }
-
-  componentDidMount () {
-    this.scrollToBottomAtStart();
-  }
-
   componentDidUpdate () {
     const { router } = this.props;
+    var node = this.refs.chat;
+    this.shouldScroll = Math.abs((node.scrollTop + node.offsetHeight) - node.scrollHeight) < node.scrollTop / 3;
+    if (!this.firstScroll) {
+      this.shouldScroll = true;
+      this.firstScroll = true;
+    }
     this.scrollToBottomAtStart();
     makeChatMenu(router);
   }
 
   scrollToBottomAtStart () {
     if (this.shouldScroll) {
-      var node = ReactDOM.findDOMNode(this);
+      var node = this.refs.chat;
       node.scrollTop = node.scrollHeight;
     }
   }
@@ -52,7 +49,7 @@ class Chat extends React.Component {
     }
     return (
       <div className="chat-container">
-        <div className="chatBox">
+        <div className="chatBox" ref="chat">
           <table className="table-striped">
             <tbody>
               {messages.map(message => <Message key={message.id} userid={message.userid} user={message.user} text={message.text} timestamp={message.createdAt}/>)}

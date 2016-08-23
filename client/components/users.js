@@ -29,8 +29,11 @@ class Users extends React.Component {
   msgUser (e) {
     const { router } = this.props;
     e.preventDefault();
-    this.props.dispatch(addFriend(e.target.dataset['userId'], e.target.dataset['username']));
     startPChatFromAllUsers(e, router);
+  }
+
+  addUser (e) {
+    this.props.dispatch(addFriend(e.target.dataset['userId'], e.target.dataset['username']));
   }
 
   filterUsers (e) {
@@ -40,10 +43,17 @@ class Users extends React.Component {
   render () {
     const { filteredUsers } = this.props;
     const mapUsers = filteredUsers.map(user =>
-      <li  className="list-group-item" key={user.username}>
-        <span className="icon icon-phone btn btn-default" data-username={user.username} onClick={this.callUser.bind(this)}></span>
-        <span className="icon icon-pencil btn btn-default" data-username={user.username} data-user-id={user.id} onClick={this.msgUser.bind(this)}></span>
-        <div className="media-body pull-right">
+      <li  className="list-group-item user-names" key={user.username}>
+        <button className="btn btn-default pull-right">
+          <span className="icon icon-phone" data-username={user.username} onClick={this.callUser.bind(this)}></span>
+        </button>
+        <button className="btn btn-default pull-right">
+          <span className="icon icon-mail" data-username={user.username} data-user-id={user.id} onClick={this.msgUser.bind(this)}></span>
+        </button>
+        <button className="btn btn-default pull-right">
+          <span className="icon icon-plus" data-username={user.username} data-user-id={user.id} onClick={this.addUser.bind(this)}></span>
+        </button>
+        <div className="media-body pull-left">
           <strong>{user.username}</strong>
         </div>
       </li>
