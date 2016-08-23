@@ -3,7 +3,7 @@ import { constantUrl } from '../sync';
 import { FETCHING_ROOM_MESSAGES, ROOM_MESSAGES_FETCHED, ROOM_MESSAGES_ERROR, FETCHING_ROOMS, FETCHED_ROOMS, FETCHED_ROOMS_ERROR } from './action';
 import socket from '../sync';
 
-export function getRoomMessages(roomid) {
+export function getRoomMessages (roomid) {
   return function (dispatch) {
     dispatch({ type: FETCHING_ROOM_MESSAGES });
     axios.post(constantUrl + '/messages/rooms/findAll', {roomid})
@@ -22,7 +22,7 @@ export function getRoomMessages(roomid) {
   };
 }
 
-export function getRoomsForUser() {
+export function getRoomsForUser () {
   return function (dispatch) {
     dispatch({type: FETCHING_ROOMS});
     axios.get(constantUrl + '/rooms/findAll')
@@ -41,7 +41,7 @@ export function getRoomsForUser() {
   };
 }
 
-export function addRooms(roomname) {
+export function addRooms (roomname) {
   return function (dispatch) {
     dispatch({type: FETCHING_ROOMS});
     axios.post(constantUrl + '/rooms/make', {

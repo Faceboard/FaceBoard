@@ -24,17 +24,37 @@ class RoomList extends React.Component {
     }
   }
 
+  changeRooms (e) {
+    e.preventDefault();
+    const { router } = this.props;
+    global.localStorage.roomid = e.target.dataset['roomId'];
+    global.localStorage.currentRoom = e.target.dataset['roomname'];
+    router.replace('/room');
+  }
+
+  goToLobby () {
+    const { router } = this.props;
+    router.replace('/');
+  }
+
   render() {
     const { rooms } = this.props;
     const mapRooms = rooms.map(room =>
       <div>
-        <li key={room.id} >{room.roomname}</li>
+        <li key={room.id} onClick={this.changeRooms.bind(this)} data-room-id={room.id} data-roomname={room.roomname}>{room.roomname}</li>
         <button onClick={this.removeRoom.bind(this)} value={room.roomname}></button>
       </div>
     );
     if (!rooms.length) {
       return (
-        <div id="rooms-list">Loading</div>
+        <div id="rooms-list">
+          <ul className="list-group">
+            <li className="list-group-header">
+              <h4>Rooms</h4>
+            </li>
+            <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
+          </ul>
+        </div>
       );
     }
 
@@ -44,9 +64,12 @@ class RoomList extends React.Component {
           <li className="list-group-header">
             <h4>Rooms</h4>
           </li>
-          <textarea id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
+          <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
         </ul>
         {mapRooms}
+        <div>
+          <li onClick={this.goToLobby.bind(this)}>Lobby</li>
+        </div>
       </div>
     );
   }
