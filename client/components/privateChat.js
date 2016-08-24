@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { getPrivateMessages, rightClickPChat } from '../actions/chat';
-import FriendsList from './friendsList';
+import SideBar from './sidebar';
 import socket from '../sync';
 import PrivateChatInput from './privateChatInput';
 import Message from './message';
@@ -76,14 +76,16 @@ class PrivateChat extends React.Component {
               <span className="icon icon-home"></span>
             </button>
           </div>
-          <FriendsList />
-            <div className="chatBox">
-              <table className="table-striped">
-                <tbody>
-                  {privMessages.map(priv => <Message user={priv.useronename} text={priv.text} timestamp={priv.createdAt}/>)}
-                </tbody>
-              </table>
-              <PrivateChatInput />
+          <SideBar />
+            <div className="chat-container">
+              <div className="chatBox">
+                <table className="table-striped">
+                  <tbody>
+                    {privMessages.map(priv => <Message user={priv.useronename} text={priv.text} timestamp={priv.createdAt}/>)}
+                  </tbody>
+                </table>
+                <PrivateChatInput />
+              </div>
             </div>
         </div>
       )
