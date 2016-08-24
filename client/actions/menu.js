@@ -81,16 +81,14 @@ export function makeChatMenu (router) {
     chatMenu.popup(remote.getCurrentWindow());
   };
 
-
-  if (!chatMenuRendered) {
-    let allUsers = document.getElementsByClassName('user');
-    if (allUsers.length) {
-      chatMenuRendered = true;
-    }
-    for (let i = 0; i < allUsers.length; i++) {
-      allUsers[i].removeEventListener('click', chatListener);
-      allUsers[i].addEventListener('click', chatListener);
-    }
+  let allUsers = document.getElementsByClassName('user');
+  let el;
+  let elClone;
+  for (let i = 0; i < allUsers.length; i++) {
+    el = allUsers[i];
+    elClone = el.cloneNode(true);
+    elClone.addEventListener('click', chatListener);
+    el.parentNode.replaceChild(elClone, el);
   }
 };
 

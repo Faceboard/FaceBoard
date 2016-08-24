@@ -24,7 +24,6 @@ class RoomChat extends React.Component {
     const { router } = this.props;
     global.localStorage.currentRoom = 'lobby';
     router.replace('/');
-    this.props.dispatch(getRoomMessages(global.localStorage.currentRoom));
   }
 
   componentDidUpdate () {
@@ -54,17 +53,9 @@ class RoomChat extends React.Component {
                 {roomMsgs.map(message => <Message key={message.id} userid={message.id} user={message.username} text={message.text} timestamp={message.createdAt}/>)}
               </tbody>
             </table>
+            <RoomSelect />
             <RoomChatInput />
           </div>
-        </div>
-        <div className="chatBox">
-          <table className="table-striped">
-            <tbody>
-              {roomMsgs.map(message => <Message key={message.id} userid={message.id} user={message.username} text={message.text} timestamp={message.createdAt}/>)}
-            </tbody>
-          </table>
-          <RoomSelect />
-          <RoomChatInput />
         </div>
       </div>
     );

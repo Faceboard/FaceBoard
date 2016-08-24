@@ -15,8 +15,9 @@ class Chat extends React.Component {
   }
 
   componentWillMount () {
+    const { router } = this.props;
     this.props.dispatch(getAllMessages());
-    reattachChatMenus();
+    makeChatMenu(router);
   }
 
   componentDidUpdate () {
