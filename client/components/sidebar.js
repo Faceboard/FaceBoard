@@ -10,21 +10,12 @@ class Sidebar extends React.Component {
     super(props);
   }
 
-  onLogout () {
-    logout();
-    this.props.router.replace('/auth');
-  }
-
   render () {
     return (
       <div className="sidebar">
         <div className="username">
           {global.localStorage.username}
-          <button className="btn btn-default pull-right" onClick={this.onLogout.bind(this)}>
-            <span className="icon icon-logout"></span>
-          </button>
         </div>
-        <Users />
         <RoomList />
         <FriendsList />
       </div>

@@ -230,14 +230,23 @@ video {
 }
 
 .users {
+  position: absolute;
   overflow: auto;
-  height: 45%;
-  /*width: 85%;*/
+  max-height: 45%;
+  width: 25%;
+  right: 70px;
+  top: 8px;
+  border-radius: 10px;
+  padding: 0px 10px 5px 10px;
 }
 
 .users::-webkit-scrollbar {
   opacity: 0;
   width: 0;
+}
+
+.users-color {
+  background: #332b2b;
 }
 
 .user {
@@ -263,16 +272,16 @@ video {
   -webkit-transition: width .15s linear;
 }
 
+.sidebar:hover {
+  width: 20%;
+}
+
 .sidebar * {
   display: none;
 }
 
 .sidebar:hover * {
   display: block;
-}
-
-.sidebar:hover {
-  width: 20%;
 }
 
 .username {
@@ -293,6 +302,25 @@ video {
   margin: 2px;
 }
 
+.list-username {
+  text-align: left;
+  width: 50%;
+  background: #332b2b;
+}
+
+.list-name-empty {
+  left: 16px;
+  position: absolute;
+  display: none;
+  text-align: left;
+  background: #332b2b;
+  border-radius: 15px;
+}
+
+.list-name-hover {
+  display: inline-block;
+}
+
 .showUsers {
   display: none;
 }
@@ -303,10 +331,6 @@ video {
 
 .logo {
   position: absolute;
-}
-
-.search-pad {
-  margin: 13px 10px 0 0;
 }
 
 @font-face {

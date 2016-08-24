@@ -6,6 +6,7 @@ import { getAllUsers, filterSearch } from '../actions/userActions';
 import { makePrivateSession } from '../actions/session';
 import { startPChatFromAllUsers } from '../actions/chat';
 import Sidebar from './sidebar';
+import Users from './users';
 import Chat from './chat';
 import RoomList from './roomList';
 import io from 'socket.io-client';
@@ -40,6 +41,11 @@ class Lobby extends React.Component {
           <button className="btn btn-default pull-right" onClick={this.onLogout.bind(this)}>
             <span className="icon icon-logout"></span>
           </button>
+          <div className="pull-right">
+            <div className="users-search">
+              <Users />
+            </div>
+          </div>
         </div>
         <Sidebar />
         <Chat />
