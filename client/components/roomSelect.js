@@ -28,6 +28,7 @@ class RoomSelect extends React.Component {
   }
 
   changeRoom (e) {
+    global.localStorage.currentRoom = e.target.value;
     this.props.dispatch(chooseRoom(e.target.value));
   }
 
@@ -63,7 +64,6 @@ class RoomSelect extends React.Component {
           <div className="select-room">
             <div className="invite-text">Invite to: </div>
             <select onChange={this.changeRoom.bind(this)}>
-              <option selected disabled hidden> Select a room: </option>
               {mapRooms}
             </select>
             <div className="action-buttons">
