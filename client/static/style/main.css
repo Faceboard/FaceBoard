@@ -32,6 +32,18 @@ a {
   width: 250px;
 }
 
+#room-title {
+  display: inline-block;
+}
+
+.room-header {
+  width: 30%;
+}
+
+#roomlist-input {
+ /* display: none;*/
+}
+
 .signInput {
   margin: 5px;
   width: 85%;

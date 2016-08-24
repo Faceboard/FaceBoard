@@ -57,7 +57,8 @@ class RoomList extends React.Component {
         <div id="rooms-list">
           <ul className="list-group">
             <li className="list-group-header">
-              <h4>Rooms</h4>
+              <h4 id="room-title">Rooms</h4>
+              <span className="btn btn-default icon icon-plus pull-right"></span>
             </li>
             <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
             <li onClick={this.goToLobby.bind(this)}>Lobby</li>
@@ -69,9 +70,10 @@ class RoomList extends React.Component {
     return (
       <div id="rooms-list">
         <ul className="list-group">
-          <li className="list-group-header">
-            <h4>Rooms</h4>
-          </li>
+          <li className="list-group-header room-header">
+              <h4 id="room-title">Rooms</h4>
+              <span className="btn btn-default icon icon-plus pull-right"></span>
+            </li>
           <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
         </ul>
         {mapRooms}
