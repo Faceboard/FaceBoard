@@ -7,6 +7,7 @@ import { makeChatMenu } from '../actions/menu';
 import RoomSelect from './roomSelect';
 import RoomChatInput from './roomChatInput';
 import Message from './message';
+import Users from './users';
 
 
 class RoomChat extends React.Component {
@@ -42,9 +43,14 @@ class RoomChat extends React.Component {
     return (
       <div className="lobby">
         <div className="mainHeader">
-          {'Chat Room - ' + global.localStorage.currentRoom}
+          {'Chat Room ' + global.localStorage.currentRoom}
            <span className="btn btn-default pull-right icon icon-home" onClick={this.leaveRoom.bind(this)}>
            </span>
+           <div className="pull-right">
+             <div className="users-search">
+               <Users />
+             </div>
+           </div>
         </div>
         <div className="chat-container">
           <div className="chatBox">
