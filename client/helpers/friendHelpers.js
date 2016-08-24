@@ -5,6 +5,7 @@ export function findFriend (data) {
   let friendArray = document.getElementsByClassName('friends');
   let hasFriend = false;
   for (let i = 0; i < friendArray.length; i++) {
+    console.log('friendArray', friendArray[i].innerHTML);
     if (friendArray[i].innerHTML === data.useronename && !friendArray[i].classList.contains('in-pchat')) {
       friendArray[i].classList.add('hasMessage');
       hasFriend = true;
@@ -12,6 +13,7 @@ export function findFriend (data) {
     }
   }
   if (!hasFriend) {
+    console.log('this happened');
     store.dispatch(addFriend(data.useroneid, data.useronename));
     global.newFriend = data;
   }

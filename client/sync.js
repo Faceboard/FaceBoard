@@ -5,7 +5,7 @@ import { getPrivateMessages } from './actions/chat';
 import { findFriend, onlineUser, offlineUser } from './helpers/friendHelpers';
 import { fetchWhiteboard } from './actions/whiteboardConfig';
 import { getAllFriends } from './actions/friends';
-import { getRoomsForUser, getRoomMessages } from './actions/room';
+import { getRoomsForUser, getRoomMessages, joinRoom, addRoom } from './actions/room';
 
 let options = {
   'force new connection': true
@@ -74,6 +74,15 @@ socket.on('send private message', (data) => {
 
 socket.on('sent message in room', (data) => {
   store.dispatch(getRoomMessages(data.roomid));
+});
+
+socket.on('confirm join room', (data) => {
+  if (data.secondusername === global.localStorage.username) {
+    if (confirm(data.firstusername + ' has invited you to the room ' + data.roomname + '. Would you like to join?')) {
+      joinRoom(data.roomname);
+      store.dispatch(addRoom(data.roomname));
+    }
+  }
 });
 
 socket.on('confirm private chat', (data) => {

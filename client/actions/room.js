@@ -32,7 +32,6 @@ export function getRoomsForUser () {
           type: FETCHED_ROOMS,
           payload: response.data
         });
-        console.log('this is response', response.data);
       })
       .catch((error) => {
         dispatch({
@@ -67,4 +66,13 @@ export function deleteRoom(roomname) {
     roomname
   };
   socket.emit('delete room', data);
+};
+
+export function joinRoom (roomObj) {
+  global.localStorage.currentRoom = roomObj.roomname;
+  global.localStorage.roomid = roomObj.roomid;
+  let obj = {
+    roomname: roomObj.roomname,
+  }
+  socket.emit('join room', roomObj);
 }
