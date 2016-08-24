@@ -34,6 +34,7 @@ class Users extends React.Component {
   }
 
   addUser (e) {
+    console.log('test');
     this.props.dispatch(addFriend(e.target.dataset['userId'], e.target.dataset['username']));
   }
 
@@ -56,7 +57,7 @@ class Users extends React.Component {
 
   hideUserMenu (e) {
     this.refs.users.classList.toggle('users-color');
-    this.props.dispatch(filterSearch(''));
+    // this.props.dispatch(filterSearch(''));
   }
 
   alt (user) {
