@@ -14,7 +14,7 @@ class RoomList extends React.Component {
   }
 
   removeRoom (e) {
-    deleteRoom(e.target.value);
+    deleteRoom(e.target.dataset['roomname']);
   }
 
   addRoom (e) {
@@ -29,14 +29,13 @@ class RoomList extends React.Component {
   changeRooms (e) {
     e.preventDefault();
     const { router } = this.props;
-    global.localStorage.roomid = e.target.dataset['roomId'];
     global.localStorage.currentRoom = e.target.dataset['roomname'];
     let roomObj = {
       roomname: global.localStorage.currentRoom,
     };
     socket.emit('join room', roomObj);
     router.replace('/room');
-    this.props.dispatch(getRoomMessages(global.localStorage.roomid));
+    this.props.dispatch(getRoomMessages(global.localStorage.currentRoom));
   }
 
   goToLobby () {
@@ -48,8 +47,8 @@ class RoomList extends React.Component {
     const { rooms } = this.props;
     const mapRooms = rooms.map(room =>
       <div>
-        <li key={room.id} onClick={this.changeRooms.bind(this)} data-room-id={room.id} data-roomname={room.roomname}>{room.roomname}</li>
-        <button onClick={this.removeRoom.bind(this)} value={room.roomname}></button>
+        <li key={room.id} onClick={this.changeRooms.bind(this)} data-roomname={room.roomname}>{room.roomname}</li>
+        <button onClick={this.removeRoom.bind(this)} data-roomname={room.roomname}></button>
       </div>
     );
     if (!rooms.length) {
