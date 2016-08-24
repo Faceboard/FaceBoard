@@ -36,9 +36,6 @@ class Lobby extends React.Component {
     return (
       <div className="lobby">
         <div className="mainHeader">
-          <div className="logo pull-left">
-            <img src="../static/imgs/logo.png" style={{maxHeight: '50px'}} />
-          </div>
           Lobby
           <button className="btn btn-default pull-right" onClick={this.onLogout.bind(this)}>
             <span className="icon icon-logout"></span>

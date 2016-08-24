@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router';
 import VideoList from './videoList';
 import MainSession from './mainSession';
-import FriendsList from './friendsList';
+import Sidebar from './sidebar';
 import Firebase from 'firebase';
 import Firepad from 'firepad';
 import { configFirebase, fetchFirepad } from '../actions/firebaseConfig';
@@ -42,7 +42,7 @@ class Session extends React.Component {
             <span className="icon icon-home"></span>
           </button>
         </div>
-        <FriendsList />
+        <Sidebar />
         <MainSession />
         <VideoList />
       </div>
