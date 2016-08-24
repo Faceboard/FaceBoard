@@ -36,6 +36,9 @@ class PrivateChat extends React.Component {
   componentDidUpdate () {
     this.scrollToBottomAtStart();
     makePChatMenu();
+    if (global.newName) {
+      findNewFriend(global.newName);
+    }
   }
 
   scrollToBottomAtStart () {
