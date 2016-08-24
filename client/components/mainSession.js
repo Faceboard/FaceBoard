@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import Video from './videos';
 import { modeChange, toggleDiv } from '../actions/action';
 import { configFirebase, fetchFirepad, deleteFirepad } from '../actions/firebaseConfig';
 import { fetchWhiteboard } from '../actions/whiteboardConfig';
@@ -39,17 +40,31 @@ class MainSession extends React.Component {
   }
 
   render () {
-    // layout is an array of objects, see the demo for more complete usage
     var layout = [
-      {i: 'b', x: 0, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
-      {i: 'c', x: 3, y: 0, w: 3, h: 2, minW: 2, maxW: 4}
+      {i: 'syntax', x: 5, y: 0, w: 20, h: 3, static: true},
+      {i: 'code', x: 5, y: 0, w: 25, h: 40},
+      {i: 'board', x: 30, y: 3, w: 25, h: 40},
+      {i: 'video', x: 55, y: 3, w: 10, h: 15}
     ];
     return (
-      <ReactGridLayout className="layout" layout={layout} cols={12} rowHeight={200} width={2000}>
-        <div className="gridBox" id="firepad" key={'b'}></div>
+      <ReactGridLayout className="layout" layout={layout} cols={100} rowHeight={1} width={2000} verticalCompact={false}>
+        <select key={'syntax'} id="cmMode" className="form-control" onChange={this.changeMode.bind(this)}>
+          <option value="javascript">javascript</option>
+          <option value="jsx">jsx</option>
+          <option value="css">css</option>
+          <option value="htmlmixed">html - mixed</option>
+          <option value="php">php</option>
+          <option value="ruby">ruby</option>
+          <option value="python">python</option>
+          <option value="markdown">markdown</option>
+          <option value="sass">sass</option>
+          <option value="sql">sql</option>
+        </select>
+        <div className="gridBox" key={'video'}><Video /></div>
+        <div className="gridBox" key={'code'} id="firepad"></div>
         {this.props.whiteboardReducer.whiteboardId ?
-            <div className="gridBox" key={'c'}><iframe id="whiteboard" src={"https://www.twiddla.com/api/start.aspx?sessionid=" + this.props.whiteboardReducer.whiteboardId + "&hide=chat,bottomtray,url,invite,profile,voice,welcome,etherpad,documents,images,email,math,roomsettings,logo&autostart=true"}></iframe></div> :
-            <div className="gridBox" key={'c'}><ProgressCircle className="progresscircle" size={40}/></div>}
+            <div className="gridBox" key={'board'}><iframe id="whiteboard" src={"https://www.twiddla.com/api/start.aspx?sessionid=" + this.props.whiteboardReducer.whiteboardId + "&hide=chat,bottomtray,url,invite,profile,voice,welcome,etherpad,documents,images,email,math,roomsettings,logo&autostart=true"}></iframe></div> :
+            <div className="gridBox" key={'board'}><ProgressCircle className="progresscircle" size={40}/></div>}
       </ReactGridLayout>
     )
   }
@@ -63,6 +78,9 @@ const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps)(withRouter(MainSession));
 
+
+
+// <div className="gridBox" id="firepad" key={'code'}></div>
 
     // <div className="tab-group">
     //       <div className={ !this.props.firepadReducer.hidden ? 'tab-item active' : 'tab-item' } id="codeshareTab" onClick={this.toggleEditor.bind(this)}>
