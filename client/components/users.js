@@ -34,6 +34,7 @@ class Users extends React.Component {
   }
 
   addUser (e) {
+    console.log('test');
     this.props.dispatch(addFriend(e.target.dataset['userId'], e.target.dataset['username']));
   }
 
@@ -45,8 +46,7 @@ class Users extends React.Component {
     let roomInvObj = {
       roomname: global.localStorage.currentRoom,
       secondusername: e.target.dataset['username'],
-      firstusername: global.localStorage.username,
-      roomid: global.localStorage.roomid
+      firstusername: global.localStorage.username
     };
     socket.emit('send room invite', roomInvObj);
   }
@@ -57,7 +57,7 @@ class Users extends React.Component {
 
   hideUserMenu (e) {
     this.refs.users.classList.toggle('users-color');
-    this.props.dispatch(filterSearch(''));
+    // this.props.dispatch(filterSearch(''));
   }
 
   alt (user) {
