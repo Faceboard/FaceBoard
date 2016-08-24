@@ -44,7 +44,6 @@ class Session extends React.Component {
         </div>
         <Sidebar />
         <MainSession />
-        <VideoList />
       </div>
     );
   }

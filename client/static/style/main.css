@@ -159,6 +159,12 @@ select {
   color: #3d3d3d;
 }
 
+.gridBox {
+  color: #000000;
+  background: #d3d3d3;
+  padding: 5px;
+}
+
 #firepadContainer {
   width: 100%;
   height: 100%;
@@ -331,6 +337,19 @@ video {
 
 .logo {
   position: absolute;
+}
+
+.search-pad {
+  margin: 13px 10px 0 0;
+}
+
+.react-grid-item > .react-resizable-handle {
+  /*background: none;*/
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 10px 10px;
+  border-color: transparent transparent #ff3c00 transparent;
 }
 
 @font-face {
