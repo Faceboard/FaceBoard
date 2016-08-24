@@ -7,6 +7,7 @@ import SideBar from './sidebar';
 import socket from '../sync';
 import PrivateChatInput from './privateChatInput';
 import Message from './message';
+import RoomSelect from './roomSelect';
 import { ProgressCircle } from 'react-desktop/macOs';
 import { removeHighlight, startPChat, findNewFriend, removePChatHighlighting } from '../helpers/friendHelpers';
 import { makePChatMenu, reattachPChatMenu } from '../actions/menu';
@@ -93,6 +94,7 @@ class PrivateChat extends React.Component {
                 <PrivateChatInput />
               </div>
             </div>
+            <RoomSelect />
         </div>
       )
     }
