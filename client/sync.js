@@ -1,3 +1,4 @@
+/* global PHONE, phone */
 import io from 'socket.io-client';
 import { store } from './index';
 import { getAllMessages } from './actions/chat';

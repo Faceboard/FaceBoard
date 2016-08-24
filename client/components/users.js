@@ -51,10 +51,23 @@ class Users extends React.Component {
     socket.emit('send room invite', roomInvObj);
   }
 
+  showUserMenu () {
+    this.refs.users.classList.toggle('users-color');
+  }
+
+  hideUserMenu (e) {
+    this.refs.users.classList.toggle('users-color');
+    this.props.dispatch(filterSearch(''));
+  }
+
+  alt (user) {
+    this.refs["user" + user.username].classList.toggle('list-name-hover');
+  }
+
   render () {
     const { filteredUsers } = this.props;
     const mapUsers = filteredUsers.map(user =>
-      <li  className="list-group-item user-names" key={user.username}>
+      <li className="list-group-item user-names">
         <button className="btn btn-default pull-right">
           <span className="icon icon-phone" data-username={user.username} onClick={this.callUser.bind(this)}></span>
         </button>
@@ -64,25 +77,28 @@ class Users extends React.Component {
         <button className="btn btn-default pull-right">
           <span className="icon icon-plus" data-username={user.username} data-user-id={user.id} onClick={this.addUser.bind(this)}></span>
         </button>
-        <span className="btn btn-default pull-right icon icon-user-add" data-username={user.username} data-user-id={user.id} onClick={this.inviteToRoom.bind(this)}></span>
-        <div className="media-body pull-left">
+        <button className="btn btn-default pull-right">
+          <span className="pull-right icon icon-user-add" data-username={user.username} data-user-id={user.id} onClick={this.inviteToRoom.bind(this)}></span>
+        </button>
+        <div className="media-body pull-left list-username" onMouseEnter={this.alt.bind(this, user)} onMouseLeave={this.alt.bind(this, user)}>
+          <strong>{user.username}</strong>
+        </div>
+        <div className="media-body pull-left list-name-empty"  ref={"user" + user.username}>
           <strong>{user.username}</strong>
         </div>
       </li>
     );
+
     if (!filteredUsers) {
       return (
         <div className="users"> Loading... </div>
       )
     }
     return (
-      <div className="users">
-        <button className="btn btn-default pull-right search-pad" >
-          <span className="icon icon-search search-icon"></span>
-        </button>
+      <div className="users" ref="users">
         <ul className="list-group showAllUsers">
           <li className="list-group-header">
-            <input className="form-control" type="text" placeholder="Search for someone" value={this.props.value} onChange={this.filterUsers.bind(this)}/>
+            <input className="form-control" type="text" placeholder="Search for someone" value={this.props.value} onChange={this.filterUsers.bind(this)} onFocus={this.showUserMenu.bind(this)} onBlur={this.hideUserMenu.bind(this)}/>
           </li>
           {mapUsers}
         </ul>

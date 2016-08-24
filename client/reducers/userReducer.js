@@ -17,8 +17,7 @@ const userReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         fetching: false,
         fetched: true,
-        users: action.payload,
-        filteredUsers: action.payload
+        users: action.payload
       });
     case FETCH_USERS_ERROR:
       return Object.assign({}, state, {
@@ -46,6 +45,7 @@ const userReducer = (state = initialState, action) => {
       });
     case FILTER_USERS:
       let filtered = state.users.filter(u => u.username.toLowerCase().indexOf(action.filter.toLowerCase()) !== -1);
+      filtered.length = action.filter === '' ? 0 : filtered.length;
       return Object.assign({}, state, { filteredUsers: filtered });
     default:
       return state;

@@ -22,7 +22,7 @@ class Chat extends React.Component {
   componentDidUpdate () {
     const { router } = this.props;
     var node = this.refs.chat;
-    this.shouldScroll = Math.abs((node.scrollTop + node.offsetHeight) - node.scrollHeight) < node.scrollTop / 3;
+    this.shouldScroll = Math.abs((node.scrollTop + node.offsetHeight) - node.scrollHeight) < (node.scrollTop / 3);
     if (!this.firstScroll) {
       this.shouldScroll = true;
       this.firstScroll = true;
