@@ -20,6 +20,9 @@ class privateInput extends React.Component {
         <div className="inputMessage">
           <textarea id="privateMessage" type="text" name="messageText" onKeyPress={this.sendMessage.bind(this)}/>
         </div>
+        <div className="inputMessageButton">
+          <button className="btn btn-default" onClick={this.sendMessage.bind(this)}>Submit</button>
+        </div>
       </div>
     )
   }
