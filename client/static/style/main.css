@@ -296,7 +296,7 @@ video {
   padding: 6px;
 }
 
-.user-names button {
+.user-names span {
   display: inline-block;
   transform: scale(0.8);
   margin: 2px;
