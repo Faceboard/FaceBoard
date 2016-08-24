@@ -6,6 +6,7 @@ import { getAllUsers, filterSearch } from '../actions/userActions';
 import { makePrivateSession } from '../actions/session';
 import { startPChatFromAllUsers } from '../actions/chat';
 import { addFriend } from '../actions/friends';
+import socket from '../sync';
 
 class Users extends React.Component {
   constructor (props) {
@@ -40,6 +41,15 @@ class Users extends React.Component {
     this.props.dispatch(filterSearch(e.target.value));
   }
 
+  inviteToRoom (e) {
+    let roomInvObj = {
+      roomname: global.localStorage.currentRoom,
+      secondusername: global.localSTorage.dataset['username'],
+      firstusername: global.localStorage.username
+    };
+    socket.emit('send room invite', roomInvObj);
+  }
+
   render () {
     const { filteredUsers } = this.props;
     const mapUsers = filteredUsers.map(user =>
@@ -53,6 +63,7 @@ class Users extends React.Component {
         <button className="btn btn-default pull-right">
           <span className="icon icon-plus" data-username={user.username} data-user-id={user.id} onClick={this.addUser.bind(this)}></span>
         </button>
+        <span className="btn btn-default pull-right icon icon-user-add" data-username={user.username} data-user-id={user.id} onClick={this.inviteToRoom.bind(this)}></span>
         <div className="media-body pull-left">
           <strong>{user.username}</strong>
         </div>

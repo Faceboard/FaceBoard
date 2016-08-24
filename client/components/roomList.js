@@ -32,7 +32,7 @@ class RoomList extends React.Component {
     global.localStorage.roomid = e.target.dataset['roomId'];
     global.localStorage.currentRoom = e.target.dataset['roomname'];
     let roomObj = {
-      roomname: global.localStorage.currentRoom
+      roomname: global.localStorage.currentRoom,
     };
     socket.emit('join room', roomObj);
     router.replace('/room');
