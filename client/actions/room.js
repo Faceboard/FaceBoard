@@ -4,6 +4,7 @@ import { FETCHING_ROOM_MESSAGES, ROOM_MESSAGES_FETCHED, ROOM_MESSAGES_ERROR, FET
 import socket from '../sync';
 
 export function getRoomMessages (roomname) {
+  console.log('this was called');
   return function (dispatch) {
     dispatch({ type: FETCHING_ROOM_MESSAGES });
     axios.post(constantUrl + '/messages/rooms/findAll', {roomname})
@@ -12,6 +13,7 @@ export function getRoomMessages (roomname) {
           type: ROOM_MESSAGES_FETCHED,
           payload: response.data
         });
+        console.log('this is a response', response.data);
       })
       .catch((error) => {
         dispatch({
