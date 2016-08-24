@@ -20,7 +20,7 @@ class PrivateChat extends React.Component {
   componentWillMount () {
     socket.emit('join pchat', {pchat: global.localStorage.pchat});
     this.props.dispatch(getPrivateMessages(global.localStorage.seconduserid));
-    reattachPChatMenu();
+    makePChatMenu();
   }
 
   componentWillUpdate () {
