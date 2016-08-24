@@ -20,7 +20,6 @@ class RoomList extends React.Component {
   addRoom (e) {
     if (e.which === 13 && !e.shiftKey) {
       let input = document.getElementById('roomlist-input');
-      console.log('this is room', input.value);
       this.props.dispatch(addRooms(input.value));
       input.value = '';
     }
