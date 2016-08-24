@@ -83,3 +83,13 @@ export function chooseRoom (room) {
     chosenRoom: room
   };
 };
+
+export function showRoomSelect () {
+  let roomSelect = document.getElementsByClassName('double-div')[0];
+  roomSelect.classList.remove('no-show');
+}
+
+export function hideRoomSelect () {
+  let roomSelect = document.getElementsByClassName('double-div')[0];
+  roomSelect.classList.add('no-show');
+}

@@ -1,5 +1,6 @@
 import { makePrivateSession } from './session';
 import { rightClickPChat } from './chat';
+import { showRoomSelect } from './room';
 const remote = window.require('electron').remote;
 const Menu = remote.Menu;
 const MenuItem = remote.MenuItem;
@@ -63,6 +64,13 @@ export function makeChatMenu (router) {
       rightClickPChat(router);
     }
   }));
+
+  chatMenu.append(new MenuItem({
+    label: 'Invite user to a room',
+    click: () => {
+      showRoomSelect();
+    }
+  }))
 
   let chatListener = (event) => {
     event.preventDefault();
