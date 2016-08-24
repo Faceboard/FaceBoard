@@ -5,8 +5,7 @@ export function findFriend (data) {
   let friendArray = document.getElementsByClassName('friends');
   let hasFriend = false;
   for (let i = 0; i < friendArray.length; i++) {
-    console.log('friendArray', friendArray[i].innerHTML);
-    if (friendArray[i].innerHTML === data.useronename && !friendArray[i].classList.contains('in-pchat')) {
+    if (friendArray[i].dataset['friendname'] === data.useronename && !friendArray[i].classList.contains('in-pchat')) {
       friendArray[i].classList.add('hasMessage');
       hasFriend = true;
       delete global.newFriend;
