@@ -34,11 +34,6 @@ class Users extends React.Component {
   }
 
   addUser (e) {
-<<<<<<< b85925e0e86bff5fe60bead5e544156f08366310
-    console.log('test');
-=======
-    console.log('GOT TO ADDUSER');
->>>>>>> (feat) update firendsList buttons
     this.props.dispatch(addFriend(e.target.dataset['userId'], e.target.dataset['username']));
   }
 
