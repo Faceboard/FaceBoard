@@ -2,10 +2,6 @@ html, body, .lobby, #root, #sessionWrapper {
   height: 100%;
 }
 
-body.noScroll { /* ...or body.dialogShowing */
-  overflow: hidden;
-}
-
 .lobby, #sessionWrapper, .authPage {
   position: absolute;
   top: 50%;
