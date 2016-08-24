@@ -37,7 +37,6 @@ class PrivateChat extends React.Component {
     if (!this.firstScroll) {
       this.shouldScroll = true;
       this.firstScroll = true;
-      console.log('got here')
     }
     this.scrollToBottomAtStart();
     makePChatMenu(router);

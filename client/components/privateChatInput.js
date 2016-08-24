@@ -9,7 +9,7 @@ class privateInput extends React.Component {
   }
 
   sendMessage(e) {
-    if (e.which === 13 && !e.shiftKey) {
+    if (e.which === 13 && !e.shiftKey || e.which === 2) {
       sendPrivateMessage();
     }
   }
