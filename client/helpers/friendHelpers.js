@@ -4,11 +4,9 @@ import { addFriend } from '../actions/friends';
 export function findFriend (data) {
   let friendArray = document.getElementsByClassName('friends');
   let hasFriend = false;
-  console.log('data', data);
   for (let i = 0; i < friendArray.length; i++) {
     console.log('friendArray', friendArray[i].innerHTML);
     if (friendArray[i].innerHTML === data.useronename && !friendArray[i].classList.contains('in-pchat')) {
-      console.log('how many times is this called');
       friendArray[i].classList.add('hasMessage');
       hasFriend = true;
       delete global.newFriend;
