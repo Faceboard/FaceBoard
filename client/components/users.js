@@ -34,7 +34,11 @@ class Users extends React.Component {
   }
 
   addUser (e) {
+<<<<<<< b85925e0e86bff5fe60bead5e544156f08366310
     console.log('test');
+=======
+    console.log('GOT TO ADDUSER');
+>>>>>>> (feat) update firendsList buttons
     this.props.dispatch(addFriend(e.target.dataset['userId'], e.target.dataset['username']));
   }
 
@@ -56,8 +60,10 @@ class Users extends React.Component {
   }
 
   hideUserMenu (e) {
-    this.refs.users.classList.toggle('users-color');
-    // this.props.dispatch(filterSearch(''));
+    window.setTimeout(function() {
+      this.refs.users.classList.toggle('users-color');
+      this.props.dispatch(filterSearch(''));
+    }.bind(this), 200);
   }
 
   alt (user) {
@@ -68,18 +74,10 @@ class Users extends React.Component {
     const { filteredUsers } = this.props;
     const mapUsers = filteredUsers.map(user =>
       <li className="list-group-item user-names">
-        <button className="btn btn-default pull-right">
-          <span className="icon icon-phone" data-username={user.username} onClick={this.callUser.bind(this)}></span>
-        </button>
-        <button className="btn btn-default pull-right">
-          <span className="icon icon-mail" data-username={user.username} data-user-id={user.id} onClick={this.msgUser.bind(this)}></span>
-        </button>
-        <button className="btn btn-default pull-right">
-          <span className="icon icon-plus" data-username={user.username} data-user-id={user.id} onClick={this.addUser.bind(this)}></span>
-        </button>
-        <button className="btn btn-default pull-right">
-          <span className="pull-right icon icon-user-add" data-username={user.username} data-user-id={user.id} onClick={this.inviteToRoom.bind(this)}></span>
-        </button>
+          <span className="btn btn-default pull-right icon icon-phone" data-username={user.username}></span>
+          <span className="btn btn-default pull-right icon icon-mail" data-username={user.username} data-user-id={user.id} onClick={this.msgUser.bind(this)}></span>
+          <span className="btn btn-default pull-right icon icon-plus" data-username={user.username} data-user-id={user.id} onClick={this.addUser.bind(this)}></span>
+          <span className="btn btn-default pull-right pull-right icon icon-user-add" data-username={user.username} data-user-id={user.id} onClick={this.inviteToRoom.bind(this)}></span>
         <div className="media-body pull-left list-username" onMouseEnter={this.alt.bind(this, user)} onMouseLeave={this.alt.bind(this, user)}>
           <strong>{user.username}</strong>
         </div>

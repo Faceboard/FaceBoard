@@ -52,9 +52,9 @@ class FriendsList extends React.Component {
     const friendsNoSelf = friends.filter(f => f.friendname !== global.localStorage.username)
     const mapFriends = friendsNoSelf.map(friend =>
       <li className="list-group-item user-names friends">
-        <span className="icon icon-minus btn btn-default pull-right" data-friendname={friend.friendname} onClick={this.removeFriend.bind(this)}></span>
-        <span className="btn btn-default pull-right icon icon-mail" data-friendname={friend.friendname} data-friendid={friend.friendid} onClick={this.privateMessageStart.bind(this)}></span>
-        <div className="media-body pull-left fa fa-star-o" key={friend.id}>
+          <span className="btn btn-default pull-right icon icon-minus" value={friend.friendname} onClick={this.removeFriend.bind(this)}></span>
+          <span className="btn btn-default pull-right icon icon-mail" value={friend.friendname} onClick={this.privateMessageStart.bind(this)}></span>
+        <div className="media-body pull-left fa fa-star-o" key={friend.id} value={friend.friendid}>
           <strong>{friend.friendname}</strong>
         </div>
       </li>
