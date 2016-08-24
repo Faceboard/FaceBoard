@@ -9,6 +9,7 @@ import Sidebar from './sidebar';
 import Users from './users';
 import Chat from './chat';
 import RoomList from './roomList';
+import RoomSelect from './roomSelect';
 import io from 'socket.io-client';
 import socket from '../sync';
 
@@ -49,6 +50,7 @@ class Lobby extends React.Component {
         </div>
         <Sidebar />
         <Chat />
+        <RoomSelect />
       </div>
     );
   }

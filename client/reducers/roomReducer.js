@@ -1,9 +1,10 @@
-import { FETCHING_ROOMS, FETCHED_ROOMS, FETCHED_ROOMS_ERROR } from '../actions/action';
+import { FETCHING_ROOMS, FETCHED_ROOMS, FETCHED_ROOMS_ERROR, CHOOSE_ROOM } from '../actions/action';
 
 const initialState = {
   rooms: [],
   fetching: false,
-  fetched: false
+  fetched: false,
+  chosenRoom: ''
 };
 
 const roomReducer = (state = initialState, action) => {
@@ -22,6 +23,11 @@ const roomReducer = (state = initialState, action) => {
         fetched: true,
         error: action.payload
       });
+    case CHOOSE_ROOM:
+      return Object.assign({}, state, {
+        chosenRoom: action.chosenRoom
+      });
+
     default:
       return state;
   }

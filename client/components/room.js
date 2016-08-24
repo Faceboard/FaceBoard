@@ -6,6 +6,7 @@ import FriendsList from './friendsList';
 import RoomChat from './roomChat';
 import RoomChatInput from './roomChatInput';
 import Sidebar from './sidebar';
+import RoomSelect from './roomSelect';
 import { getRoomMessages } from '../actions/room';
 import Users from './users';
 
@@ -36,6 +37,7 @@ class Room extends React.Component {
         </div>
         <Sidebar />
         <RoomChat />
+        <RoomSelect />
       </div>
     );
   }

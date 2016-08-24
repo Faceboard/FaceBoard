@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { constantUrl } from '../sync';
-import { FETCHING_ROOM_MESSAGES, ROOM_MESSAGES_FETCHED, ROOM_MESSAGES_ERROR, FETCHING_ROOMS, FETCHED_ROOMS, FETCHED_ROOMS_ERROR } from './action';
+import { FETCHING_ROOM_MESSAGES, ROOM_MESSAGES_FETCHED, ROOM_MESSAGES_ERROR, FETCHING_ROOMS, FETCHED_ROOMS, FETCHED_ROOMS_ERROR, CHOOSE_ROOM } from './action';
 import socket from '../sync';
 
 export function getRoomMessages (roomname) {
@@ -22,7 +22,7 @@ export function getRoomMessages (roomname) {
         });
       });
   };
-}
+};
 
 export function getRoomsForUser () {
   return function (dispatch) {
@@ -41,7 +41,7 @@ export function getRoomsForUser () {
         });
       });
   };
-}
+};
 
 export function addRooms (roomname) {
   return function (dispatch) {
@@ -58,7 +58,7 @@ export function addRooms (roomname) {
         payload: error
       });
     });
-  }
+  };
 };
 
 export function deleteRoom(roomname) {
@@ -73,6 +73,13 @@ export function joinRoom (roomObj) {
   global.localStorage.currentRoom = roomObj.roomname;
   let obj = {
     roomname: roomObj.roomname,
-  }
+  };
   socket.emit('join room', roomObj);
-}
+};
+
+export function chooseRoom (room) {
+  return {
+    type: CHOOSE_ROOM,
+    chosenRoom: room
+  };
+};
