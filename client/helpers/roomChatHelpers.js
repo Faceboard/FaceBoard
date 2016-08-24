@@ -10,6 +10,5 @@ export function sendRoomMessage () {
     roomname: global.localStorage.currentRoom
   };
   msg.value = '';
-
   socket.emit('send message in room', msgObj);
 };

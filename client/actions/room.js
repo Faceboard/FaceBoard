@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { constantUrl } from '../sync';
-import { FETCHING_ROOM_MESSAGES, ROOM_MESSAGES_FETCHED, ROOM_MESSAGES_ERROR, FETCHING_ROOMS, FETCHED_ROOMS, FETCHED_ROOMS_ERROR } from './action';
+import { FETCHING_ROOM_MESSAGES, ROOM_MESSAGES_FETCHED, ROOM_MESSAGES_ERROR, FETCHING_ROOMS, FETCHED_ROOMS, FETCHED_ROOMS_ERROR, CHOOSE_ROOM } from './action';
 import socket from '../sync';
 
 export function getRoomMessages (roomname) {
+  console.log('this was called');
   return function (dispatch) {
     dispatch({ type: FETCHING_ROOM_MESSAGES });
     axios.post(constantUrl + '/messages/rooms/findAll', {roomname})
@@ -12,6 +13,7 @@ export function getRoomMessages (roomname) {
           type: ROOM_MESSAGES_FETCHED,
           payload: response.data
         });
+        console.log('this is a response', response.data);
       })
       .catch((error) => {
         dispatch({
@@ -20,7 +22,7 @@ export function getRoomMessages (roomname) {
         });
       });
   };
-}
+};
 
 export function getRoomsForUser () {
   return function (dispatch) {
@@ -39,7 +41,7 @@ export function getRoomsForUser () {
         });
       });
   };
-}
+};
 
 export function addRooms (roomname) {
   return function (dispatch) {
@@ -56,7 +58,7 @@ export function addRooms (roomname) {
         payload: error
       });
     });
-  }
+  };
 };
 
 export function deleteRoom(roomname) {
@@ -71,6 +73,23 @@ export function joinRoom (roomObj) {
   global.localStorage.currentRoom = roomObj.roomname;
   let obj = {
     roomname: roomObj.roomname,
-  }
+  };
   socket.emit('join room', roomObj);
+};
+
+export function chooseRoom (room) {
+  return {
+    type: CHOOSE_ROOM,
+    chosenRoom: room
+  };
+};
+
+export function showRoomSelect () {
+  let roomSelect = document.getElementsByClassName('double-div')[0];
+  roomSelect.classList.remove('no-show');
+}
+
+export function hideRoomSelect () {
+  let roomSelect = document.getElementsByClassName('double-div')[0];
+  roomSelect.classList.add('no-show');
 }

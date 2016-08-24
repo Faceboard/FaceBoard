@@ -1,5 +1,6 @@
 import { makePrivateSession } from './session';
 import { rightClickPChat } from './chat';
+import { showRoomSelect } from './room';
 const remote = window.require('electron').remote;
 const Menu = remote.Menu;
 const MenuItem = remote.MenuItem;
@@ -64,6 +65,13 @@ export function makeChatMenu (router) {
     }
   }));
 
+  chatMenu.append(new MenuItem({
+    label: 'Invite user to a room',
+    click: () => {
+      showRoomSelect();
+    }
+  }));
+
   let chatListener = (event) => {
     event.preventDefault();
     let seconduser = event.target.textContent.slice(0, event.target.textContent.length - 1);
@@ -73,21 +81,20 @@ export function makeChatMenu (router) {
     chatMenu.popup(remote.getCurrentWindow());
   };
 
-
-  if (!chatMenuRendered) {
-    let allUsers = document.getElementsByClassName('user');
-    if (allUsers.length) {
-      chatMenuRendered = true;
-    }
-    for (let i = 0; i < allUsers.length; i++) {
-      allUsers[i].removeEventListener('click', chatListener);
-      allUsers[i].addEventListener('click', chatListener);
-    }
+  let allUsers = document.getElementsByClassName('user');
+  let el;
+  let elClone;
+  for (let i = 0; i < allUsers.length; i++) {
+    el = allUsers[i];
+    elClone = el.cloneNode(true);
+    elClone.addEventListener('click', chatListener);
+    el.parentNode.replaceChild(elClone, el);
   }
 };
 
 export function makePChatMenu () {
   let pchatMenu = new Menu();
+
   pchatMenu.append(new MenuItem({
     label: 'Invite user',
     click: () => {
@@ -95,21 +102,28 @@ export function makePChatMenu () {
     }
   }));
 
+  pchatMenu.append(new MenuItem({
+    label: 'Invite user to a room',
+    click: () => {
+      showRoomSelect();
+    }
+  }));
+
+
   let pchatListener = (event) => {
     let seconduser = event.target.textContent.slice(0, event.target.textContent.length - 1);
     global.localStorage.secondusername = seconduser;
     pchatMenu.popup(remote.getCurrentWindow());
   }
 
-  if (!pchatMenuRendered) {
-    let allUsers = document.getElementsByClassName('user');
-    if (allUsers.length) {
-      pchatMenuRendered = true;
-    }
-    for (let i = 0; i < allUsers.length; i++) {
-      allUsers[i].removeEventListener('click', pchatListener);
-      allUsers[i].addEventListener('click', pchatListener);
-    }
+  let allUsers = document.getElementsByClassName('user');
+  let el;
+  let elClone;
+  for (let i = 0; i < allUsers.length; i++) {
+    el = allUsers[i];
+    elClone = el.cloneNode(true);
+    elClone.addEventListener('click', pchatListener);
+    el.parentNode.replaceChild(elClone, el);
   }
 }
 

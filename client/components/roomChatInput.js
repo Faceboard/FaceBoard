@@ -12,6 +12,7 @@ class roomInput extends React.Component {
   sendMessage(e) {
     if (e.which === 13 && !e.shiftKey) {
       sendRoomMessage();
+      document.getElementById('roomMessage').value = '';
     }
   }
 

@@ -44,6 +44,78 @@ a {
  /* display: none;*/
 }
 
+.no-show {
+  display: none;
+}
+
+.dim-background {
+  z-index: 100;
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d3d3d3;
+  opacity: 0.8;
+}
+
+.room-select {
+  z-index: 1000;
+  position: absolute;
+  background-color: white;
+  left: 35%;
+  top: 25%;
+  width: 30%;
+  height: 30%;
+}
+
+.select-room {
+  font-size: 20px;
+  height: 100%;
+  margin: auto 0;
+  padding: 40px;
+}
+
+.action-buttons {
+  margin-top: 20px;
+}
+
+.upper-div {
+  display: block;
+  width: 100%;
+  height: 31px;
+  background-color: gray;
+}
+
+.invite-text {
+  display: inline-block;
+  color: black;
+  font-weight: bolder;
+}
+
+.invite-header-text {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.select-room {
+  text-align: center;
+}
+
+.invite-button, .cancel-button {
+  background-color: black;
+  color: white;
+  margin-left: 25px;
+  margin-right: 27px;
+}
+
+.invite-button:hover, .cancel-button:hover {
+  background-color: white;
+  color: black;
+}
+
 .signInput {
   margin: 5px;
   width: 85%;

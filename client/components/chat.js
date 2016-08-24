@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import { getAllMessages } from '../actions/chat';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { makeChatMenu, reattachChatMenus } from '../actions/menu';
+import { makeChatMenu } from '../actions/menu';
 import Message from './message';
+import RoomSelect from './roomSelect';
 import Input from './input';
 import socket from '../sync';
 import { ProgressCircle } from 'react-desktop/macOs';
@@ -15,8 +16,9 @@ class Chat extends React.Component {
   }
 
   componentWillMount () {
+    const { router } = this.props;
     this.props.dispatch(getAllMessages());
-    reattachChatMenus();
+    makeChatMenu(router);
   }
 
   componentDidUpdate () {
@@ -57,6 +59,7 @@ class Chat extends React.Component {
           </table>
         </div>
         <Input />
+        <RoomSelect />
       </div>
     );
   }
