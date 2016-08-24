@@ -20,6 +20,9 @@ class roomInput extends React.Component {
       <div className="inputMessageBox">
         <div className="inputMessage">
           <textarea id="roomMessage" type="text" name="messageText" onKeyPress={this.sendMessage.bind(this)}/>
+          <div className="inputMessageButton">
+            <button className="btn btn-default" onClick={this.sendMessage.bind(this)}>Submit</button>
+          </div>
         </div>
       </div>
     )
