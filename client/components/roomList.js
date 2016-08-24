@@ -40,6 +40,7 @@ class RoomList extends React.Component {
 
   goToLobby () {
     const { router } = this.props;
+    global.localStorage.currentRoom = '';
     router.replace('/');
   }
 
