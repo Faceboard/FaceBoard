@@ -10,6 +10,7 @@ import Message from './message';
 import { ProgressCircle } from 'react-desktop/macOs';
 import { removeHighlight, startPChat, findNewFriend, removePChatHighlighting } from '../helpers/friendHelpers';
 import { makePChatMenu, reattachPChatMenu } from '../actions/menu';
+import Users from './users';
 
 class PrivateChat extends React.Component {
   constructor(props) {
@@ -75,6 +76,11 @@ class PrivateChat extends React.Component {
             <button className="btn btn-default pull-right" onClick={this.leaveSession.bind(this)}>
               <span className="icon icon-home"></span>
             </button>
+            <div className="pull-right">
+              <div className="users-search">
+                <Users />
+              </div>
+            </div>
           </div>
           <SideBar />
             <div className="chat-container">
