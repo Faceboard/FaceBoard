@@ -9,6 +9,7 @@ import { makeMenu, reattachMenus } from '../actions/menu';
 import { addFriend, getAllFriends, deleteFriend } from '../actions/friends';
 import { getPrivateMessages, getAllFriendPrivateMsg, pChatStart } from '../actions/chat';
 import { findFriend, startPChat } from '../helpers/friendHelpers';
+import { sendRoomInvite } from '../helpers/roomChatHelpers';
 
 class FriendsList extends React.Component {
   constructor (props) {
@@ -38,6 +39,15 @@ class FriendsList extends React.Component {
     reattachMenus();
   }
 
+  callUser (e) {
+    e.preventDefault();
+    makePrivateSession(global.localStorage.username, e.target.dataset['friendname']);
+  }
+
+  inviteToRoom (e) {
+    sendRoomInvite(e.target.dataset['friendname']);
+  }
+
   privateMessageStart (e) {
     const { router } = this.props;
     pChatStart(e, router);
@@ -52,9 +62,27 @@ class FriendsList extends React.Component {
     const friendsNoSelf = friends.filter(f => f.friendname !== global.localStorage.username)
     const mapFriends = friendsNoSelf.map(friend =>
       <li className="list-group-item user-names friends" data-friendname={friend.friendname}>
-        <span className="icon icon-minus btn btn-default pull-right" data-friendname={friend.friendname} onClick={this.removeFriend.bind(this)}></span>
-        <span className="btn btn-default pull-right icon icon-mail" data-friendname={friend.friendname} data-friendid={friend.friendid} onClick={this.privateMessageStart.bind(this)}></span>
-        <div className="media-body pull-left fa fa-star-o" key={friend.id}>
+        <span
+          className="btn btn-default pull-right icon icon-phone"data-friendname={friend.friendname}
+          onClick={this.callUser.bind(this)}>
+        </span>
+        <span className="btn btn-default pull-right icon icon-mail"
+          data-friendname={friend.friendname} data-friendid={friend.friendid}
+          onClick={this.privateMessageStart.bind(this)}>
+        </span>
+        <span
+          className="icon icon-minus btn btn-default pull-right"
+          data-friendname={friend.friendname}
+          onClick={this.removeFriend.bind(this)}>
+        </span>
+        <span
+          className="btn btn-default pull-right pull-right icon icon-user-add"
+          data-friendname={friend.friendname}
+          onClick={this.inviteToRoom.bind(this)}>
+        </span>
+        <div
+          className="media-body pull-left fa fa-star-o"
+          key={friend.id}>
           <strong>{friend.friendname}</strong>
         </div>
       </li>

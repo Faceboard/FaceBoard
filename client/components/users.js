@@ -7,6 +7,7 @@ import { makePrivateSession } from '../actions/session';
 import { startPChatFromAllUsers } from '../actions/chat';
 import { addFriend } from '../actions/friends';
 import socket from '../sync';
+import { sendRoomInvite } from '../helpers/roomChatHelpers';
 
 class Users extends React.Component {
   constructor (props) {
@@ -42,12 +43,7 @@ class Users extends React.Component {
   }
 
   inviteToRoom (e) {
-    let roomInvObj = {
-      roomname: global.localStorage.currentRoom,
-      secondusername: e.target.dataset['username'],
-      firstusername: global.localStorage.username
-    };
-    socket.emit('send room invite', roomInvObj);
+    sendRoomInvite(e.target.dataset['username']);
   }
 
   showUserMenu () {
@@ -69,7 +65,7 @@ class Users extends React.Component {
     const { filteredUsers } = this.props;
     const mapUsers = filteredUsers.map(user =>
       <li className="list-group-item user-names">
-          <span className="btn btn-default pull-right icon icon-phone" data-username={user.username}></span>
+          <span className="btn btn-default pull-right icon icon-phone" data-username={user.username} onClick={this.callUser.bind(this)}></span>
           <span className="btn btn-default pull-right icon icon-mail" data-username={user.username} data-user-id={user.id} onClick={this.msgUser.bind(this)}></span>
           <span className="btn btn-default pull-right icon icon-plus" data-username={user.username} data-user-id={user.id} onClick={this.addUser.bind(this)}></span>
           <span className="btn btn-default pull-right pull-right icon icon-user-add" data-username={user.username} data-user-id={user.id} onClick={this.inviteToRoom.bind(this)}></span>

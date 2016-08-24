@@ -25,16 +25,6 @@ class Room extends React.Component {
     let currentRoom = global.localStorage.currentRoom || '';
     return(
       <div className="lobby">
-        <div className="mainHeader">
-          {'Chat Room ' + global.localStorage.currentRoom}
-           <span className="btn btn-default pull-right icon icon-home" onClick={this.leaveRoom.bind(this)}>
-           </span>
-           <div className="pull-right">
-             <div className="users-search">
-               <Users />
-             </div>
-           </div>
-        </div>
         <Sidebar />
         <RoomChat />
         <RoomSelect />

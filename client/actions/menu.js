@@ -28,7 +28,6 @@ export function makeMenu (router) {
 
   let rightClickListener = (event) => {
     event.preventDefault();
-    console.log('e', event.target.value);
     global.localStorage.seconduserid = event.target.value;
     global.localStorage.secondusername = event.target.innerHTML;
     global.localStorage.pchat = global.localStorage.username + global.localStorage.seconduserid;

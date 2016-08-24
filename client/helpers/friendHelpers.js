@@ -12,7 +12,6 @@ export function findFriend (data) {
     }
   }
   if (!hasFriend) {
-    console.log('this happened');
     store.dispatch(addFriend(data.useroneid, data.useronename));
     global.newFriend = data;
   }

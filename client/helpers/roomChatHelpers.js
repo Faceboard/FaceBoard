@@ -12,3 +12,12 @@ export function sendRoomMessage () {
   msg.value = '';
   socket.emit('send message in room', msgObj);
 };
+
+export function sendRoomInvite (userInvited) {
+  let roomInvObj = {
+    roomname: global.localStorage.currentRoom,
+    secondusername: userInvited,
+    firstusername: global.localStorage.username
+  };
+  socket.emit('send room invite', roomInvObj);
+};
