@@ -3,16 +3,15 @@ import { constantUrl } from '../sync';
 import { FETCHING_ROOM_MESSAGES, ROOM_MESSAGES_FETCHED, ROOM_MESSAGES_ERROR, FETCHING_ROOMS, FETCHED_ROOMS, FETCHED_ROOMS_ERROR } from './action';
 import socket from '../sync';
 
-export function getRoomMessages (roomid) {
+export function getRoomMessages (roomname) {
   return function (dispatch) {
     dispatch({ type: FETCHING_ROOM_MESSAGES });
-    axios.post(constantUrl + '/messages/rooms/findAll', {roomid})
+    axios.post(constantUrl + '/messages/rooms/findAll', {roomname})
       .then((response) => {
         dispatch({
           type: ROOM_MESSAGES_FETCHED,
           payload: response.data
         });
-        console.log('this is room getRoomMessages', response.data);
       })
       .catch((error) => {
         dispatch({
@@ -70,7 +69,6 @@ export function deleteRoom(roomname) {
 
 export function joinRoom (roomObj) {
   global.localStorage.currentRoom = roomObj.roomname;
-  global.localStorage.roomid = roomObj.roomid;
   let obj = {
     roomname: roomObj.roomname,
   }

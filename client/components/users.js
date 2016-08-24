@@ -44,8 +44,9 @@ class Users extends React.Component {
   inviteToRoom (e) {
     let roomInvObj = {
       roomname: global.localStorage.currentRoom,
-      secondusername: global.localSTorage.dataset['username'],
-      firstusername: global.localStorage.username
+      secondusername: e.target.dataset['username'],
+      firstusername: global.localStorage.username,
+      roomid: global.localStorage.roomid
     };
     socket.emit('send room invite', roomInvObj);
   }

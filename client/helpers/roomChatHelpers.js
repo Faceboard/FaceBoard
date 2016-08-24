@@ -7,8 +7,7 @@ export function sendRoomMessage () {
     text: msg,
     username: global.localStorage.username,
     userid: global.localStorage.userid,
-    roomname: global.localStorage.currentRoom,
-    roomid: global.localStorage.roomid
+    roomname: global.localStorage.currentRoom
   };
   msg = '';
 
