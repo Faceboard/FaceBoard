@@ -8,9 +8,13 @@ class privateInput extends React.Component {
     super(props);
   }
 
-  sendMessage(e) {
+  sendMessage (e) {
+    sendPrivateMessage();
+  }
+
+  sendMessageEnter (e) {
     if (e.which === 13 && !e.shiftKey || e.which === 2) {
-      sendPrivateMessage();
+      this.sendMessage(e);
     }
   }
 
@@ -18,7 +22,7 @@ class privateInput extends React.Component {
     return (
       <div className="inputMessageBox">
         <div className="inputMessage">
-          <textarea id="privateMessage" type="text" name="messageText" onKeyPress={this.sendMessage.bind(this)}/>
+          <textarea id="privateMessage" type="text" name="messageText" onKeyPress={this.sendMessageEnter.bind(this)}/>
         </div>
         <div className="inputMessageButton">
           <button className="btn btn-default" onClick={this.sendMessage.bind(this)}>Submit</button>
