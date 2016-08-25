@@ -397,6 +397,22 @@ video {
   display: inline-block;
 }
 
+.list-group-header {
+  width: 100%;
+}
+
+.rooms-list-input {
+  height: 0;
+  display: none;
+  padding: 5px;
+}
+
+.rooms-list-input-show {
+  height: 25px;
+  display: block;
+  -webkit-transition: height .15s linear;
+}
+
 .showUsers {
   display: none;
 }
@@ -414,6 +430,18 @@ video {
 .rooms-list {
   height: 40%;
   overflow: auto;
+}
+
+.rooms-list .list-group-header * {
+  display: inline-block;
+}
+
+.rooms-list .list-group-header span {
+  opacity: 0.3;
+}
+
+.rooms-list .list-group-header span:hover {
+  opacity: 0.8;
 }
 
 .logo {

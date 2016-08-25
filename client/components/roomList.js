@@ -43,12 +43,16 @@ class RoomList extends React.Component {
     router.replace('/');
   }
 
+  showRoomAdd (e) {
+    this.refs.roomInput.classList.toggle('rooms-list-input-show');
+  }
+
   render () {
     const { rooms } = this.props;
     const mapRooms = rooms.map(room =>
       <div>
-        <li key={room.id} onClick={this.changeRooms.bind(this)} data-roomname={room.roomname}>{room.roomname}</li>
-        <button onClick={this.removeRoom.bind(this)} data-roomname={room.roomname}></button>
+        <li className="list-group-item" key={room.id} onClick={this.changeRooms.bind(this)} data-roomname={room.roomname}><strong>{room.roomname}</strong></li>
+        <span className="btn btn-default pull-right icon icon-minus" onClick={this.removeRoom.bind(this)} data-roomname={room.roomname}></span>
       </div>
     );
     if (!rooms.length) {
@@ -56,11 +60,13 @@ class RoomList extends React.Component {
         <div className="rooms-list">
           <ul className="list-group">
             <li className="list-group-header">
-              <h4 id="room-title">Rooms</h4>
-              <span className="btn btn-default icon icon-plus pull-right"></span>
+              <div><h4>Rooms</h4></div>
+                <span className="btn btn-default icon icon-plus pull-right" onClick={this.showRoomAdd.bind(this)}></span>
             </li>
-            <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
-            <li onClick={this.goToLobby.bind(this)}>Lobby</li>
+            <div className="rooms-list-input" ref="roomInput">
+              <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
+            </div>
+            <li className="list-group-item" onClick={this.goToLobby.bind(this)}><strong>Lobby</strong></li>
           </ul>
         </div>
       );
@@ -70,15 +76,17 @@ class RoomList extends React.Component {
       <div className="rooms-list">
         <ul className="list-group">
           <li className="list-group-header room-header">
-              <h4 id="room-title">Rooms</h4>
-              <span className="btn btn-default icon icon-plus pull-right"></span>
-            </li>
-          <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
+            <h4 id="room-title">Rooms</h4>
+            <span className="btn btn-default icon icon-plus pull-right" onClick={this.showRoomAdd.bind(this)}></span>
+          </li>
+          <div className="rooms-list-input" ref="roomInput">
+            <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
+          </div>
+          {mapRooms}
+          <div>
+            <li className="list-group-item" onClick={this.goToLobby.bind(this)}><strong>Lobby</strong></li>
+          </div>
         </ul>
-        {mapRooms}
-        <div>
-          <li onClick={this.goToLobby.bind(this)}>Lobby</li>
-        </div>
       </div>
     );
   }
