@@ -53,16 +53,16 @@ class RoomChat extends React.Component {
            </div>
         </div>
         <div className="chat-container">
-          <div className="chatBox">
+          <div className="chatBox" ref="roomChat">
             <table className="table-striped">
               <tbody>
                 {roomMsgs.map(message => <Message key={message.id} userid={message.id} user={message.username} text={message.text} timestamp={message.createdAt}/>)}
               </tbody>
             </table>
-            <RoomSelect />
-            <RoomChatInput />
           </div>
+            <RoomChatInput />
         </div>
+            <RoomSelect />
       </div>
     );
   }
