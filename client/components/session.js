@@ -9,6 +9,7 @@ import Firepad from 'firepad';
 import { configFirebase, fetchFirepad } from '../actions/firebaseConfig';
 import socket from '../sync';
 import { logout, authenticated } from '../auth';
+import Users from './users';
 const remote = window.require('electron').remote;
 
 
@@ -35,9 +36,11 @@ class Session extends React.Component {
       <div id="sessionWrapper">
         <div className="mainHeader">
           Private
-          <button className="btn btn-default pull-right" onClick={this.onLogout.bind(this)}>
-            <span className="icon icon-logout"></span>
-          </button>
+          <div className="pull-right">
+            <div className="users-search">
+              <Users />
+            </div>
+          </div>
           <button className="btn btn-default pull-right" onClick={this.leaveSession.bind(this)}>
             <span className="icon icon-home"></span>
           </button>
