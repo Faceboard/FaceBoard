@@ -63,6 +63,11 @@ class FriendsList extends React.Component {
     const mapFriends = friendsNoSelf.map(friend =>
       <li className="list-group-item user-names friends offline" data-friendname={friend.friendname}  key={friend.id}>
         <span
+          className="btn btn-default pull-right icon icon-minus"
+          data-friendname={friend.friendname}
+          onClick={this.removeFriend.bind(this)}>
+        </span>
+        <span
           className="btn btn-default pull-right icon icon-phone"
           data-friendname={friend.friendname}
           onClick={this.callUser.bind(this)}>
@@ -70,16 +75,6 @@ class FriendsList extends React.Component {
         <span className="btn btn-default pull-right icon icon-mail"
           data-friendname={friend.friendname} data-friendid={friend.friendid}
           onClick={this.privateMessageStart.bind(this)}>
-        </span>
-        <span
-          className="icon icon-minus btn btn-default pull-right"
-          data-friendname={friend.friendname}
-          onClick={this.removeFriend.bind(this)}>
-        </span>
-        <span
-          className="btn btn-default pull-right icon icon-user-add"
-          data-friendname={friend.friendname}
-          onClick={this.inviteToRoom.bind(this)}>
         </span>
         <div className="pull-left svg-class" key={friend.id}>
           <div>
