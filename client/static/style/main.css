@@ -406,19 +406,6 @@ video {
   width: 100%;
 }
 
-.rooms-list-input {
-  height: 0;
-  display: none;
-}
-
-.rooms-list-input-show {
-  height: 25px;
-  display: block;
-  padding: 5px;
-  -webkit-transition: height .15s linear;
-  margin: 5px;
-}
-
 .showUsers {
   display: none;
 }
@@ -441,6 +428,25 @@ video {
 .rooms-list .list-group-header *,
 .rooms-list .list-group-item * {
   display: inline-block;
+}
+
+.rooms-list-input input {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.rooms-list-input {
+  height: 0;
+  -webkit-transition: height .25s linear;
+  display: inline-block;
+}
+
+.rooms-list-input-show {
+  top: 0;
+  height: 45px;
+  padding: 5px;
+  -webkit-transition: height .25s linear;
+  /*margin: 10px;*/
 }
 
 .rooms-list .list-group-header span {

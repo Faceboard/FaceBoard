@@ -66,7 +66,7 @@ class RoomList extends React.Component {
                 <span className="btn btn-default icon icon-plus pull-right" onClick={this.showRoomAdd.bind(this)}></span>
             </li>
             <div className="rooms-list-input" ref="roomInput">
-              <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
+              <input className="form-control" id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
             </div>
             <li className="list-group-item" onClick={this.goToLobby.bind(this)}>
               <div className="media-body pull-left">
@@ -85,9 +85,11 @@ class RoomList extends React.Component {
             <h4 id="room-title">Rooms</h4>
             <span className="btn btn-default icon icon-plus pull-right" onClick={this.showRoomAdd.bind(this)}></span>
           </li>
-          <div className="rooms-list-input" ref="roomInput">
-            <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
-          </div>
+          <li>
+            <div className="rooms-list-input" ref="roomInput">
+              <input className="form-control" id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
+            </div>
+          </li>
           {mapRooms}
           <li className="list-group-item" onClick={this.goToLobby.bind(this)}>
             <div className="media-body pull-left">
