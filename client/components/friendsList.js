@@ -61,7 +61,7 @@ class FriendsList extends React.Component {
     const { friends } = this.props;
     const friendsNoSelf = friends.filter(f => f.friendname !== global.localStorage.username)
     const mapFriends = friendsNoSelf.map(friend =>
-      <li className="list-group-item user-names friends" data-friendname={friend.friendname}>
+      <li className="list-group-item user-names friends fa fa-star-o" data-friendname={friend.friendname}>
         <span
           className="btn btn-default pull-right icon icon-phone"data-friendname={friend.friendname}
           onClick={this.callUser.bind(this)}>
@@ -80,7 +80,7 @@ class FriendsList extends React.Component {
           data-friendname={friend.friendname}
           onClick={this.inviteToRoom.bind(this)}>
         </span>
-        <div className="media-body pull-left fa fa-star-o" key={friend.id}>
+        <div className="media-body pull-left" key={friend.id}>
           <strong>{friend.friendname}</strong>
         </div>
       </li>
