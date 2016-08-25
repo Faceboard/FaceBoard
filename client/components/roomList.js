@@ -53,7 +53,7 @@ class RoomList extends React.Component {
     );
     if (!rooms.length) {
       return (
-        <div id="rooms-list">
+        <div className="rooms-list">
           <ul className="list-group">
             <li className="list-group-header">
               <h4 id="room-title">Rooms</h4>
@@ -67,7 +67,7 @@ class RoomList extends React.Component {
     }
 
     return (
-      <div id="rooms-list">
+      <div className="rooms-list">
         <ul className="list-group">
           <li className="list-group-header room-header">
               <h4 id="room-title">Rooms</h4>

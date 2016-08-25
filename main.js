@@ -1,3 +1,4 @@
+/* global process, __dirname */
 'use strict';
 
 const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
@@ -91,4 +92,4 @@ app.on('ready', function () {
 
 // // auto reload on any changes
 // must be commented out before a build
-require('electron-reload')(__dirname);
+// require('electron-reload')(__dirname);
