@@ -45,7 +45,7 @@ a {
 }
 
 .dim-background {
-  z-index: 100;
+  z-index: 1001;
   position: fixed;
   padding: 0;
   margin: 0;
@@ -58,7 +58,7 @@ a {
 }
 
 .room-select {
-  z-index: 1000;
+  z-index: 1002;
   position: absolute;
   background-color: white;
   left: 35%;
@@ -202,10 +202,6 @@ select {
   color: #3d3d3d;
 }
 
-/*span {
-  display: block;
-}*/
-
 #mainSession {
   display: inline-block;
   width: 64%;
@@ -314,7 +310,9 @@ video {
   padding: 0px 10px 5px 10px;
 }
 
-.users::-webkit-scrollbar {
+.users::-webkit-scrollbar,
+.friendsList::-webkit-scrollbar,
+.rooms-list::-webkit-scrollbar {
   opacity: 0;
   width: 0;
 }
@@ -403,16 +401,23 @@ video {
   display: none;
 }
 
+.friendsList {
+  height: 45%;
+  margin-top: 1%;
+  overflow: auto;
+}
+
 .friends {
   list-style: none;
 }
 
-.logo {
-  position: absolute;
+.rooms-list {
+  height: 40%;
+  overflow: auto;
 }
 
-.search-pad {
-  margin: 13px 10px 0 0;
+.logo {
+  position: absolute;
 }
 
 .react-grid-item > .react-resizable-handle {
@@ -422,6 +427,24 @@ video {
   border-style: solid;
   border-width: 0 0 10px 10px;
   border-color: transparent transparent #ff3c00 transparent;
+}
+
+.online *, .offline * {
+  display: inline-flex;
+}
+
+.online .svg-class,
+.offline .svg-class {
+  margin: 5px 5px 0 0;
+}
+
+.online circle {
+  fill: red;
+}
+
+.offline circle {
+  stroke: #8c8c8c;
+  stroke-width: 2;
 }
 
 @font-face {
