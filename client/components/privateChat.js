@@ -19,25 +19,27 @@ class PrivateChat extends React.Component {
   }
 
   componentWillMount () {
+    const { router } = this.props;
     socket.emit('join pchat', {pchat: global.localStorage.pchat});
     this.props.dispatch(getPrivateMessages(global.localStorage.seconduserid));
-    makePChatMenu();
-  }
-
-  componentWillUpdate () {
-    var node = ReactDOM.findDOMNode(this);
-    this.shouldScroll = Math.abs((node.scrollTop + node.offsetHeight) - node.scrollHeight) < 3;
+    makePChatMenu(router);
   }
 
   componentDidMount () {
-    this.scrollToBottomAtStart();
     removeHighlight(global.localStorage.secondusername);
     startPChat(global.localStorage.secondusername)
   }
 
   componentDidUpdate () {
+    const { router } = this.props;
+    var node = this.refs.privChat;
+    this.shouldScroll = Math.abs((node.scrollTop + node.offsetHeight) - node.scrollHeight) < (node.scrollTop / 3);
+    if (!this.firstScroll) {
+      this.shouldScroll = true;
+      this.firstScroll = true;
+    }
     this.scrollToBottomAtStart();
-    makePChatMenu();
+    makePChatMenu(router);
     if (global.newName) {
       findNewFriend(global.newName);
     }
@@ -45,7 +47,7 @@ class PrivateChat extends React.Component {
 
   scrollToBottomAtStart () {
     if (this.shouldScroll) {
-      var node = ReactDOM.findDOMNode(this);
+      var node = this.refs.privChat;
       node.scrollTop = node.scrollHeight;
     }
   }
@@ -85,14 +87,14 @@ class PrivateChat extends React.Component {
           </div>
           <SideBar />
             <div className="chat-container">
-              <div className="chatBox">
+              <div className="chatBox" ref="privChat">
                 <table className="table-striped">
                   <tbody>
                     {privMessages.map(priv => <Message user={priv.useronename} text={priv.text} timestamp={priv.createdAt}/>)}
                   </tbody>
                 </table>
-                <PrivateChatInput />
               </div>
+              <PrivateChatInput />
             </div>
             <RoomSelect />
         </div>
