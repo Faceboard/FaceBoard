@@ -268,7 +268,7 @@ video {
 }
 
 .window {
-  overflow: auto;
+  overflow: fixed;
 }
 
 .btn {
