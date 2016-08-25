@@ -29,6 +29,7 @@ export const FETCHING_ROOMS = 'FETCHING_ROOMS';
 export const FETCHED_ROOMS = 'FETCHED_ROOMS';
 export const FETCHED_ROOMS_ERROR = 'FETCHED_ROOMS_ERROR';
 export const CHOOSE_ROOM = 'CHOOSE_ROOM';
+export const CHOOSE_USER = 'CHOOSE_USER'
 
 export function authChange (field, value) {
   return {
