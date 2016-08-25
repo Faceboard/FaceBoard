@@ -31,7 +31,7 @@ export function removeHighlight (target) {
   let friendArray = document.getElementsByClassName('friends');
 
   for (let i = 0; i < friendArray.length; i++) {
-    if (friendArray[i].innerHTML === target) {
+    if (friendArray[i].dataset['friendname'] === target) {
       friendArray[i].classList.remove('hasMessage');
     }
   }
@@ -47,11 +47,11 @@ export function removePChatHighlighting () {
 export function startPChat (target) {
   let friendArray = document.getElementsByClassName('friends');
   for (let i = 0; i < friendArray.length; i++) {
-    if (friendArray[i].innerHTML === target) {
+    if (friendArray[i].dataset['friendname'] === target) {
       friendArray[i].classList.add('in-pchat');
       delete global.newName;
     }
-    if (friendArray[i].innerHTML !== target) {
+    if (friendArray[i].dataset['friendname'] !== target) {
       friendArray[i].classList.remove('in-pchat');
     }
   }

@@ -59,8 +59,8 @@ export function pChatStart (event, router) {
   socket.emit('makePrivateChat', data);
   router.replace('/privateChat');
   store.dispatch(getAllFriendPrivateMsg(data.seconduserid));
-  removeHighlight(event.target.innerHTML);
-  startPChat(event.target.innerHTML);
+  removeHighlight(event.target.dataset['friendname']);
+  startPChat(event.target.dataset['friendname']);
 };
 
 export function rightClickPChat (router) {

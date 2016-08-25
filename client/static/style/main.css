@@ -133,12 +133,16 @@ input {
 }
 
 .hasMessage {
-  background-color: black;
-  color: white;
+  animation: blink 700ms infinite alternate;
+}
+
+@keyframes blink {
+  from { background-color: black; color: white; }
+  to {  background-color: #332b2b; color: #dddddd; }
 }
 
 .in-pchat {
-  background-color: green;
+  background-color: #a81e1e;
   color: white;
 }
 
