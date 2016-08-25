@@ -376,7 +376,8 @@ video {
   padding: 6px;
 }
 
-.user-names span {
+.user-names span,
+.rooms-list .list-group-item span {
   display: inline-block;
   transform: scale(0.8);
   margin: 2px;
@@ -437,7 +438,8 @@ video {
   overflow: auto;
 }
 
-.rooms-list .list-group-header * {
+.rooms-list .list-group-header *,
+.rooms-list .list-group-item * {
   display: inline-block;
 }
 

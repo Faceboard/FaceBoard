@@ -50,10 +50,12 @@ class RoomList extends React.Component {
   render () {
     const { rooms } = this.props;
     const mapRooms = rooms.map(room =>
-      <div>
-        <li className="list-group-item" key={room.id} onClick={this.changeRooms.bind(this)} data-roomname={room.roomname}><strong>{room.roomname}</strong></li>
+      <li className="list-group-item" key={room.id} onClick={this.changeRooms.bind(this)} data-roomname={room.roomname}>
+        <div className="media-body pull-left">
+          <strong>{room.roomname}</strong>
+        </div>
         <span className="btn btn-default pull-right icon icon-minus" onClick={this.removeRoom.bind(this)} data-roomname={room.roomname}></span>
-      </div>
+      </li>
     );
     if (!rooms.length) {
       return (
@@ -66,7 +68,11 @@ class RoomList extends React.Component {
             <div className="rooms-list-input" ref="roomInput">
               <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
             </div>
-            <li className="list-group-item" onClick={this.goToLobby.bind(this)}><strong>Lobby</strong></li>
+            <li className="list-group-item" onClick={this.goToLobby.bind(this)}>
+              <div className="media-body pull-left">
+                <strong>Lobby</strong>
+              </div>
+            </li>
           </ul>
         </div>
       );
@@ -83,9 +89,11 @@ class RoomList extends React.Component {
             <input id='roomlist-input' placeholder='Make a chat room' onKeyPress={this.addRoom.bind(this)}/>
           </div>
           {mapRooms}
-          <div>
-            <li className="list-group-item" onClick={this.goToLobby.bind(this)}><strong>Lobby</strong></li>
-          </div>
+          <li className="list-group-item" onClick={this.goToLobby.bind(this)}>
+            <div className="media-body pull-left">
+              <strong>Lobby</strong>
+            </div>
+          </li>
         </ul>
       </div>
     );
