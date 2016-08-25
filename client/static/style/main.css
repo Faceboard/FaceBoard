@@ -339,6 +339,10 @@ video {
   text-decoration: underline;
 }
 
+.allUsers {
+  background-color: #332b2b;
+}
+
 .sidebar {
   float: left;
   width: 5%;

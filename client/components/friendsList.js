@@ -80,9 +80,7 @@ class FriendsList extends React.Component {
           data-friendname={friend.friendname}
           onClick={this.inviteToRoom.bind(this)}>
         </span>
-        <div
-          className="media-body pull-left fa fa-star-o"
-          key={friend.id}>
+        <div className="media-body pull-left fa fa-star-o" key={friend.id}>
           <strong>{friend.friendname}</strong>
         </div>
       </li>

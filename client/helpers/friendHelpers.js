@@ -57,12 +57,13 @@ export function startPChat (target) {
   }
 }
 
+// look inside of friendArray[i] to get to the left side
 export function onlineUser (target) {
 
   let friendArray = document.getElementsByClassName('friends');
 
   for (let i = 0; i < friendArray.length; i++) {
-    if (friendArray[i].innerHTML === target) {
+    if (friendArray[i].dataset['friendname'] === target) {
       friendArray[i].classList.remove('fa-star-o');
       friendArray[i].classList.add('fa-star');
     }
@@ -74,7 +75,7 @@ export function offlineUser (target) {
   let friendArray = document.getElementsByClassName('friends');
 
   for (let i = 0; i < friendArray.length; i++) {
-    if (friendArray[i].innerHTML === target) {
+    if (friendArray[i].dataset['friendname'] === target) {
       friendArray[i].classList.remove('fa-star');
       friendArray[i].classList.add('fa-star-o');
     }

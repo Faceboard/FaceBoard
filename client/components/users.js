@@ -87,9 +87,12 @@ class Users extends React.Component {
       <div className="users" ref="users">
         <ul className="list-group showAllUsers">
           <li className="list-group-header">
-            <input className="form-control" type="text" placeholder="Search for someone" value={this.props.value} onChange={this.filterUsers.bind(this)} onFocus={this.showUserMenu.bind(this)} onBlur={this.hideUserMenu.bind(this)}/>
+            <input className="form-control" type="text" placeholder="Search for someone" value={this.props.value} onChange={this.filterUsers.bind(this)}
+              onFocus={this.showUserMenu.bind(this)} onBlur={this.hideUserMenu.bind(this)}/>
           </li>
-          {mapUsers}
+          <div className="allUsers">
+            {mapUsers}
+          </div>
         </ul>
       </div>
     )
@@ -98,3 +101,5 @@ class Users extends React.Component {
 
 const mapStateToProps = (state) => state.userReducer;
 export default connect(mapStateToProps)(withRouter(Users));
+
+
