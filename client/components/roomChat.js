@@ -8,6 +8,8 @@ import RoomSelect from './roomSelect';
 import RoomChatInput from './roomChatInput';
 import Message from './message';
 import Users from './users';
+import UserSelect from './userSelect';
+import { showUserSelect } from '../actions/userActions';
 
 
 class RoomChat extends React.Component {
@@ -46,6 +48,10 @@ class RoomChat extends React.Component {
     router.replace('/');
   }
 
+  showSelect (e) {
+    showUserSelect();
+  }
+
   render () {
     const { roomMsgs } = this.props;
     if (!roomMsgs) {
@@ -58,7 +64,7 @@ class RoomChat extends React.Component {
       <div className="lobby">
         <div className="mainHeader">
           {global.localStorage.currentRoom}
-          <img src="../static/imgs/plus.png" />
+          <img src="../static/imgs/plus.png" onClick={this.showSelect.bind(this)}/>
            <span className="btn btn-default pull-right icon icon-home" onClick={this.leaveRoom.bind(this)}>
            </span>
            <div className="pull-right">
@@ -75,9 +81,10 @@ class RoomChat extends React.Component {
               </tbody>
             </table>
           </div>
-            <RoomChatInput />
+          <RoomChatInput />
         </div>
-            <RoomSelect />
+        <UserSelect />
+        <RoomSelect />
       </div>
     );
   }

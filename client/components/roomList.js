@@ -50,7 +50,7 @@ class RoomList extends React.Component {
   render () {
     const { rooms } = this.props;
     const mapRooms = rooms.map(room =>
-      <li className="list-group-item" key={room.id} onClick={this.changeRooms.bind(this)}>
+      <li className="list-group-item" key={room.id} onClick={this.changeRooms.bind(this)} data-roomname={room.roomname}>
         <div className="media-body pull-left">
           <strong data-roomname={room.roomname}>{room.roomname}</strong>
         </div>

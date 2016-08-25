@@ -1,11 +1,12 @@
-import { FETCHING_USERS, USERS_FETCHED, FETCH_USERS_ERROR, CHANGE_FIELD, FETCHING_FRIENDS, FRIENDS_FETCHED, FETCHING_FRIENDS_ERROR, FILTER_USERS } from '../actions/action';
+import { FETCHING_USERS, USERS_FETCHED, FETCH_USERS_ERROR, CHANGE_FIELD, FETCHING_FRIENDS, FRIENDS_FETCHED, FETCHING_FRIENDS_ERROR, FILTER_USERS, CHOOSE_USER } from '../actions/action';
 
 const initialState = {
   users: [],
   friends: [],
   filteredUsers: [],
   fetching: false,
-  fetched: false
+  fetched: false,
+  chosenUser: ''
 };
 
 // do constants
@@ -47,6 +48,10 @@ const userReducer = (state = initialState, action) => {
       let filtered = state.users.filter(u => u.username.toLowerCase().indexOf(action.filter.toLowerCase()) !== -1);
       filtered.length = action.filter === '' ? 0 : filtered.length;
       return Object.assign({}, state, { filteredUsers: filtered });
+    case CHOOSE_USER:
+      return Object.assign({}, state, {
+        chosenUser: action.chosenUser
+      });
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import { FETCHING_USERS, USERS_FETCHED, FETCH_USERS_ERROR } from './action';
+import { FETCHING_USERS, USERS_FETCHED, FETCH_USERS_ERROR, CHOOSE_USER } from './action';
 import axios from 'axios';
 import { constantUrl } from '../sync';
 
@@ -20,5 +20,23 @@ export function filterSearch (filter) {
   return {
     type: 'FILTER_USERS',
     filter
-  }
+  };
+};
+
+
+export function showUserSelect () {
+  let userSelect = document.getElementsByClassName('user-select')[0];
+  userSelect.classList.remove('no-show');
 }
+
+export function hideUserSelect () {
+  let userSelect = document.getElementsByClassName('user-select')[0];
+  userSelect.classList.add('no-show');
+}
+
+export function chooseUser (user) {
+  return {
+    type: CHOOSE_USER,
+    chosenUser: user
+  };
+};
