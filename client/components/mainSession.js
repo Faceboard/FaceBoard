@@ -44,7 +44,7 @@ class MainSession extends React.Component {
       {i: 'syntax', x: 5, y: 0, w: 20, h: 3, static: true},
       {i: 'code', x: 5, y: 0, w: 25, h: 40},
       {i: 'board', x: 30, y: 3, w: 25, h: 40},
-      {i: 'video', x: 55, y: 3, w: 10, h: 15}
+      {i: 'video', x: 55, y: 3, w: 10, h: 20}
     ];
     return (
       <ReactGridLayout className="layout" layout={layout} cols={100} rowHeight={1} width={window.innerWidth*1.5} verticalCompact={false}>
