@@ -40,10 +40,6 @@ a {
   width: 112px;
 }
 
-#roomlist-input {
- /* display: none;*/
-}
-
 .no-show {
   display: none;
 }
@@ -337,6 +333,10 @@ video {
 .user:hover {
   font-weight: bold;
   text-decoration: underline;
+}
+
+.allUsers {
+  background-color: #332b2b;
 }
 
 .sidebar {

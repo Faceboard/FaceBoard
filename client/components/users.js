@@ -18,6 +18,10 @@ class Users extends React.Component {
     this.props.dispatch(getAllUsers());
   }
 
+  componentWillUnmount () {
+    this.props.dispatch(filterSearch(''));
+  }
+
   onLogout () {
     logout();
     this.props.router.replace('/auth');
@@ -35,7 +39,9 @@ class Users extends React.Component {
   }
 
   addUser (e) {
+    let search = document.getElementById('user-search');
     this.props.dispatch(addFriend(e.target.dataset['userId'], e.target.dataset['username']));
+    search.value = '';
   }
 
   filterUsers (e) {
@@ -87,9 +93,13 @@ class Users extends React.Component {
       <div className="users" ref="users">
         <ul className="list-group showAllUsers">
           <li className="list-group-header">
-            <input className="form-control" type="text" placeholder="Search for someone" value={this.props.value} onChange={this.filterUsers.bind(this)} onFocus={this.showUserMenu.bind(this)} onBlur={this.hideUserMenu.bind(this)}/>
+            <input id="user-search" className="form-control" type="text"
+              placeholder="Search for user" value={this.props.value} onChange={this.filterUsers.bind(this)}
+              onFocus={this.showUserMenu.bind(this)} onBlur={this.hideUserMenu.bind(this)}/>
           </li>
-          {mapUsers}
+          <div className="allUsers">
+            {mapUsers}
+          </div>
         </ul>
       </div>
     )
@@ -98,3 +108,5 @@ class Users extends React.Component {
 
 const mapStateToProps = (state) => state.userReducer;
 export default connect(mapStateToProps)(withRouter(Users));
+
+
