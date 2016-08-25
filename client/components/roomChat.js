@@ -21,15 +21,29 @@ class RoomChat extends React.Component {
     makeChatMenu(router);
   }
 
+  componentDidUpdate () {
+    const { router } = this.props;
+    var node = this.refs.roomChat;
+    this.shouldScroll = Math.abs((node.scrollTop + node.offsetHeight) - node.scrollHeight) < (node.scrollTop / 3);
+    if (!this.firstScroll) {
+      this.shouldScroll = true;
+      this.firstScroll = true;
+    }
+    this.scrollToBottomAtStart();
+    makeChatMenu(router);
+  }
+
+  scrollToBottomAtStart () {
+    if (this.shouldScroll) {
+      var node = this.refs.roomChat;
+      node.scrollTop = node.scrollHeight;
+    }
+  }
+
   leaveRoom () {
     const { router } = this.props;
     global.localStorage.currentRoom = 'lobby';
     router.replace('/');
-  }
-
-  componentDidUpdate () {
-    const { router } = this.props;
-    makeChatMenu(router);
   }
 
   render () {
