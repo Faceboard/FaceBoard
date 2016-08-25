@@ -47,7 +47,7 @@ class MainSession extends React.Component {
       {i: 'video', x: 55, y: 3, w: 10, h: 15}
     ];
     return (
-      <ReactGridLayout className="layout" layout={layout} cols={100} rowHeight={1} width={2000} verticalCompact={false}>
+      <ReactGridLayout className="layout" layout={layout} cols={100} rowHeight={1} width={window.innerWidth*1.5} verticalCompact={false}>
         <select key={'syntax'} id="cmMode" className="form-control" onChange={this.changeMode.bind(this)}>
           <option value="javascript">javascript</option>
           <option value="jsx">jsx</option>
@@ -110,7 +110,3 @@ export default connect(mapStateToProps)(withRouter(MainSession));
     //                 className={!this.props.firepadReducer.hidden ? "hidden" : "open"}
     //                 src={"https://www.twiddla.com/api/start.aspx?sessionid=" + this.props.whiteboardReducer.whiteboardId + "&hide=chat,bottomtray,url,invite,profile,voice,welcome,etherpad,documents,images,email,math,roomsettings,logo&autostart=true"}></iframe> :
     //         <div id="whiteboard" className={!this.props.firepadReducer.hidden ? "hidden" : "open"}><ProgressCircle className="progresscircle" size={40}/></div>}
-
-
-
-
