@@ -21,15 +21,29 @@ class RoomChat extends React.Component {
     makeChatMenu(router);
   }
 
+  componentDidUpdate () {
+    const { router } = this.props;
+    var node = this.refs.roomChat;
+    this.shouldScroll = Math.abs((node.scrollTop + node.offsetHeight) - node.scrollHeight) < (node.scrollTop / 3);
+    if (!this.firstScroll) {
+      this.shouldScroll = true;
+      this.firstScroll = true;
+    }
+    this.scrollToBottomAtStart();
+    makeChatMenu(router);
+  }
+
+  scrollToBottomAtStart () {
+    if (this.shouldScroll) {
+      var node = this.refs.roomChat;
+      node.scrollTop = node.scrollHeight;
+    }
+  }
+
   leaveRoom () {
     const { router } = this.props;
     global.localStorage.currentRoom = 'lobby';
     router.replace('/');
-  }
-
-  componentDidUpdate () {
-    const { router } = this.props;
-    makeChatMenu(router);
   }
 
   render () {
@@ -53,16 +67,16 @@ class RoomChat extends React.Component {
            </div>
         </div>
         <div className="chat-container">
-          <div className="chatBox">
+          <div className="chatBox" ref="roomChat">
             <table className="table-striped">
               <tbody>
                 {roomMsgs.map(message => <Message key={message.id} userid={message.id} user={message.username} text={message.text} timestamp={message.createdAt}/>)}
               </tbody>
             </table>
-            <RoomSelect />
-            <RoomChatInput />
           </div>
+            <RoomChatInput />
         </div>
+            <RoomSelect />
       </div>
     );
   }
