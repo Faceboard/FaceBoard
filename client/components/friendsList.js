@@ -77,7 +77,7 @@ class FriendsList extends React.Component {
           onClick={this.removeFriend.bind(this)}>
         </span>
         <span
-          className="btn btn-default pull-right pull-right icon icon-user-add"
+          className="btn btn-default pull-right icon icon-user-add"
           data-friendname={friend.friendname}
           onClick={this.inviteToRoom.bind(this)}>
         </span>
