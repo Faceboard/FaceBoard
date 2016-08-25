@@ -23,6 +23,11 @@ input {
   color: #3d3d3d;
 }
 
+.btn {
+  cursor: pointer;
+  display: inline-block;
+}
+
 .centerAuth, .centerSign {
   margin: auto;
   display: block;
@@ -150,17 +155,19 @@ input {
 .chat-container {
   height: 65%;
   margin: 30px 4% 5% 10%;
-  /*width: 100%;*/
+  -webkit-box-shadow: inset -4px -4px 3px -3px black;
 }
 
 .chatBox {
   height: 100%;
   /*height: 80%;*/
   overflow: auto;
+  border: 1px solid gray;
+  -webkit-box-shadow: inset -4px -4px 3px -3px black;
 }
 
 .chatBox::-webkit-scrollbar {
-  opacity: 0;
+  width: 0;
 }
 
 .table-striped tr {
@@ -293,6 +300,21 @@ video {
   font-size: 26px;
   letter-spacing: 2px;
   font-family: "raleway";
+}
+
+.mainHeader img {
+  margin: 15px 0 0 15px;
+  padding: 5px;
+  max-width: 24px;
+  opacity: 0.3;
+  display: inline-block;
+}
+
+.mainHeader img:hover {
+  opacity: 0.8;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background: #dadada;
 }
 
 .progresscircle {

@@ -57,7 +57,8 @@ class RoomChat extends React.Component {
     return (
       <div className="lobby">
         <div className="mainHeader">
-          {'Chat Room ' + global.localStorage.currentRoom}
+          {global.localStorage.currentRoom}
+          <img src="../static/imgs/plus.png" />
            <span className="btn btn-default pull-right icon icon-home" onClick={this.leaveRoom.bind(this)}>
            </span>
            <div className="pull-right">
