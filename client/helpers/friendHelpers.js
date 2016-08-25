@@ -64,8 +64,8 @@ export function onlineUser (target) {
 
   for (let i = 0; i < friendArray.length; i++) {
     if (friendArray[i].dataset['friendname'] === target) {
-      friendArray[i].classList.remove('fa-star-o');
-      friendArray[i].classList.add('fa-star');
+      friendArray[i].classList.remove('offline');
+      friendArray[i].classList.add('online');
     }
   }
 };
@@ -76,8 +76,8 @@ export function offlineUser (target) {
 
   for (let i = 0; i < friendArray.length; i++) {
     if (friendArray[i].dataset['friendname'] === target) {
-      friendArray[i].classList.remove('fa-star');
-      friendArray[i].classList.add('fa-star-o');
+      friendArray[i].classList.remove('online');
+      friendArray[i].classList.add('offline');
     }
   }
 };

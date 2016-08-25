@@ -1,3 +1,4 @@
+/* global process, __dirname */
 'use strict';
 
 const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');

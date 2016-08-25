@@ -19,6 +19,10 @@ a {
   color: #3d3d3d;
 }
 
+input {
+  color: #3d3d3d;
+}
+
 .centerAuth, .centerSign {
   margin: auto;
   display: block;
@@ -45,7 +49,7 @@ a {
 }
 
 .dim-background {
-  z-index: 100;
+  z-index: 1001;
   position: fixed;
   padding: 0;
   margin: 0;
@@ -58,7 +62,7 @@ a {
 }
 
 .room-select {
-  z-index: 1000;
+  z-index: 1002;
   position: absolute;
   background-color: white;
   left: 35%;
@@ -202,10 +206,6 @@ select {
   color: #3d3d3d;
 }
 
-/*span {
-  display: block;
-}*/
-
 #mainSession {
   display: inline-block;
   width: 64%;
@@ -314,7 +314,9 @@ video {
   padding: 0px 10px 5px 10px;
 }
 
-.users::-webkit-scrollbar {
+.users::-webkit-scrollbar,
+.friendsList::-webkit-scrollbar,
+.rooms-list::-webkit-scrollbar {
   opacity: 0;
   width: 0;
 }
@@ -374,7 +376,8 @@ video {
   padding: 6px;
 }
 
-.user-names span {
+.user-names span,
+.rooms-list .list-group-item span {
   display: inline-block;
   transform: scale(0.8);
   margin: 2px;
@@ -399,20 +402,63 @@ video {
   display: inline-block;
 }
 
+.list-group-header {
+  width: 100%;
+}
+
 .showUsers {
   display: none;
+}
+
+.friendsList {
+  height: 45%;
+  margin-top: 1%;
+  overflow: auto;
 }
 
 .friends {
   list-style: none;
 }
 
-.logo {
-  position: absolute;
+.rooms-list {
+  height: 40%;
+  overflow: auto;
 }
 
-.search-pad {
-  margin: 13px 10px 0 0;
+.rooms-list .list-group-header *,
+.rooms-list .list-group-item * {
+  display: inline-block;
+}
+
+.rooms-list-input input {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.rooms-list-input {
+  height: 0;
+  -webkit-transition: height .25s linear;
+  display: inline-block;
+}
+
+.rooms-list-input-show {
+  top: 0;
+  height: 45px;
+  padding: 5px;
+  -webkit-transition: height .25s linear;
+  /*margin: 10px;*/
+}
+
+.rooms-list .list-group-header span {
+  opacity: 0.3;
+}
+
+.rooms-list .list-group-header span:hover {
+  opacity: 0.8;
+}
+
+.logo {
+  position: absolute;
 }
 
 .react-grid-item > .react-resizable-handle {
@@ -422,6 +468,24 @@ video {
   border-style: solid;
   border-width: 0 0 10px 10px;
   border-color: transparent transparent #ff3c00 transparent;
+}
+
+.online *, .offline * {
+  display: inline-flex;
+}
+
+.online .svg-class,
+.offline .svg-class {
+  margin: 5px 5px 0 0;
+}
+
+.online circle {
+  fill: red;
+}
+
+.offline circle {
+  stroke: #8c8c8c;
+  stroke-width: 2;
 }
 
 @font-face {

@@ -61,9 +61,10 @@ class FriendsList extends React.Component {
     const { friends } = this.props;
     const friendsNoSelf = friends.filter(f => f.friendname !== global.localStorage.username)
     const mapFriends = friendsNoSelf.map(friend =>
-      <li className="list-group-item user-names friends fa fa-star-o" data-friendname={friend.friendname}>
+      <li className="list-group-item user-names friends offline" data-friendname={friend.friendname}  key={friend.id}>
         <span
-          className="btn btn-default pull-right icon icon-phone"data-friendname={friend.friendname}
+          className="btn btn-default pull-right icon icon-phone"
+          data-friendname={friend.friendname}
           onClick={this.callUser.bind(this)}>
         </span>
         <span className="btn btn-default pull-right icon icon-mail"
@@ -76,11 +77,18 @@ class FriendsList extends React.Component {
           onClick={this.removeFriend.bind(this)}>
         </span>
         <span
-          className="btn btn-default pull-right pull-right icon icon-user-add"
+          className="btn btn-default pull-right icon icon-user-add"
           data-friendname={friend.friendname}
           onClick={this.inviteToRoom.bind(this)}>
         </span>
-        <div className="media-body pull-left" key={friend.id}>
+        <div className="pull-left svg-class" key={friend.id}>
+          <div>
+            <svg width="10" height="10">
+              <circle cx="5" cy="5" r="4" />
+            </svg>
+          </div>
+        </div>
+        <div className="media-body pull-left">
           <strong>{friend.friendname}</strong>
         </div>
       </li>
@@ -88,12 +96,12 @@ class FriendsList extends React.Component {
 
     if (!friends.length) {
       return (
-        <div id="friendsList">
+        <div className="friendsList">
         </div>
       );
     }
     return (
-      <div id="friendsList">
+      <div className="friendsList">
         <ul className="allUsers list-group">
           <li className="list-group-header">
             <h4>Friends</h4>
