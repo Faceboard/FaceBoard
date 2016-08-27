@@ -51,7 +51,7 @@ class RoomList extends React.Component {
     const { rooms } = this.props;
     const mapRooms = rooms.map(room =>
       <li className="list-group-item" key={room.id} onClick={this.changeRooms.bind(this)} data-roomname={room.roomname}>
-        <div className="media-body pull-left">
+        <div className="media-body pull-left" data-roomname={room.roomname}>
           <strong data-roomname={room.roomname}>{room.roomname}</strong>
         </div>
         <span className="btn btn-default pull-right icon icon-minus" onClick={this.removeRoom.bind(this)} data-roomname={room.roomname}></span>

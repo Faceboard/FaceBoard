@@ -74,7 +74,6 @@ class Users extends React.Component {
           <span className="btn btn-default pull-right icon icon-phone" data-username={user.username} onClick={this.callUser.bind(this)}></span>
           <span className="btn btn-default pull-right icon icon-mail" data-username={user.username} data-user-id={user.id} onClick={this.msgUser.bind(this)}></span>
           <span className="btn btn-default pull-right icon icon-plus" data-username={user.username} data-user-id={user.id} onClick={this.addUser.bind(this)}></span>
-          <span className="btn btn-default pull-right pull-right icon icon-user-add" data-username={user.username} data-user-id={user.id} onClick={this.inviteToRoom.bind(this)}></span>
         <div className="media-body pull-left list-username" onMouseEnter={this.alt.bind(this, user)} onMouseLeave={this.alt.bind(this, user)}>
           <strong>{user.username}</strong>
         </div>
@@ -108,5 +107,3 @@ class Users extends React.Component {
 
 const mapStateToProps = (state) => state.userReducer;
 export default connect(mapStateToProps)(withRouter(Users));
-
-
