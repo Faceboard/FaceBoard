@@ -22,6 +22,8 @@
 
 ## Development
 
+- Remote server code: [here](https://github.com/Faceboard/Faceboard-static)
+
 ### Installing Dependencies
 
 From within the root directory:
@@ -35,16 +37,18 @@ npm start
 
 ```
 
+```
+
 ### Roadmap
 
 View the project roadmap [here](https://github.com/HRR17-Cauliflower/FaceBoard/issues)
 
 ## Team
 
-  - __Product Owner__: [Patrick Truong](https://github.com/vget98)
-  - __Scrum Master__: [Ron Cruz](https://github.com/Ronolibert)
-  - __Development Team Members__: [Jason Bland](https://github.com/tylerwebworx),
-    [Ryo Wheatley](https://github.com/ryo-capricorn92)
+- __Product Owner__: [Patrick Truong](https://github.com/vget98)
+- __Scrum Master__: [Ron Cruz](https://github.com/Ronolibert)
+- __Development Team Members__: [Jason Bland](https://github.com/tylerwebworx),
+  [Ryo Wheatley](https://github.com/ryo-capricorn92)
 
 ## Contributing
 
