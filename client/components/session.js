@@ -51,8 +51,3 @@ class Session extends React.Component {
     );
   }
 }
-
-// change this in time
-const mapStateToProps = state => state.userReducer;
-export default connect(mapStateToProps)(withRouter(Session));
-// places to rename sessionName: session.js, component,

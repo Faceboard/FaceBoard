@@ -11,8 +11,10 @@ export function getAllMessages () {
     dispatch({type: FETCHING_MESSAGES });
     axios.get(constantUrl + '/messages/findAllMessages')
     .then( (response) => {
-      dispatch({type: MESSAGES_FETCHED,
-      payload: response.data });
+      dispatch({type:
+        MESSAGES_FETCHED,
+        payload: response.data
+      });
     })
     .catch( (error) => {
       dispatch({
@@ -33,10 +35,12 @@ export function getPrivateMessages (usertwoid) {
           payload: response.data
         });
       })
-      .catch((error) => {
-        dispatch({type: PCHAT_ERROR,
-        error: error });
-      });
+        .catch((error) => {
+          dispatch({
+            type: PCHAT_ERROR,
+            error: error
+          });
+        });
   };
 };
 

@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { ProgressCircle } from 'react-desktop/macOs';
 import { getAllUsers } from '../actions/userActions';
-import { showUserSelect, hideUserSelect, chooseUser } from '../actions/userActions';
+import * as user from '../actions/userActions';
+import { hideUserSelect, chooseUser } from '../actions/userActions';
 import socket from '../sync';
 
 class UserSelect extends React.Component {
@@ -12,7 +13,7 @@ class UserSelect extends React.Component {
   }
 
   componentWillMount () {
-    this.props.dispatch(getAllUsers());
+    this.props.getAllUsers();
   }
 
   closeUserSelect (e) {
@@ -22,12 +23,11 @@ class UserSelect extends React.Component {
 
   changeUser (e) {
     global.localStorage.invitedUser = e.target.value;
-    this.props.dispatch(chooseUser(e.target.value));
+    this.props.chooseUser(e.target.value);
   }
 
   inviteUser () {
     const { chosenUser } = this.props;
-    console.log('this is chosen', chosenUser);
     let roomInvObj = {
       roomname: global.localStorage.currentRoom,
       secondusername: chosenUser,
@@ -80,5 +80,16 @@ class UserSelect extends React.Component {
   };
 }
 
+const { arrayOf, shape, number, string } = React.PropTypes;
+
+UserSelect.propTypes = {
+  chosenUser: string,
+  users: arrayOf(shape({
+    id: number.isRequired,
+    username: string.isRequired
+  }))
+};
+
 const mapStateToProps = (state) => state.userReducer;
-export default connect(mapStateToProps)(withRouter(UserSelect));
+const mapDispatchToProps = (dispatch) => bindActionCreators(user, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserSelect));

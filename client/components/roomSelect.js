@@ -77,5 +77,14 @@ class RoomSelect extends React.Component {
   }
 }
 
+const { arrayOf, shape, number, string } = React.PropTypes;
+
+RoomSelect.propTypes = {
+  rooms: arrayOf(shape({
+    id: number.isRequired,
+    roomname: string.isRequired
+  }))
+};
+
 const mapStateToprops = (state) => state.roomReducer;
 export default connect(mapStateToprops)(withRouter(RoomSelect));
