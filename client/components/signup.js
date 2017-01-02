@@ -51,5 +51,12 @@ class Signup extends React.Component {
   }
 }
 
+const { string } = React.PropTypes;
+
+Signup.propTypes = {
+  username: string,
+  password: string
+};
+
 const mapStateToProps = state => state.authReducer;
 export default connect(mapStateToProps)(withRouter(Signup));

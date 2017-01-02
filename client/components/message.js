@@ -9,4 +9,13 @@ const Message = ({user, text, userid, timestamp}) => (
   </td></tr>
 );
 
+const { string, number } = React.PropTypes;
+
+Message.propTypes = {
+  user: string,
+  text: string,
+  userid: number,
+  timestamp: string
+};
+
 export default Message;

@@ -54,7 +54,7 @@ class RoomChat extends React.Component {
 
   render () {
     const { roomMsgs } = this.props;
-    if (!roomMsgs) {
+    if (!roomMsgs.length) {
       <div className="progresscircle">
         <ProgressCircle size={40}/>
       </div>
@@ -90,6 +90,15 @@ class RoomChat extends React.Component {
   }
 };
 
+const { arrayOf, shape, number, string } = React.PropTypes;
+
+RoomChat.propTypes = {
+  roomMsgs: arrayOf(shape({
+    id: number.isRequired,
+    username: string.isRequired,
+    text: string.isRequired
+  }))
+};
 
 const mapStateToProps = (state) => state.roomChatReducer
 export default connect(mapStateToProps)(withRouter(RoomChat));
