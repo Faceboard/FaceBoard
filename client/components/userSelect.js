@@ -27,7 +27,6 @@ class UserSelect extends React.Component {
 
   inviteUser () {
     const { chosenUser } = this.props;
-    console.log('this is chosen', chosenUser);
     let roomInvObj = {
       roomname: global.localStorage.currentRoom,
       secondusername: chosenUser,
