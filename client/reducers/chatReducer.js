@@ -9,21 +9,24 @@ const initialState = {
 const chatReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCHING_MESSAGES:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         fetching: true
-      });
+      };
     case MESSAGES_FETCHED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         fetched: false,
         fetching: true,
         messages: action.payload
-      });
+      };
     case MESSAGES_ERROR:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         fetching: false,
         fetched: true,
         error: action.payload
-      });
+      };
     default:
       return state;
   }
