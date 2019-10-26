@@ -102,5 +102,14 @@ class RoomList extends React.Component {
   }
 }
 
+const { arrayOf, shape, number, string } = React.PropTypes;
+
+RoomList.propTypes = {
+  rooms: arrayOf(shape({
+    id: number.isRequired,
+    roomname: string.isRequired
+  }))
+};
+
 const mapStateToProps = state => state.roomReducer;
 export default connect(mapStateToProps)(withRouter(RoomList));

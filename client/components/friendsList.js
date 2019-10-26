@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 import { inviteToSession, makeSession, sessionChange, makePrivateSession, askSecondUserToJoin } from '../actions/session';
 import socket from '../sync';
 import { makeMenu, reattachMenus } from '../actions/menu';
-import { addFriend, getAllFriends, deleteFriend } from '../actions/friends';
+import { getAllFriends, deleteFriend } from '../actions/friends';
 import { getPrivateMessages, getAllFriendPrivateMsg, pChatStart } from '../actions/chat';
 import { findFriend, startPChat } from '../helpers/friendHelpers';
 import { sendRoomInvite } from '../helpers/roomChatHelpers';
@@ -106,6 +106,15 @@ class FriendsList extends React.Component {
       </div>
     );
   }
+}
+
+const { arrayOf, shape, number, string } = React.PropTypes;
+
+FriendsList.propTypes = {
+  friends: arrayOf(shape({
+    id: number.isRequired,
+    friendname: string.isRequired
+  }))
 }
 
 const mapStateToProps = state => state.userReducer;

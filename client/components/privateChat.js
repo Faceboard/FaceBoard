@@ -62,7 +62,7 @@ class PrivateChat extends React.Component {
 
   render() {
     const { privMessages } = this.props;
-    if (!privMessages) {
+    if (!privMessages.length) {
       return(
         <div className="progresscircle">
           <ProgressCircle size={40}/>
@@ -102,6 +102,16 @@ class PrivateChat extends React.Component {
     }
   }
 }
+
+const { arrayOf, shape, string } = React.PropTypes;
+
+PrivateChat.propTypes = {
+  privMessages: arrayOf(shape({
+    useronename: string.isRequired,
+    text: string.isRequired,
+    createdAt: string.isRequired
+  }))
+};
 
 const mapStateToProps = (state) => state.pchatReducer;
 export default connect(mapStateToProps)(withRouter(PrivateChat));

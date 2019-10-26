@@ -105,5 +105,14 @@ class Users extends React.Component {
   }
 }
 
+const { arrayOf, shape, number, string } = React.PropTypes;
+
+Users.propTypes = {
+  filteredUsers: arrayOf(shape({
+    id: number.isRequired,
+    username: string.isRequired
+  }))
+};
+
 const mapStateToProps = (state) => state.userReducer;
 export default connect(mapStateToProps)(withRouter(Users));

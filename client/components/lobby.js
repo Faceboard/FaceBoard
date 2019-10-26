@@ -64,11 +64,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(withRouter(Lobby));
-
-
-// <button onClick={this.callUser.bind(this)}>
-//           <span className="icon icon-phone" value={user.username}></span>
-//         </button>
-//         <button onClick={this.msgUser.bind(this)}>
-//           <span className="icon icon-pencil" data-username={user.username} data-user-id={user.id}></span>
-//         </button>

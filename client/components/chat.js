@@ -65,5 +65,16 @@ class Chat extends React.Component {
   }
 }
 
+const { arrayOf, shape, string, number } = React.PropTypes;
+
+Chat.propTypes = {
+  messages: arrayOf(shape({
+    id: number.isRequired,
+    userid: number.isRequired,
+    user: string.isRequired,
+    text: string.isRequired
+  }))
+};
+
 const mapStateToProps = state => state.chatReducer;
 export default connect(mapStateToProps)(withRouter(Chat))

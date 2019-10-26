@@ -16,7 +16,7 @@ class MainSession extends React.Component {
   }
 
   componentDidMount () {
-    this.props.dispatch(fetchFirepad(this.props.firepadReducer.mode));
+    this.props.dispatch(fetchFirepad(this.props.firepad.mode));
     var dispatch = this.props.dispatch;
     socket.on('userHasSentWBID', function (id) {
       dispatch(fetchWhiteboard(id));
@@ -32,9 +32,6 @@ class MainSession extends React.Component {
   }
 
   changeMode (e) {
-    // this is terrible and should not be done, but there's something fundamental missing in
-    // this logic and this is the easiest workaround in the short term
-    // god have mercy on my soul for mixing direct and virtual dom manipulations
     document.getElementById('firepad').innerHTML = '';
     this.props.dispatch(fetchFirepad(e.target.value));
   }
@@ -62,8 +59,8 @@ class MainSession extends React.Component {
         </select>
         <div className="gridBox" key={'video'}><Video /></div>
         <div className="gridBox" key={'code'} id="firepad"></div>
-        {this.props.whiteboardReducer.whiteboardId ?
-            <div className="gridBox" key={'board'}><iframe id="whiteboard" src={"https://www.twiddla.com/api/start.aspx?sessionid=" + this.props.whiteboardReducer.whiteboardId + "&hide=chat,bottomtray,url,invite,profile,voice,welcome,etherpad,documents,images,email,math,roomsettings,logo&autostart=true"}></iframe></div> :
+        {this.props.whiteboard.whiteboardId ?
+            <div className="gridBox" key={'board'}><iframe id="whiteboard" src={"https://www.twiddla.com/api/start.aspx?sessionid=" + this.props.whiteboard.whiteboardId + "&hide=chat,bottomtray,url,invite,profile,voice,welcome,etherpad,documents,images,email,math,roomsettings,logo&autostart=true"}></iframe></div> :
             <div className="gridBox" key={'board'}><ProgressCircle className="progresscircle" size={40}/></div>}
       </ReactGridLayout>
     )
@@ -72,41 +69,9 @@ class MainSession extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    firepadReducer: state.firepadReducer,
-    whiteboardReducer: state.whiteboardReducer
+    firepad: state.firepadReducer,
+    whiteboard: state.whiteboardReducer
   };
 };
+
 export default connect(mapStateToProps)(withRouter(MainSession));
-
-
-
-// <div className="gridBox" id="firepad" key={'code'}></div>
-
-    // <div className="tab-group">
-    //       <div className={ !this.props.firepadReducer.hidden ? 'tab-item active' : 'tab-item' } id="codeshareTab" onClick={this.toggleEditor.bind(this)}>
-    //         Codeshare
-    //       </div>
-    //       <div className={ this.props.firepadReducer.hidden ? 'tab-item active' : 'tab-item' } id="whiteboardTab" onClick={this.toggleEditor.bind(this)}>
-    //         Whiteboard
-    //       </div>
-    //     </div>
-    //     <div id="firepadContainer" className={this.props.firepadReducer.hidden ? 'hidden' : 'open'}>
-    //       <select id="cmMode" className="form-control" onChange={this.changeMode.bind(this)}>
-    //         <option value="javascript">javascript</option>
-    //         <option value="jsx">jsx</option>
-    //         <option value="css">css</option>
-    //         <option value="htmlmixed">html - mixed</option>
-    //         <option value="php">php</option>
-    //         <option value="ruby">ruby</option>
-    //         <option value="python">python</option>
-    //         <option value="markdown">markdown</option>
-    //         <option value="sass">sass</option>
-    //         <option value="sql">sql</option>
-    //       </select>
-    //       <div id="firepad"></div>
-    //     </div>
-    //       { this.props.whiteboardReducer.whiteboardId ?
-    //         <iframe id="whiteboard"
-    //                 className={!this.props.firepadReducer.hidden ? "hidden" : "open"}
-    //                 src={"https://www.twiddla.com/api/start.aspx?sessionid=" + this.props.whiteboardReducer.whiteboardId + "&hide=chat,bottomtray,url,invite,profile,voice,welcome,etherpad,documents,images,email,math,roomsettings,logo&autostart=true"}></iframe> :
-    //         <div id="whiteboard" className={!this.props.firepadReducer.hidden ? "hidden" : "open"}><ProgressCircle className="progresscircle" size={40}/></div>}
