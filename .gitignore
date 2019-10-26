@@ -3,3 +3,4 @@ node_modules
 client/compiled
 dist
 npm-debug
+package-lock.json

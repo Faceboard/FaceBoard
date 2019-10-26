@@ -9,21 +9,24 @@ const initialState = {
 const roomChatReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCHING_ROOM_MESSAGES:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         fetching: true
-      });
+      };
     case ROOM_MESSAGES_FETCHED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         fetched: false,
         fetching: true,
         roomMsgs: action.payload
-      });
+      };
     case ROOM_MESSAGES_ERROR:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         fetching: false,
         fetched: true,
         error: action.payload
-      });
+      };
     default:
       return state;
   }

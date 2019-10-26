@@ -10,24 +10,29 @@ const initialState = {
 const roomReducer = (state = initialState, action) => {
   switch(action.type) {
     case FETCHING_ROOMS:
-      return Object.assign({}, state, {fetching: true} );
+      return {
+        ...state,
+        fetching: true
+      }
     case FETCHED_ROOMS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         fetching: false,
         fetched: true,
         rooms: action.payload
-      });
+      }
     case FETCHED_ROOMS_ERROR:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         fetching: false,
         fetched: true,
         error: action.payload
-      });
+      };
     case CHOOSE_ROOM:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         chosenRoom: action.chosenRoom
-      });
-
+      };
     default:
       return state;
   }

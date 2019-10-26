@@ -10,13 +10,26 @@ const initialState = {
 const firepadReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCHING_FIREPAD:
-      return Object.assign({}, state, { fetching: true });
+      return {
+        ...state,
+        fetching: true
+      };
     case FIREPAD_FETCHED:
-      return Object.assign({}, state, { fetched: true, fetching: false});
+      return {
+        ...state,
+        fetched: true,
+        fetching: false
+      };
     case FIREPAD_MODE:
-      return Object.assign({}, state, { mode: action.mode });
+      return {
+        ...state,
+        mode: action.mode
+      };
     case TOGGLE_DIV:
-      return Object.assign({}, state, { hidden: !action.hidden });
+      return {
+        ...state,
+        hidden: !action.hidden
+      };
     default:
       return state;
   }
