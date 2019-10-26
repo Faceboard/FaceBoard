@@ -17,8 +17,8 @@
 - Electron
 - Express
 - Sequelize
-- React
-- Redux
+- React v^16.11.0
+- Redux v^4.04
 
 ## Development
 
