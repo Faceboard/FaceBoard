@@ -114,7 +114,6 @@ socket.on('connect', (data) => {
 });
 
 socket.on('userConnectedConfirmed', (data) => {
-  console.log('user connected', data.username);
   onlineUser(data.username);
 });
 
@@ -123,7 +122,6 @@ socket.on('disconnect', (data) => {
 });
 
 socket.on('userDisconnectedConfirmed', (data) => {
-  console.log('user disconnected', data.username);
   offlineUser(data.username);
 });
 
