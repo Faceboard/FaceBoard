@@ -33,7 +33,7 @@
   "dependencies": {
     "axios": "^0.13.1",
     "codemirror": "^5.17.0",
-    "electron": "^7.0.0",
+    "electron": "^7.2.4",
     "firebase": "^3.2.1",
     "firepad": "^1.4.0",
     "react": "^16.11.0",
